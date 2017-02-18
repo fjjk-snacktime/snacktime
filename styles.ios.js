@@ -60,6 +60,24 @@ export default styles = StyleSheet.create({
     backgroundColor: 'deepskyblue',
   },
 
+  searchBarPicture: {
+    height: 100,
+    width: 100,
+  },
+
+   searchBarPictureFrame: {
+    flex: 1,
+    justifyContent: 'flex-end', 
+  },
+
+  searchBar: {
+    height: 40, 
+    width: 200,
+    borderColor: 'gray', 
+    borderWidth: 1,
+  }
+
+
 // @media all and (max-width: 800px) {
 //   .navigation {
 //     justify-content: space-around;

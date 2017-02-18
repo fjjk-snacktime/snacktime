@@ -13,11 +13,6 @@ import {bindActionCreators} from 'redux';
 import * as app from '../actions/appActions.ios.js';
 import getApp from '../reducers/appReducers.ios.js'
 
-// @connect((store) => {
-//   return {
-//     showSearchBar: store.app.showSearchBar,
-//   }
-// }) 
 class App extends Component {
   constructor(props) {
     super(props);
@@ -28,11 +23,6 @@ class App extends Component {
       borderColor: color,
       borderWidth: 5,
     }
-  }
-
-  showSearchBar() {
-    console.log('click');
-    // console.log('props', this.props)
   }
 
   render() {
@@ -79,10 +69,6 @@ class App extends Component {
     }
   }
 }
-
-const mapStateToProps = (state) => ({
-  ...getApp(state),
-})
 
 export default connect(state => ({
     state: state.app

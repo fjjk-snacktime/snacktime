@@ -2,6 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+<<<<<<< HEAD
 	<key>SchemeUserState</key>
 	<dict>
 		<key>snacktime-tvOS.xcscheme_^#shared#^_</key>
@@ -15,6 +16,8 @@
 			<integer>0</integer>
 		</dict>
 	</dict>
+=======
+>>>>>>> added workspace
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>00E356ED1AD99517003FC87E</key>

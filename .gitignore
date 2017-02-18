@@ -27,3 +27,17 @@
 *.exe
 *.out
 *.app
+
+#xcodes
+.m
+.h
+.xscheme
+.xcuserstate
+.xcworkspacedata
+.pbxproj
+.plist
+.gradle
+.pro
+.xml
+.java
+.xib

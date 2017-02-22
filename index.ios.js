@@ -6,6 +6,6 @@
 
 import React from 'react';
 import { AppRegistry } from 'react-native';
-import snacktime from './components/baseApp.ios.js';
+import snacktime from './components/Navigator.ios.js';
 
 AppRegistry.registerComponent('snacktime', () => snacktime);

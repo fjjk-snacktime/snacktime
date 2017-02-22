@@ -1,3 +1,4 @@
+import axios from 'axios';
 const helpers = {
   camera: {
     imageRecognition: (data) => {
@@ -32,9 +33,9 @@ const helpers = {
         .catch(err => {
           console.log('Error: ', err)
         })
-      }
     }
   }
 }
+
 
 export default helpers;

@@ -1,19 +1,29 @@
 'use strict';
 import React, { Component } from 'react';
 import {
-  Alert,
-  AppRegistry,
-  Dimensions,
   Text,
+  Image,
   TouchableHighlight,
   View
 } from 'react-native';
 import Camera from 'react-native-camera';
-import helpers from '../helper/helpers.ios.js';
+import helpers from '../helpers/helpers.ios.js';
 var axios = require('axios');
 import styles from '../styles.ios.js';
+import BaseApp from './baseApp.ios.js';
 
 export default class camera extends Component {
+
+  constructor(props) {
+    super(props)
+  }
+
+  changeNavigation(results) {
+    this.props.navigator.push({
+      component: baseApp,
+      passProps: results
+    })
+  }
 
   render() {
     return (
@@ -25,7 +35,9 @@ export default class camera extends Component {
           style={styles.preview}
           aspect={Camera.constants.Aspect.fill}
           captureTarget={Camera.constants.CaptureTarget.memory}>
-          <Image style={styles.takePicture} onPress={this.takePicture.bind(this)} source={{uri: 'https://s3.amazonaws.com/features.ifttt.com/newsletter_images/2015_February/camera512x512+(1).png'}}/>
+          <TouchableHighlight style={styles.takePicture} onPress={this.takePicture.bind(this)}>
+            <Image style={styles.takePicture} source={{uri: 'https://s3.amazonaws.com/features.ifttt.com/newsletter_images/2015_February/camera512x512+(1).png'}}/>
+          </TouchableHighlight>
         </Camera>
       </View>
     );
@@ -33,11 +45,15 @@ export default class camera extends Component {
 
   takePicture() {
     this.camera.capture()
-      .then((data) => this.readPicture(data.data))
+      .then((data) => {
+        this.readPicture(data.data);
+      })
       .catch(err => console.error(err));
   }
 
 
   readPicture(data) {
     const descriptions = helpers.camera.imageRecognition(data);
+    this.changeNavigation(descriptions);
   }
+}

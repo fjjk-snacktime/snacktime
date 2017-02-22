@@ -10,7 +10,7 @@ import Camera from 'react-native-camera';
 import helpers from '../helpers/helpers.ios.js';
 var axios = require('axios');
 import styles from '../styles.ios.js';
-import BaseApp from './baseApp.ios.js';
+import GoogleResults from './GoogleResults.ios.js';
 
 export default class camera extends Component {
 
@@ -20,8 +20,8 @@ export default class camera extends Component {
 
   changeNavigation(results) {
     this.props.navigator.push({
-      component: baseApp,
-      passProps: results
+      component: GoogleResults,
+      passProps: { results: results }
     })
   }
 
@@ -53,7 +53,16 @@ export default class camera extends Component {
 
 
   readPicture(data) {
-    const descriptions = helpers.camera.imageRecognition(data);
-    this.changeNavigation(descriptions);
+    helpers.camera.imageRecognition(data)
+      .then(resp => {
+        let descriptions = [];
+        for (let obj of resp.data.responses[0].labelAnnotations) {
+          descriptions.push(obj.description);
+        }
+        this.changeNavigation(descriptions);
+      })
+      .catch(err => {
+        console.log('Error: ', err)
+      })
   }
 }

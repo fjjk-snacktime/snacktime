@@ -36,7 +36,7 @@ export default styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
     height: Dimensions.get('window').height,
-    width: Dimensions.get('window').width
+    width: Dimensions.get('window').width,
   },
   navigation: {
     flexDirection: 'row',
@@ -53,7 +53,7 @@ export default styles = StyleSheet.create({
     height: 60,
     width: 60,
     padding: 5,
-    marginRight: 60,
+    marginRight: Dimensions.get('window').width/9,
   },
 
   navigationahover: {
@@ -61,6 +61,7 @@ export default styles = StyleSheet.create({
   },
 
   searchBarPicture: {
+    flexGrow: 1,
     height: 100,
     width: 100,
   },

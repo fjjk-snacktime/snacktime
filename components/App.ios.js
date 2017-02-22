@@ -4,15 +4,18 @@ import {
   View,
   Image,
   TouchableHighlight,
+  TouchableOpacity
 } from 'react-native';
 import styles from '../styles.ios.js';
 import Nav from './Navbar.ios.js';
 import SearchBar from './Searchbar.ios.js';
+import MyScene from './MyScene';
 import { connect } from "react-redux";
 import {bindActionCreators} from 'redux';
 import * as app from '../actions/appActions.ios.js';
 import getApp from '../reducers/appReducers.ios.js';
 import camera from './Camera.ios.js';
+
 
 class App extends Component {
   constructor(props) {
@@ -45,13 +48,13 @@ class App extends Component {
       return (
         <View style={[styles.container, this.border('yellow')]}>
           <View style={[styles.navigation, this.border('pink')]} >
-            <Nav 
+            <Nav
               changeNavigationCamera={this.changeNavigationCamera.bind(this)}
             />
           </View>
           <View style={[styles.app, this.border('black')]} >
             <Text style={styles.welcome}>
-              Welcome to Snack Time!
+              Welcome to TextMode!
             </Text>
           </View>
           <View style={[styles.searchBarPictureFrame, this.border('red')]} >
@@ -66,7 +69,7 @@ class App extends Component {
       return (
         <View style={[styles.container, this.border('yellow')]}>
           <View style={[styles.navigation, this.border('pink')]} >
-            <Nav 
+            <Nav
               changeNavigationCamera={this.changeNavigationCamera.bind(this)}
             />
           </View>

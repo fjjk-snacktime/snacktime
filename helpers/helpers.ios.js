@@ -44,6 +44,7 @@ const helpers = {
         }
       }
       return axios.get(`https://api.foodpairing.com/ingredients/${id}/pairings`, options)
+
     }
   }
 }

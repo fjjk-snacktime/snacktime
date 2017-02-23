@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, Image, TouchableHighlight, View, ListView } from 'react-native';
 import FoodpairResults from './FoodpairResults.ios.js';
 import helpers from '../helpers/helpers.ios.js';
+import styles from '../styles.ios.js';
 
 export default class GoogleResults extends Component {
   constructor(props) {
@@ -44,18 +45,20 @@ export default class GoogleResults extends Component {
 
   render() {
     return (
-      <View style={{flex: 1, paddingTop: 22}}>
+      <View style={styles.resultsList}>
+        <View style={styles.resultsTitle}> 
+          <Text style={styles.resultsTitleText}> Image Results </Text>
+        </View>
         <ListView
           dataSource={this.state.dataSource}
+          style={styles.resultsList}
           renderRow={(rowData, i) => (
             <TouchableHighlight
-              key={i} 
-              style={styles.listItem}
               onPress={this.onPress.bind(this, rowData)}
-              underlayColor="grey"
-              value={rowData}
+              underlayColor="blue"
               >
-              <View style={styles.view}>
+              <View style={styles.listItem}>
+                <Image style={styles.resultsPicture} source={{uri: 'https://img.clipartfest.com/4f33f01102ffa78ae307af47897d804c_happy-apple-clipart-cute-apple-clip-art_1100-1324.png'}} />
                 <Text style={styles.text}>{rowData}</Text>
               </View>
             </TouchableHighlight>
@@ -63,21 +66,5 @@ export default class GoogleResults extends Component {
         />
       </View>
     );
-  }
-}
-const styles = {
-  listItem: {
-    flex: 1,
-    marginTop: 2,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  text: {
-    height: 75,
-    fontSize: 35,
-    fontWeight: 'bold'
-  },
-  view: {
-    justifyContent: 'center'
   }
 }

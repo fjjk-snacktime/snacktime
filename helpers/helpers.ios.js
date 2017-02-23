@@ -22,7 +22,6 @@ const helpers = {
           }
         ]
       }
-
       return axios.post(URL, request)
     }
   },

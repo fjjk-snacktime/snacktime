@@ -55,7 +55,7 @@ class App extends Component {
             </Text>
           </View>
           <View style={[styles.searchBarPictureFrame, this.border('red')]} >
-            <SearchBar />
+            <SearchBar navigator={this.props.navigator}/>
           </View>
           <TouchableHighlight style={[styles.buttonView]} onPress={this.changeNavigationCamera.bind(this)}>
             <Image style={[styles.takePicture, this.border('green')]} source={{uri: 'https://s3.amazonaws.com/features.ifttt.com/newsletter_images/2015_February/camera512x512+(1).png'}}/>

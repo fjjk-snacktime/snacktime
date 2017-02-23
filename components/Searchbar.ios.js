@@ -6,6 +6,9 @@ import {
   TextInput,
 } from 'react-native';
 import styles from '../styles.ios.js';
+import helpers from '../helpers/helpers.ios.js';
+import FoodpairResults from './FoodpairResults.ios.js';
+import axios from 'axios';
 
 export default class Searchbar extends Component {
   constructor(props) {
@@ -16,8 +19,26 @@ export default class Searchbar extends Component {
   }
 
   searchFoodPairing() {
-    console.log('state', this.state.text)
-    //jeff do somethign with this to make it search for food pairing api
+    helpers.foodpairing.getFoodID(this.state.text)
+      .then(resp => {
+        return resp.data[0].id
+      })
+      .then(id => {
+        helpers.foodpairing.getFoodpairings(id)
+          .then(response => {
+            console.log(response.data[0]._link)
+            this.props.navigator.push({
+              component: FoodpairResults,
+              passProps: { foodpairs: response.data }
+            })
+          }) 
+          .catch(error => {
+            console.log('Error: ', error);
+          })
+      })
+      .catch(err => {
+        console.log('Error: ', err);
+      })  
   }
 
   render() {

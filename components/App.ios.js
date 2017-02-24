@@ -4,6 +4,7 @@ import {
   View,
   Image,
   TouchableHighlight,
+  TouchableOpacity
 } from 'react-native';
 import styles from '../styles.ios.js';
 import Nav from './Navbar.ios.js';
@@ -13,6 +14,7 @@ import {bindActionCreators} from 'redux';
 import * as app from '../actions/appActions.ios.js';
 import getApp from '../reducers/appReducers.ios.js';
 import camera from './Camera.ios.js';
+
 
 class App extends Component {
   constructor(props) {
@@ -45,7 +47,7 @@ class App extends Component {
       return (
         <View style={[styles.container, this.border('yellow')]}>
           <View style={[styles.navigation, this.border('pink')]} >
-            <Nav 
+            <Nav
               changeNavigationCamera={this.changeNavigationCamera.bind(this)}
             />
           </View>
@@ -66,7 +68,7 @@ class App extends Component {
       return (
         <View style={[styles.container, this.border('yellow')]}>
           <View style={[styles.navigation, this.border('pink')]} >
-            <Nav 
+            <Nav
               changeNavigationCamera={this.changeNavigationCamera.bind(this)}
             />
           </View>

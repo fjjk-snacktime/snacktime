@@ -10,6 +10,63 @@ export default styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
+  resultsTitle: {
+    marginTop: Dimensions.get('window').height/30,
+    height: Dimensions.get('window').height/10,
+    width: Dimensions.get('window').width/9 * 7,
+    backgroundColor: '#65ECBD',
+    borderColor: 'black',
+    borderWidth: 2,
+    alignSelf: 'center',
+    justifyContent: 'center',
+  },
+  resultsTitleText:{
+    fontSize: 30,
+    textAlign: 'center',
+    margin: 2, 
+    fontFamily: 'Baskerville',
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    justifyContent: 'center',
+  },
+  foodPairResultsTitleText: {
+    fontSize: 15,
+    textAlign: 'center',
+    margin: 2, 
+    fontFamily: 'Baskerville',
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    justifyContent: 'center',
+  },
+  resultsList: {
+    flex: 1, 
+    backgroundColor: 'deepskyblue'
+  },
+  listItem: {
+    flex: 1,
+    backgroundColor: '#E7FA79',
+    borderColor: '#191919',
+    borderWidth: 1,
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+    width: Dimensions.get('window').width,
+    margin: 0, 
+    borderRadius: 6,
+  },
+  text: {
+    flexDirection: 'row',
+    fontSize: 35,
+    fontFamily: 'Palatino',
+    alignSelf: 'center',
+    justifyContent: 'center',
+  },
+  foodPairText: {
+    flexDirection: 'row',
+    fontSize: 15,
+    fontFamily: 'Palatino',
+    alignSelf: 'center',
+    justifyContent: 'center',
+  },
   app: {
     flex: 6,
     width: Dimensions.get('window').width,
@@ -49,7 +106,16 @@ export default styles = StyleSheet.create({
     backgroundColor: 'deepskyblue',
     justifyContent: 'center',
   },
-
+  backButton: {
+    flexDirection: 'row',
+  },
+  resultsPicture: {
+    flexDirection: 'row',
+    height: 100,
+    width: 100,
+    padding: 1,
+    marginRight: Dimensions.get('window').width/6,
+  },
   glyphicon: {
     flexDirection: 'row',
     height: 60,
@@ -57,7 +123,16 @@ export default styles = StyleSheet.create({
     padding: 5,
     marginRight: Dimensions.get('window').width/9,
   },
-
+  navigationResults: {
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+    width: Dimensions.get('window').width,   
+  },
+  backButtonImage: {
+    flexDirection: 'row',
+    height: Dimensions.get('window').width/9,
+    width: Dimensions.get('window').width/9,
+  },
   navigationahover: {
     backgroundColor: 'deepskyblue',
   },
@@ -68,7 +143,7 @@ export default styles = StyleSheet.create({
     width: 100,
   },
 
-   searchBarPictureFrame: {
+  searchBarPictureFrame: {
     flex: 1,
     justifyContent: 'flex-end',
   },

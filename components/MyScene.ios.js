@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD
 import { View, Text, Navigator, Button, Icon} from 'react-native';
 
 export default class MyScene extends Component {

@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import {
-  Text,
-  View,
-  Image,
-  TextInput,
-} from 'react-native';
+import { Text, View, Image, TextInput } from 'react-native';
 import styles from '../styles.ios.js';
+import helpers from '../helpers/helpers.js';
+import FoodpairResults from './FoodpairResults.ios.js';
 
 export default class Searchbar extends Component {
   constructor(props) {
@@ -16,8 +13,17 @@ export default class Searchbar extends Component {
   }
 
   searchFoodPairing() {
-    console.log('state', this.state.text)
-    //jeff do somethign with this to make it search for food pairing api
+    helpers.foodpairing.getFoodpairings(this.state.text)
+      .then(resp => {
+        this.props.navigator.push({
+          component: FoodpairResults,
+          passProps: { foodpairs: resp.data }
+        })
+      })
+      .catch(err => {
+        console.log('error', err);
+      })
+
   }
 
   render() {
@@ -34,3 +40,4 @@ export default class Searchbar extends Component {
     )
   }
 }
+

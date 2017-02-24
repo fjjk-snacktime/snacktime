@@ -20,7 +20,6 @@ import {
   UIManager
 } from 'react-native';
 import App from './App.ios.js';
-import MyScene from './MyScene.ios.js';
 import { NavigatorIOS } from 'react-native';
 import Video from 'react-native-video';
 import BaseApp from './baseApp.ios.js';

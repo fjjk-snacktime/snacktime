@@ -7,9 +7,7 @@ import FoodpairResults from './FoodpairResults.ios.js';
 export default class Searchbar extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      text: ''
-    }
+    this.state = { text: '' }
   }
 
   searchFoodPairing() {
@@ -17,13 +15,12 @@ export default class Searchbar extends Component {
       .then(resp => {
         this.props.navigator.push({
           component: FoodpairResults,
-          passProps: { foodpairs: resp.data }
+          passProps: { foodpairs: resp.data, food: this.state.text }
         })
       })
       .catch(err => {
         console.log('error', err);
       })
-
   }
 
   render() {

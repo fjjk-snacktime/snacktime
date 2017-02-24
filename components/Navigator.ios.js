@@ -12,7 +12,7 @@ export default class snacktime extends Component {
     return (
       <NavigatorIOS
         initialRoute={{ 
-          component: BaseApp,
+          component: Welcome,
           title: 'Home'
            }}
         style={{flex: 1}}

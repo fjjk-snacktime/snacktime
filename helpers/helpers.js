@@ -33,9 +33,9 @@ const helpers = {
     }
   },
   recipes: {
-    getRecipeID: (data) => {
+    getRecipeList: (data) => {
       const options = { data: data }
-      return axios.post('http://localhost:8000/recipeList', options)
+      return axios.post('http://localhost:8000/recipelist', options)
     },
     getRecipe: (id) => {
       const options = { data: id }

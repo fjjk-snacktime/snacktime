@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, Image, TextInput, ListView, TouchableHighlight } from 'react-native';
 import helpers from '../helpers/helpers.js';
 import styles from '../styles.ios.js';
+import Recipes from './Recipes.ios.js';
 
 
 export default class FoodpairResults extends Component {
@@ -15,19 +16,12 @@ export default class FoodpairResults extends Component {
 
   selectFood(data) {
     const query = `${this.props.food} ${data}`
-    helpers.recipes.getRecipeID(query)
+    helpers.recipes.getRecipeList(query)
       .then(resp => {
-        console.log('select food response', resp)
-      })
-      .then(id => {
-        /* get necessary recipe properties */
-        // this.props.navigator.push({
-        //   component: Recipes,
-        //   passProps: { 
-        //     recipes: 'placeholder',
-
-        //     }
-        // })
+         this.props.navigator.push({
+           component: Recipes,
+           passProps: { recipes: 'placeholder' }
+        })
       })
       .catch(err => {
         console.log('Error: ', err);

@@ -9,9 +9,9 @@ export default class Recipe extends Component {
 
   render() {
     return (
-      <View>
+      <View style={{ paddingTop: 44 }}>
         <Text>Welcome to the recipe page1</Text>
-      <View>
+      </View>
     )
   }
 }

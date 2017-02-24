@@ -12,7 +12,6 @@ export default class GoogleResults extends Component {
       dataSource: ds.cloneWithRows(props.results),
       food: ''
     }
-
     this.onPress = this.onPress.bind(this);
   };
 
@@ -21,7 +20,7 @@ export default class GoogleResults extends Component {
       .then(resp => {
         this.props.navigator.push({
           component: FoodpairResults,
-          passProps: { foodpairs: resp.data }
+          passProps: { foodpairs: resp.data, food: this.state.food }
         })
       })
       .catch(err => {

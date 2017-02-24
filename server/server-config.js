@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.post('/foodpairing', foodpairingController.getFoodpairing);
-app.post('/recipeList');
-app.post('/recipeSelector')
+app.post('/recipelist', recipesController.getRecipeList);
+app.post('/recipeselector')
 
 module.exports = app;

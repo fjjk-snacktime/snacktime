@@ -1,27 +1,27 @@
 const axios = require('axios');
 
-const options = {
-  headers: {
-    'X-Application-ID': 'b5378ca6',
-    'X-Application-Key': '690be2968f8f08b26fcc1f2c9c8f5b90'
-  }
-}
+// const options = {
+//   headers: {
+//     'X-Application-ID': 'b5378ca6',
+//     'X-Application-Key': '690be2968f8f08b26fcc1f2c9c8f5b90'
+//   }
+// }
 
-axios.get(`https://api.foodpairing.com/ingredients?q=chicken`, options)
-  .then(resp => {
-    axios.get(`https://api.foodpairing.com/ingredients/${resp.data[0].id}/pairings`, options)
-      .then(response => {
-        console.log(response.data[0]._links.ingredient._links.image.size_240);
-        console.log(response.data[0]._links.ingredient.name);
-        console.log(response.data[0]._links.ingredient.description);
-      })
-      .catch(error => {
-        console.log(error);
-      })
-  })
-  .catch(err => {
-    console.log('Error: ', err);
-  })
+// axios.get(`https://api.foodpairing.com/ingredients?q=chicken`, options)
+//   .then(resp => {
+//     axios.get(`https://api.foodpairing.com/ingredients/${resp.data[0].id}/pairings`, options)
+//       .then(response => {
+//         console.log(response.data[0]._links.ingredient._links.image.size_240);
+//         console.log(response.data[0]._links.ingredient.name);
+//         console.log(response.data[0]._links.ingredient.description);
+//       })
+//       .catch(error => {
+//         console.log(error);
+//       })
+//   })
+//   .catch(err => {
+//     console.log('Error: ', err);
+//   })
 
   //name
   // resp.data[0].name
@@ -29,22 +29,17 @@ axios.get(`https://api.foodpairing.com/ingredients?q=chicken`, options)
   // resp.data[0]._links.image.size_240
   // resp.data[0].description
 
-// const options = {
-//   headers: {
-//     "X-Mashape-Key": "f9B4tJmyAkmshyA3mr2ywH4ZNTddp1GXKGIjsnQ0yFRerJT98E"
-//   },
-//   params: {
-//     query: 'apple cider'
-//   }
-// }
-
-// axios.get('https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/products/search', options)
-//   .then(resp => {
-//     console.log('Response: ', resp.data[0]);
-//   })
-//   .catch(err => {
-//     console.log('Error: ', err);
-//   })
+const options = {
+      headers: { "X-Mashape-Key": "f9B4tJmyAkmshyA3mr2ywH4ZNTddp1GXKGIjsnQ0yFRerJT98E" },
+      params: { instructionsRequired: false, offset: 0, query: 'chicken ciabatta' }
+    }
+    axios.get('https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search', options)
+      .then(resp => {
+        console.log('Recipe Response', resp);
+      })
+      .catch(err => {
+        console.log('Error: ', err);
+      })
 
 // Response:  { type: 'product',
 //   products: 

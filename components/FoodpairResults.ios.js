@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Text, View, Image, TextInput, ListView, TouchableHighlight } from 'react-native';
+
 import helpers from '../helpers/helpers.js';
+
 
 export default class FoodpairResults extends Component {
   constructor(props) {
@@ -59,7 +61,7 @@ export default class FoodpairResults extends Component {
     )
   }
 }
-// {foodpair._links.ingredient.description}
+
 const styles = {
   listItem: {
     flex: 1,

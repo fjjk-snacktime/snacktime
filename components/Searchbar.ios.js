@@ -4,7 +4,6 @@ import styles from '../styles.ios.js';
 import helpers from '../helpers/helpers.js';
 import FoodpairResults from './FoodpairResults.ios.js';
 
-
 export default class Searchbar extends Component {
   constructor(props) {
     super(props);
@@ -24,6 +23,7 @@ export default class Searchbar extends Component {
       .catch(err => {
         console.log('error', err);
       })
+
   }
 
   render() {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, Image, TextInput, ListView, TouchableHighlight } from 'react-native';
-
 import helpers from '../helpers/helpers.js';
+import styles from '../styles.ios.js';
 
 
 export default class FoodpairResults extends Component {
@@ -34,9 +34,21 @@ export default class FoodpairResults extends Component {
       })
   }
 
+  goBack() {
+    this.props.navigator.pop();
+  }
+
   render() {
     return (
-      <View style={{flex: 1, paddingTop: 22}}>
+      <View style={styles.resultsList}>
+        <View style={styles.navigationResults}>
+          <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
+            <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
+          </TouchableHighlight>
+          <View style={styles.resultsTitle}> 
+            <Text style={styles.resultsTitleText}> Things that go well with {this.props.name} </Text>
+          </View>
+        </View>
         <ListView
           dataSource={this.state.foodDataSource}
           renderRow={(foodpair, i) => (
@@ -46,12 +58,13 @@ export default class FoodpairResults extends Component {
               style={styles.listItem}
               underlayColor="grey"
               value={foodpair}
+              style={styles.resultsList}
               >
-              <TouchableHighlight style={styles.view} onPress={this.selectFood.bind(this, foodpair._links.ingredient.name)}>
-                <View>
-                  <Image source={{uri: foodpair._links.ingredient._links.image.size_240}} style={{ height: 100, width: 100}} />
-                  <Text style={{fontSize: 7}}>{foodpair._links.ingredient.name}</Text>
-                  <Text style={{fontSize: 5}}>{foodpair._links.ingredient.description}</Text>
+              <TouchableHighlight onPress={this.selectFood.bind(this, foodpair._links.ingredient.name)}>
+                <View style={styles.listItem}>
+                  <Image source={{uri: foodpair._links.ingredient._links.image.size_240}} style={styles.resultsPicture} />
+                  <Text style={styles.foodPairText}>{foodpair._links.ingredient.name}</Text>
+                  <Text style={styles.foodPairText}>{foodpair._links.ingredient.description}</Text>
                 </View>
               </TouchableHighlight>
             </TouchableHighlight>
@@ -61,21 +74,3 @@ export default class FoodpairResults extends Component {
     )
   }
 }
-
-const styles = {
-  listItem: {
-    flex: 1,
-    marginTop: 2,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  text: {
-    height: 75,
-    fontSize: 35,
-    fontWeight: 'bold'
-  },
-  view: {
-    justifyContent: 'center'
-  }
-}
-

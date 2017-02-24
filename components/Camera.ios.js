@@ -25,6 +25,17 @@ export default class camera extends Component {
     })
   }
 
+  border(color) {
+    return {
+      borderColor: color,
+      borderWidth: 5,
+    }
+  }
+
+  goBack() {
+    this.props.navigator.pop();
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -35,9 +46,14 @@ export default class camera extends Component {
           style={styles.preview}
           aspect={Camera.constants.Aspect.fill}
           captureTarget={Camera.constants.CaptureTarget.memory}>
-          <TouchableHighlight style={styles.takePicture} onPress={this.takePicture.bind(this)}>
-            <Image style={styles.takePicture} source={{uri: 'https://s3.amazonaws.com/features.ifttt.com/newsletter_images/2015_February/camera512x512+(1).png'}}/>
-          </TouchableHighlight>
+          <View style={styles.navigationResults}>
+            <TouchableHighlight style={[styles.backButtonCamera, this.border('white')]} onPress={this.goBack.bind(this)}>
+              <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
+            </TouchableHighlight>
+            <TouchableHighlight style={styles.takePicture} onPress={this.takePicture.bind(this)}>
+              <Image style={styles.takePicture} source={{uri: 'https://s3.amazonaws.com/features.ifttt.com/newsletter_images/2015_February/camera512x512+(1).png'}}/>
+            </TouchableHighlight>
+          </View>
         </Camera>
       </View>
     );

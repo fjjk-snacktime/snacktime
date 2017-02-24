@@ -15,17 +15,21 @@ export default class FoodpairResults extends Component {
   };
 
   selectFood(data) {
-    const query = `${this.props.food} ${data}`
-    helpers.recipes.getRecipeList(query)
-      .then(resp => {
-         this.props.navigator.push({
+    const query = `${this.props.food} ${data}`;
+     this.props.navigator.push({
            component: Recipes,
-           passProps: { recipes: 'placeholder' }
-        })
-      })
-      .catch(err => {
-        console.log('Error: ', err);
-      })
+           passProps: { recipes: 'hello' }
+         });
+    // helpers.recipes.getRecipeList(query)
+    //   .then(resp => {
+    //      this.props.navigator.push({
+    //        component: Recipes,
+    //        passProps: { recipes: resp.data }
+    //     })
+    //   })
+    //   .catch(err => {
+    //     console.log('Error: ', err);
+    //   })
   }
 
   goBack() {
@@ -40,7 +44,7 @@ export default class FoodpairResults extends Component {
             <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
           </TouchableHighlight>
           <View style={styles.resultsTitle}> 
-            <Text style={styles.resultsTitleText}> Things that go well with {this.props.name} </Text>
+            <Text style={styles.resultsTitleText}> Things that go well with {this.props.food} </Text>
           </View>
         </View>
         <ListView

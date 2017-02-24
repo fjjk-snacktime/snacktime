@@ -40,3 +40,4 @@ export default class Searchbar extends Component {
     )
   }
 }
+

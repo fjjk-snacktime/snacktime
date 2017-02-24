@@ -15,7 +15,6 @@ import * as app from '../actions/appActions.ios.js';
 import getApp from '../reducers/appReducers.ios.js';
 import camera from './Camera.ios.js';
 
-
 class App extends Component {
   constructor(props) {
     super(props);

@@ -33,11 +33,20 @@ export default class GoogleResults extends Component {
     this.setState({ food: data }, this.changeNavigation);
   }
 
+  goBack() {
+    this.props.navigator.pop();
+  }
+
   render() {
     return (
       <View style={styles.resultsList}>
-        <View style={styles.resultsTitle}> 
-          <Text style={styles.resultsTitleText}> Image Results </Text>
+        <View style={styles.navigationResults}>
+          <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
+            <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
+          </TouchableHighlight>
+          <View style={styles.resultsTitle}> 
+            <Text style={styles.resultsTitleText}> Google Image Results</Text>
+          </View>
         </View>
         <ListView
           dataSource={this.state.dataSource}

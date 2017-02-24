@@ -2,28 +2,28 @@
 import React, { Component } from 'react';
 import {
   Alert,
-  Text,
-  View,
+  Animated,
+  Dimensions,
+  Easing,
   Image,
+  LayoutAnimation,
   Navigator,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Switch,
+  Text,
   TouchableHighlight,
   TouchableOpacity,
-  Platform,
-  StyleSheet,
-  ScrollView,
-  WebView,
-  Animated,
-  Easing,
-  LayoutAnimation,
-  UIManager,
   TouchableWithoutFeedback,
-  Switch,
-  Dimensions
+  View,
+  UIManager
 } from 'react-native';
 import App from './App.ios.js';
 import MyScene from './MyScene.ios.js';
 import { NavigatorIOS } from 'react-native';
-import webComponent from './video.ios.js';
+import Video from 'react-native-video';
+import BaseApp from './baseApp.ios.js';
 import Button from 'react-native-flat-button'
 import * as Animatable from 'react-native-animatable';
 
@@ -43,49 +43,55 @@ export default class Welcome extends Component {
   }
 
   toRoute() {
-    // this.props.navigator.push({
-    //   component: App
-    // })
-    Alert.alert('to home')
+    this.props.navigator.push({
+      component: BaseApp
+    })
   }
 
   render() {
     return (
-      <TouchableWithoutFeedback
-        onPress={this.toRoute}
-        >
-        <Image
-          source={require('../backgroundimage/funny.jpg')}
-          style={styles.backgroundimage}>
-          <View>
-            <Animatable.Text
-              style={styles.header}
-              animation="fadeInDown"
-              duration={4000}
-              direction="alternate" >
-              <Text>Welcome To Snacktime</Text>
-            </Animatable.Text>
+      <TouchableWithoutFeedback onPress={this.toRoute.bind(this)} >
+        <View>
+          <Video
+            repeat
+            resizeMode='cover'
+            source={require('../food.mp4')}
+            style={styles.backgroundVideo} />
 
-            <Animatable.Text
-              style={styles.comingInWord}
-              animation="fadeInUp"
-              color="#841584"
-              delay={2000}
-              duration={4000}
-              >
-              <Text>Touch Anywhere to begin</Text>
-            </Animatable.Text>
-          </View>
-        </Image>
+          <Animatable.Text
+            style={styles.header}
+            animation="fadeInDown"
+            duration={4000}
+            direction="alternate" >
+            <Text>Welcome To Snacktime</Text>
+          </Animatable.Text>
+
+          <Animatable.Text
+            style={styles.comingInWord}
+            animation="fadeInUp"
+            color="#841584"
+            delay={2000}
+            duration={4000}
+            >
+            <Text>Touch Anywhere to begin</Text>
+          </Animatable.Text>
+      </View>
       </TouchableWithoutFeedback>
-
     );
   }
 }
+// testing
 
-
-
-
+// <TouchableWithoutFeedback
+//   onPress={this.toRoute}
+//   >
+//   <Image
+//     source={require('../backgroundimage/funny.jpg')}
+//     style={styles.backgroundimage}>
+//
+//     </View>
+//   </Image>
+// </TouchableWithoutFeedback>
 
 // <View>
 //   <video autoplay loop id="video-background" muted>
@@ -152,14 +158,3 @@ export default class Welcome extends Component {
 // </Animatable.View>
 
 ///////////////////////////////// BUTTON STYLE ////////////////////////
-
-
-// <TouchableHighlight onPress={() => this.refs.text.transitionTo({opacity: 0.2});}>
-//   <Animatable.View ref='text'>
-//     <Text>Welcome To Snacktime</Text>
-//     </Animatable.View>
-// </TouchableHighlight>
-
-
-// D3 drop down of Welcome to Snacktime
-// and two words will appear (button)

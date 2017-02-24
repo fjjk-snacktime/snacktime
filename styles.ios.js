@@ -122,7 +122,6 @@ export default styles = StyleSheet.create({
     width: 60,
     padding: 5,
     marginRight: Dimensions.get('window').width/9,
-<<<<<<< HEAD
   },
   navigationResults: {
     flexDirection: 'row',
@@ -133,8 +132,6 @@ export default styles = StyleSheet.create({
     flexDirection: 'row',
     height: Dimensions.get('window').width/9,
     width: Dimensions.get('window').width/9,
-=======
->>>>>>> updated styles page for camera
   },
   navigationahover: {
     backgroundColor: 'deepskyblue',

@@ -109,6 +109,10 @@ export default styles = StyleSheet.create({
   backButton: {
     flexDirection: 'row',
   },
+  backButtonCamera: {
+    flexDirection: 'row',
+    paddingRight: Dimensions.get('window').width/3 - 50,
+  },
   resultsPicture: {
     flexDirection: 'row',
     height: 100,

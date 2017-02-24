@@ -9,6 +9,8 @@ const recipes = {
     }
     axios.get('https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search', options)
       .then(resp => {
+        console.log(resp.data[0])
+        console.log(resp.data[0].imageUrls)
         res.json(resp.data);
       })
       .catch(err => {
@@ -22,7 +24,10 @@ const recipes = {
       }
     }
 
-    return axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/products/${id}`, options)
+    axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/${req.body.id}/analyzedInstructions`, options)
+      .then( resp => {
+        res.json(resp.data);
+      })
   }
 }
 

@@ -9,7 +9,6 @@ import {
 import styles from '../styles.ios.js';
 import Nav from './Navbar.ios.js';
 import SearchBar from './Searchbar.ios.js';
-import MyScene from './MyScene';
 import { connect } from "react-redux";
 import {bindActionCreators} from 'redux';
 import * as app from '../actions/appActions.ios.js';

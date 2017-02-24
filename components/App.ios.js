@@ -53,7 +53,7 @@ class App extends Component {
           </View>
           <View style={[styles.app, this.border('black')]} >
             <Text style={styles.welcome}>
-              Welcome to TextMode!
+              Welcome to Snack Time!
             </Text>
           </View>
           <View style={[styles.searchBarPictureFrame, this.border('red')]} >

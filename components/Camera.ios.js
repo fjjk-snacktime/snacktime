@@ -7,7 +7,7 @@ import {
   View
 } from 'react-native';
 import Camera from 'react-native-camera';
-import helpers from '../helpers/helpers.ios.js';
+import helpers from '../helpers/helpers.js';
 var axios = require('axios');
 import styles from '../styles.ios.js';
 import GoogleResults from './GoogleResults.ios.js';

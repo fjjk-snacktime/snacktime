@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, Image, TextInput, ListView, TouchableHighlight } from 'react-native';
-import helpers from '../helpers/helpers.ios.js';
+import helpers from '../helpers/helpers.js';
 
 export default class FoodpairResults extends Component {
   constructor(props) {
@@ -12,7 +12,24 @@ export default class FoodpairResults extends Component {
   };
 
   selectFood(data) {
-    console.log(data);
+    const query = `${this.props.food} ${data}`
+    helpers.recipes.getRecipeID(query)
+      .then(resp => {
+        console.log('select food response', resp)
+      })
+      .then(id => {
+        /* get necessary recipe properties */
+        // this.props.navigator.push({
+        //   component: Recipes,
+        //   passProps: { 
+        //     recipes: 'placeholder',
+
+        //     }
+        // })
+      })
+      .catch(err => {
+        console.log('Error: ', err);
+      })
   }
 
   render() {
@@ -42,7 +59,7 @@ export default class FoodpairResults extends Component {
     )
   }
 }
-
+// {foodpair._links.ingredient.description}
 const styles = {
   listItem: {
     flex: 1,

@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
-import {
-  Text,
-  View,
-  Image,
-  TextInput,
-} from 'react-native';
+import { Text, View, Image, TextInput } from 'react-native';
 import styles from '../styles.ios.js';
-import helpers from '../helpers/helpers.ios.js';
+import helpers from '../helpers/helpers.js';
 import FoodpairResults from './FoodpairResults.ios.js';
-import axios from 'axios';
+
 
 export default class Searchbar extends Component {
   constructor(props) {
@@ -19,26 +14,16 @@ export default class Searchbar extends Component {
   }
 
   searchFoodPairing() {
-    helpers.foodpairing.getFoodID(this.state.text)
+    helpers.foodpairing.getFoodpairings(this.state.text)
       .then(resp => {
-        return resp.data[0].id
-      })
-      .then(id => {
-        helpers.foodpairing.getFoodpairings(id)
-          .then(response => {
-            console.log(response.data[0]._link)
-            this.props.navigator.push({
-              component: FoodpairResults,
-              passProps: { foodpairs: response.data }
-            })
-          }) 
-          .catch(error => {
-            console.log('Error: ', error);
-          })
+        this.props.navigator.push({
+          component: FoodpairResults,
+          passProps: { foodpairs: resp.data }
+        })
       })
       .catch(err => {
-        console.log('Error: ', err);
-      })  
+        console.log('error', err);
+      })
   }
 
   render() {

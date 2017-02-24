@@ -51,11 +51,6 @@ export default class Welcome extends Component {
     return (
       <TouchableWithoutFeedback onPress={this.toRoute.bind(this)} >
         <View>
-          <Video
-            repeat
-            resizeMode='cover'
-            source={require('../food.mp4')}
-            style={styles.backgroundVideo} />
 
           <Animatable.Text
             style={styles.header}

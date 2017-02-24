@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
-import { View, Text, Navigator } from 'react-native';
+import { View, Text, Navigator, Button, Icon} from 'react-native';
 
 export default class MyScene extends Component {
+
+  handlePress() {
+    console.log('Pressed!');
+  }
+
   render() {
     return (
       <View>
-        <Text>Hi! My name is kevin</Text>
+        <Button
+            style={{borderWidth: 1, borderColor: 'blue'}}
+            onPress={this.handlePress}
+            title={'Press Me!'}>
+        </Button>
       </View>
     )
   }

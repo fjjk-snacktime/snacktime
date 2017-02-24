@@ -1,17 +1,79 @@
 import React, { Component } from 'react';
 import { Text, View, Image, TextInput, ListView, TouchableHighlight } from 'react-native';
-import helpers from '../helpers/helpers.ios.js';
+import helpers from '../helpers/helpers.js';
+import Response from '../helpers/data/chickenData.js';
+import Recipe from './Recipe.ios.js';
 
-export default class Recipe extends Component {
+export default class Recipes extends Component {
   constructor(props) {
     super(props);
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.state = {
+      foodDataSource: ds.cloneWithRows(Response.results)
+    }
+  }
+
+  selectRecipe(id) {
+    helpers.recipes.getRecipe(id)
+      .then( resp => {
+        this.props.navigator.push({
+          component: Recipe,
+          passProps: {recipe: resp}
+        })
+      })
+  }
+
+  goBack() {
+    this.props.navigator.pop();
   }
 
   render() {
-    return (
-      <View style={{ paddingTop: 44 }}>
-        <Text>Welcome to the recipe page1</Text>
-      </View>
-    )
+    if (this.state.foodDataSource.length === 0) {
+      return (
+        <View style={[styles.container, this.border('yellow')]}>
+          <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
+            <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
+          </TouchableHighlight>
+          <View style={[styles.app, this.border('black')]} >
+            <Text style={styles.welcome}>
+              Sorry there are no matches for this food pairing at this time, please try another pairing
+            </Text>
+          </View>
+        </View>
+      )
+    } else {
+      return (
+        <View style={styles.resultsList}>
+          <View style={styles.navigationResults}>
+            <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
+              <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
+            </TouchableHighlight>
+            <View style={styles.resultsTitle}> 
+              <Text style={styles.resultsTitleText}> Recipes results </Text>
+            </View>
+          </View>
+          <ListView
+            dataSource={this.state.foodDataSource}
+            renderRow={(recipe, i) => (
+
+              <TouchableHighlight
+                key={i} 
+                style={styles.listItem}
+                underlayColor="grey"
+                style={styles.resultsList}
+                >
+                <TouchableHighlight onPress={this.selectRecipe.bind(this, recipe.id)}>
+                  <View style={styles.listItem}>
+                    <Image source={{uri: recipe.imageUrls.size_240}} style={styles.resultsPicture} />
+                    <Text style={styles.foodPairText}>{recipe.title}</Text>
+                    <Text style={styles.foodPairText}>Time it takes: {recipe.readyInMinutes} minutes</Text>
+                  </View>
+                </TouchableHighlight>
+              </TouchableHighlight>
+              )}
+          />
+        </View>
+      )
+    }
   }
 }

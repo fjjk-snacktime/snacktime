@@ -9,7 +9,6 @@ const recipes = {
     }
     axios.get('https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients', options)
       .then(resp => {
-        console.log(resp.data);
         res.json(resp.data.results);
       })
       .catch(err => {

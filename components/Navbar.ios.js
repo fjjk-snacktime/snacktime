@@ -16,7 +16,7 @@ export default class Nav extends Component {
   }
   render() {
     return (
-        <View style={[styles.navigation, this.border('pink')]}>
+        <View style={[styles.navigation]}>
           <TouchableHighlight style={styles.glyphicon}>
             <Image source={{uri: 'https://cdn3.iconfinder.com/data/icons/glypho-free/64/home-128.png'}} style={styles.glyphicon} />
           </TouchableHighlight>

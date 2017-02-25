@@ -25,6 +25,7 @@ import Video from 'react-native-video';
 import BaseApp from './baseApp.ios.js';
 import Button from 'react-native-flat-button'
 import * as Animatable from 'react-native-animatable';
+import styles from '../styles.ios.js';
 
 // const Storage = require('google-cloud/node_modules/@google-cloud/storage');
 // const Vision = require('google-cloud/node_modules/@google-cloud/vision');

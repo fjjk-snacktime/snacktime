@@ -8,8 +8,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-app.post('/foodpairing', foodpairingController.getFoodpairing);
-app.post('/recipelist', recipesController.getRecipeList);
-app.post('/recipeselector', recipesController.getRecipe)
+app.post('/foodPairing', foodpairingController.getFoodpairing);
+app.post('/recipeList', recipesController.getRecipeList);
+app.post('/recipeSelector', recipesController.getRecipe)
 
 module.exports = app;

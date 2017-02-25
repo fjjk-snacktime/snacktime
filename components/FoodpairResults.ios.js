@@ -16,20 +16,18 @@ export default class FoodpairResults extends Component {
 
   selectFood(data) {
     const query = `${this.props.food} ${data}`;
-     this.props.navigator.push({
+    let temp = query.split(' ').join('+');
+    helpers.recipes.getRecipeList(temp)
+      .then(resp => {
+        console.log(resp)
+         this.props.navigator.push({
            component: Recipes,
-           passProps: { recipes: 'hello' }
-         });
-    // helpers.recipes.getRecipeList(query)
-    //   .then(resp => {
-    //      this.props.navigator.push({
-    //        component: Recipes,
-    //        passProps: { recipes: resp.data }
-    //     })
-    //   })
-    //   .catch(err => {
-    //     console.log('Error: ', err);
-    //   })
+           passProps: { recipes: resp.data }
+        })
+      })
+      .catch(err => {
+        console.log('Error: ', err);
+      })
   }
 
   goBack() {

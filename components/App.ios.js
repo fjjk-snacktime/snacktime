@@ -51,7 +51,7 @@ class App extends Component {
               changeNavigationCamera={this.changeNavigationCamera.bind(this)}
             />
           </View>
-          <View style={[styles.app], this.border('black')} >
+          <View style={[styles.app, this.border('black')]} >
             <Text style={styles.welcome}>
               Welcome to Snack Time!
             </Text>

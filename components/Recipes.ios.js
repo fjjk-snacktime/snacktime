@@ -65,9 +65,10 @@ export default class Recipes extends Component {
                 >
                 <TouchableHighlight onPress={this.selectRecipe.bind(this, recipe.id)}>
                   <View style={styles.listItem}>
-                    <Image style={styles.resultsPicture} source={{uri: `https://spoonacular.com/recipeImages/${recipe.imageUrls[0]}`}} />
+                    <Image style={styles.resultsPicture} source={{uri: recipe.image}} />
                     <Text style={styles.foodPairText}>{recipe.title}</Text>
-                    <Text style={styles.foodPairText}>Time it takes: {recipe.readyInMinutes} minutes</Text>
+                    <Text style={styles.foodPairText}>Missing ingredients: {recipe.missedIngredientCount}</Text>
+                    <Text style={styles.foodPairText}>Likes: {recipe.likes}</Text>
                   </View>
                 </TouchableHighlight>
               </TouchableHighlight>

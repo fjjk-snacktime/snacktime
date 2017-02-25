@@ -15,9 +15,11 @@ export default class FoodpairResults extends Component {
   };
 
   selectFood(data) {
-    const query = `${this.props.food} ${data}`;
-    let temp = query.split(' ').join('+');
-    helpers.recipes.getRecipeList(temp)
+    if (data.includes('(')) {
+      data = data.slice(0, data.indexOf('('));
+    }
+    const query = `${this.props.food},${data}`;
+    helpers.recipes.getRecipeList(query)
       .then(resp => {
         console.log(resp)
          this.props.navigator.push({

@@ -4,7 +4,7 @@ export default function reducer ( state = {
   switch (action.type) {
     case 'SHOW_SEARCH_BAR': {
       return Object.assign({}, state, {
-        showSearchBar: true,
+        showSearchBar: !state.showSearchBar,
       })    
       // return {
       //   ...state,

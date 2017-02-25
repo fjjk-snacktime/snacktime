@@ -29,17 +29,17 @@ const helpers = {
   foodpairing: {
     getFoodpairings: (data) => {
       const options = { data: data }
-      return axios.post('http://localhost:8000/foodpairing', options)
+      return axios.post('http://localhost:8000/foodPairing', options)
     }
   },
   recipes: {
     getRecipeList: (data) => {
       const options = { data: data }
-      return axios.post('http://localhost:8000/recipelist', options)
+      return axios.post('http://localhost:8000/recipeList', options)
     },
     getRecipe: (id) => {
       const options = { data: id }
-      return axios.post('http://localhost:8000/recipeId', options)
+      return axios.post('http://localhost:8000/recipeSelector', options)
     }
   }
 }

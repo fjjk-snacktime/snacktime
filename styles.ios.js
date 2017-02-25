@@ -215,6 +215,13 @@ export default styles = StyleSheet.create({
     right: 0,
   },
 
+  ingredientText: {
+    fontSize: 10,
+  },
+
+  ingredientList: {
+    flexDirection: 'row',
+  },
 // @media all and (max-width: 800px) {
 //   .navigation {
 //     justify-content: space-around;

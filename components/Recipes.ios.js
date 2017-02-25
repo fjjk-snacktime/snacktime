@@ -3,13 +3,14 @@ import { Text, View, Image, TextInput, ListView, TouchableHighlight } from 'reac
 import helpers from '../helpers/helpers.js';
 import Response from '../helpers/data/chickenData.js';
 import Recipe from './Recipe.ios.js';
+import styles from '../styles.ios.js';
 
 export default class Recipes extends Component {
   constructor(props) {
     super(props);
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      foodDataSource: ds.cloneWithRows(Response.results)
+      foodDataSource: ds.cloneWithRows(props.recipes)
     }
   }
 
@@ -18,7 +19,7 @@ export default class Recipes extends Component {
       .then( resp => {
         this.props.navigator.push({
           component: Recipe,
-          passProps: {recipe: resp}
+          passProps: {recipe: resp.data}
         })
       })
   }
@@ -64,7 +65,6 @@ export default class Recipes extends Component {
                 >
                 <TouchableHighlight onPress={this.selectRecipe.bind(this, recipe.id)}>
                   <View style={styles.listItem}>
-                    <Image source={{uri: recipe.imageUrls.size_240}} style={styles.resultsPicture} />
                     <Text style={styles.foodPairText}>{recipe.title}</Text>
                     <Text style={styles.foodPairText}>Time it takes: {recipe.readyInMinutes} minutes</Text>
                   </View>

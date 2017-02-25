@@ -48,7 +48,7 @@ export default class Recipe extends Component {
               <Text style={styles.resultsTitleText}> Recipe Instructions </Text>
             </View>
           </View>
-          <View style={ingredientList}>
+          <View style={styles.ingredientList}>
             {ingredients}
           </View>
           <ListView

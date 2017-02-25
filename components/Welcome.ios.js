@@ -17,7 +17,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
-  UIManager
+  UIManager,
 } from 'react-native';
 import App from './App.ios.js';
 import { NavigatorIOS } from 'react-native';

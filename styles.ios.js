@@ -149,11 +149,10 @@ export default styles = StyleSheet.create({
 
   searchBarPictureFrame: {
     flex: 1,
-    justifyContent: 'flex-end',
   },
 
   searchBar: {
-    height: 40,
+    height: 100,
     width: 200,
     borderColor: 'gray',
     borderWidth: 1,
@@ -221,6 +220,10 @@ export default styles = StyleSheet.create({
 
   ingredientList: {
     flexDirection: 'row',
+  },
+  switch:{
+    right: -Dimensions.get('window').width/3,
+    marginBottom: 50,
   },
 // @media all and (max-width: 800px) {
 //   .navigation {

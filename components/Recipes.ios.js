@@ -29,13 +29,13 @@ export default class Recipes extends Component {
   }
 
   render() {
-    if (this.state.foodDataSource.length === 0) {
+    if (this.props.recipes.length === 0) {
       return (
-        <View style={[styles.container, this.border('yellow')]}>
+        <View style={[styles.container]}>
           <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
             <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
           </TouchableHighlight>
-          <View style={[styles.app, this.border('black')]} >
+          <View style={[styles.app]} >
             <Text style={styles.welcome}>
               Sorry there are no matches for this food pairing at this time, please try another pairing
             </Text>
@@ -65,6 +65,7 @@ export default class Recipes extends Component {
                 >
                 <TouchableHighlight onPress={this.selectRecipe.bind(this, recipe.id)}>
                   <View style={styles.listItem}>
+                    <Image style={styles.resultsPicture} source={{uri: `https://spoonacular.com/recipeImages/${recipe.imageUrls[0]}`}} />
                     <Text style={styles.foodPairText}>{recipe.title}</Text>
                     <Text style={styles.foodPairText}>Time it takes: {recipe.readyInMinutes} minutes</Text>
                   </View>

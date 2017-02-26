@@ -1,6 +1,16 @@
-export default function showSearchBar () {
-  console.log('in action');
-  return {
-    type: 'SHOW_SEARCH_BAR'
+export default appAction = {
+
+  showSearchBar: () => {
+    console.log('in action');
+    return {
+      type: 'SHOW_SEARCH_BAR'
+    }
+  },
+
+  rendering: ()=> {
+    return {
+      type: 'RENDERING'
+    }
   }
-}
+
+} 

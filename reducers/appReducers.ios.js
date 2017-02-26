@@ -15,7 +15,7 @@ export default function reducer ( state = {
     case 'RENDERING': {
       return {
         ...state,
-        rendering: true,
+        rendering: !state.rendering,
       }
     }
   }

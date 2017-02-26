@@ -40,9 +40,19 @@ class App extends Component {
     })
   }
 
+  rendering() {
+    actions.rendering();
+    this.forceUpdate()
+  }
   render() {
     console.log('props', this.props.actions.default)
     const {state, actions} = this.props;
+    console.log('ACITONS', state)
+    if (state.rendering) {
+      return (
+        <Image source= {{uri: 'https://media.blueapron.com/assets/loader/pot-loader-6047abec2ec57c18d848f623c036f7fe80236dce689bb48279036c4f914d0c9e.gif'}} style = {styles.loadingGif} />
+      )
+    }
     if (state.showSearchBar) {
       return (
         <View style={[styles.container]}>
@@ -51,17 +61,17 @@ class App extends Component {
               changeNavigationCamera={this.changeNavigationCamera.bind(this)}
             />
           </View>
-          <View style={[styles.app, this.border('black')]} >
+          <View style={[styles.app, this.border('#079604')]} >
             <Text style={styles.welcome}>
               Welcome to Snack Time!
             </Text>
           </View>
           <View style={[styles.searchBarPictureFrame]} >
-            <SearchBar navigator={this.props.navigator}/>
+            <SearchBar navigator={this.props.navigator} rendering={actions.rendering}/>
           </View>
           <View style={{flexDirection: 'row'}}> 
             <Switch 
-              onValueChange={actions.default}
+              onValueChange={actions.showSearchBar}
               style={styles.switch}
               value={state.showSearchBar} />
           </View>
@@ -75,7 +85,7 @@ class App extends Component {
               changeNavigationCamera={this.changeNavigationCamera.bind(this)}
             />
           </View>
-          <View style={[styles.app, this.border('black')]} >
+          <View style={[styles.app, this.border('#079604')]} >
             <Text style={styles.welcome}>
               Welcome to Snack Time!
             </Text>
@@ -85,7 +95,7 @@ class App extends Component {
           </TouchableHighlight>
           <View style={{flexDirection: 'row'}}> 
             <Switch 
-              onValueChange={actions.default}
+              onValueChange={actions.showSearchBar}
               style={styles.switch}
               value={state.showSearchBar}
               />
@@ -96,10 +106,11 @@ class App extends Component {
   }
 }
 
+console.log('app', app)
 export default connect(state => ({
     state: state.app
   }),
   (dispatch) => ({
-    actions: bindActionCreators(app, dispatch)
+    actions: bindActionCreators(app.default, dispatch)
   })
 )(App);

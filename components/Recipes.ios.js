@@ -14,12 +14,12 @@ export default class Recipes extends Component {
     }
   }
 
-  selectRecipe(id) {
+  selectRecipe(id, title, image) {
     helpers.recipes.getRecipe(id)
       .then( resp => {
         this.props.navigator.push({
           component: Recipe,
-          passProps: {recipe: resp.data}
+          passProps: { recipe: resp.data, food: title, image: image  }
         })
       })
   }
@@ -32,26 +32,22 @@ export default class Recipes extends Component {
     if (this.props.recipes.length === 0) {
       return (
         <View style={[styles.container]}>
-          <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
-            <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
-          </TouchableHighlight>
-          <View style={[styles.app]} >
-            <Text style={styles.welcome}>
-              Sorry there are no matches for this food pairing at this time, please try another pairing
-            </Text>
+          <View style={styles.resultsTitle}> 
+            <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
+              <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
+            </TouchableHighlight>
+            <Text style={styles.resultsTitleText}>We are unable to find any pairings for the selected item at this time</Text>
           </View>
         </View>
       )
     } else {
       return (
         <View style={styles.resultsList}>
-          <View style={styles.navigationResults}>
+          <View style={styles.resultsTitle}> 
             <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
               <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
             </TouchableHighlight>
-            <View style={styles.resultsTitle}> 
-              <Text style={styles.resultsTitleText}> Recipes results </Text>
-            </View>
+            <Text style={styles.resultsTitleText}>Recipes:</Text>
           </View>
           <ListView
             dataSource={this.state.foodDataSource}
@@ -63,12 +59,18 @@ export default class Recipes extends Component {
                 underlayColor="grey"
                 style={styles.resultsList}
                 >
-                <TouchableHighlight onPress={this.selectRecipe.bind(this, recipe.id)}>
+                <TouchableHighlight onPress={this.selectRecipe.bind(this, recipe.id, recipe.title, recipe.image)}>
                   <View style={styles.listItem}>
                     <Image style={styles.resultsPicture} source={{uri: recipe.image}} />
-                    <Text style={styles.foodPairText}>{recipe.title}</Text>
-                    <Text style={styles.foodPairText}>Missing ingredients: {recipe.missedIngredientCount}</Text>
-                    <Text style={styles.foodPairText}>Likes: {recipe.likes}</Text>
+                    <View style={styles.listItemContainer}>
+                      <View style={styles.listItemTitle}>
+                        <Text style={styles.recipeTitle}>{recipe.title}</Text>
+                      </View>
+                      <View style={styles.listItemText}>
+                        <Text style={styles.recipeDescription}>Missing ingredients: {recipe.missedIngredientCount}</Text>
+                        <Text style={styles.recipeDescription}>Likes: {recipe.likes}</Text>
+                      </View>
+                    </View>
                   </View>
                 </TouchableHighlight>
               </TouchableHighlight>

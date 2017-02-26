@@ -40,10 +40,10 @@ export default class GoogleResults extends Component {
     return (
       <View style={styles.resultsList}>
         <View style={styles.navigationResults}>
-          <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
-            <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
-          </TouchableHighlight>
           <View style={styles.resultsTitle}> 
+            <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
+              <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
+            </TouchableHighlight>
             <Text style={styles.resultsTitleText}> Google Image Results</Text>
           </View>
         </View>
@@ -55,8 +55,8 @@ export default class GoogleResults extends Component {
               onPress={this.onPress.bind(this, rowData)}
               underlayColor="blue"
               >
-              <View style={styles.listItem}>
-                <Image style={styles.resultsPicture} source={{uri: 'https://img.clipartfest.com/4f33f01102ffa78ae307af47897d804c_happy-apple-clipart-cute-apple-clip-art_1100-1324.png'}} />
+              <View style={styles.googleListItem}>
+                <Image style={styles.arrow} source={{uri: 'https://maxcdn.icons8.com/Android_L/PNG/512/User_Interface/circled_chevron_right-512.png'}} />
                 <Text style={styles.text}>{rowData}</Text>
               </View>
             </TouchableHighlight>

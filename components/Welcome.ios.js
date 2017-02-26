@@ -62,7 +62,7 @@ export default class Welcome extends Component {
             animation="fadeInDown"
             duration={4000}
             direction="alternate" >
-            <Text>Welcome To Snacktime</Text>
+            <Text>Snacktime</Text>
           </Animatable.Text>
 
           <Animatable.Text

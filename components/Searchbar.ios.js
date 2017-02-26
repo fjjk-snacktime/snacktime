@@ -11,6 +11,7 @@ export default class Searchbar extends Component {
   }
 
   searchFoodPairing() {
+    this.props.rendering();   
     helpers.foodpairing.getFoodpairings(this.state.text)
       .then(resp => {
         this.props.navigator.push({

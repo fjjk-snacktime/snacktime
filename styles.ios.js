@@ -12,16 +12,25 @@ export default styles = StyleSheet.create({
   },
   resultsTitle: {
     marginTop: Dimensions.get('window').height/30,
-    height: Dimensions.get('window').height/10,
-    width: Dimensions.get('window').width/9 * 7,
-    backgroundColor: '#65ECBD',
-    borderColor: 'black',
+    width: Dimensions.get('window').width,
+    backgroundColor: '#079604',
     borderWidth: 2,
     alignSelf: 'center',
     justifyContent: 'center',
+    flexWrap: 'nowrap',
   },
   resultsTitleText:{
-    fontSize: 30,
+    color: 'black',
+    fontSize: 25,
+    textAlign: 'center',
+    fontFamily: 'Baskerville',
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    justifyContent: 'center',
+  },
+  foodPairResultsTitleText: {
+    fontSize: 35,
+    fontWeight: 'bold',
     textAlign: 'center',
     margin: 2, 
     fontFamily: 'Baskerville',
@@ -29,8 +38,8 @@ export default styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
   },
-  foodPairResultsTitleText: {
-    fontSize: 15,
+  foodPairTextDescription: {
+    fontSize: 12,
     textAlign: 'center',
     margin: 2, 
     fontFamily: 'Baskerville',
@@ -40,32 +49,92 @@ export default styles = StyleSheet.create({
   },
   resultsList: {
     flex: 1, 
-    backgroundColor: 'deepskyblue'
+    backgroundColor: '#CCCCCC'
+  },
+  recipeTitle: {
+    flexDirection: 'row',
+    fontSize: 22,
+    fontWeight: 'bold',
+    fontFamily: 'Palatino',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+  },
+  recipeDescription: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 2, 
+    fontFamily: 'Baskerville',
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    justifyContent: 'center',
   },
   listItem: {
     flex: 1,
-    backgroundColor: '#E7FA79',
-    borderColor: '#191919',
-    borderWidth: 1,
+    marginLeft: 5,
+    backgroundColor: '#F5FCFF',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
     flexDirection: 'row',
-    flexWrap: 'nowrap',
+    flexWrap: 'wrap',
     width: Dimensions.get('window').width,
+    height: 150,
+    borderBottomColor: '#079604'
+  },
+  listItemContainer: {
+    height: 140,
+    flexDirection: 'column',
+    borderColor: 'black',
+    borderWidth: 2,
+    width: Dimensions.get('window').width - 110,
+    flexWrap: 'wrap',
+  },
+  googleListItem: {
+    flex: 1,
+    borderColor: 'black',
+    borderWidth: 2,
+    backgroundColor: '#F5FCFF',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    width: Dimensions.get('window').width,
+    height: 125,
     margin: 0, 
-    borderRadius: 6,
+    borderBottomColor: '#079604'
+  },
+  listItemTitle: {
+
+  },
+  listItemText: {
+    marginTop: 15,
+  },
+  arrow: {
+    height: 60,
+    width: 60,
   },
   text: {
+    color: '#224C00',
     flexDirection: 'row',
     fontSize: 35,
     fontFamily: 'Palatino',
     alignSelf: 'center',
     justifyContent: 'center',
+    marginLeft: 50,
   },
   foodPairText: {
     flexDirection: 'row',
     fontSize: 15,
+    fontWeight: 'bold',
     fontFamily: 'Palatino',
     alignSelf: 'center',
     justifyContent: 'center',
+  },
+  recipeStepText:{
+    width: Dimensions.get('window').width - 150,
+    flexDirection: 'row',
+    fontSize: 15,
+    fontFamily: 'Palatino',
   },
   app: {
     flex: 6,
@@ -102,8 +171,7 @@ export default styles = StyleSheet.create({
     flexWrap: 'wrap',
     flex: 1,
     width: Dimensions.get('window').width,
-    margin: 0,
-    backgroundColor: 'deepskyblue',
+    backgroundColor: '#079604',
     justifyContent: 'center',
   },
   backButton: {
@@ -114,11 +182,12 @@ export default styles = StyleSheet.create({
     paddingRight: Dimensions.get('window').width/3 - 50,
   },
   resultsPicture: {
+    borderColor: 'black',
+    borderWidth: 2,
     flexDirection: 'row',
-    height: 100,
+    height: 140,
     width: 100,
     padding: 1,
-    marginRight: Dimensions.get('window').width/6,
   },
   glyphicon: {
     flexDirection: 'row',
@@ -160,8 +229,9 @@ export default styles = StyleSheet.create({
 
   // for welcome page header
   header: {
+    color: 'white',
     fontWeight: 'bold',
-    fontSize: 30,
+    fontSize: 50,
     marginTop: 200,
     marginBottom: 20,
     marginLeft:125,
@@ -184,6 +254,7 @@ export default styles = StyleSheet.create({
   },
 
   comingInWord: {
+    color: 'white',
     fontSize: 20,
     marginTop: 350,
     textAlign: 'center',
@@ -213,17 +284,49 @@ export default styles = StyleSheet.create({
     bottom: -100,
     right: 0,
   },
-
   ingredientText: {
     fontSize: 10,
   },
-
   ingredientList: {
+    flexDirection: 'column',
+    margin: 10,
+    width: Dimensions.get('window').width - 160,
+  },
+  ingredientListText: {
+    fontSize: 12,
+    flexDirection: 'column',
+  },
+  recipe: {
+    flex: 1,
+    borderColor: 'black',
+    backgroundColor: '#BAE397',
+  },
+  recipeStep: {
+    margin: 5,
     flexDirection: 'row',
+    flexWrap: 'wrap',
+    width: Dimensions.get('window').width,
+    marginBottom: 10,
+    backgroundColor: '#F5FCFF',
   },
   switch:{
     right: -Dimensions.get('window').width/3,
     marginBottom: 50,
+  },
+  ingredientContainer: {
+    flexDirection: 'row',
+    borderColor: 'black',
+    borderWidth: 2,
+  },
+  recipeImage: {
+    height: 140,
+    width: 140,
+  },
+  loadingGif:{
+    marginTop: Dimensions.get('window').height/4,
+    alignSelf: 'center',
+    height: Dimensions.get('window').height/4,
+    width: Dimensions.get('window').width/4,
   },
 // @media all and (max-width: 800px) {
 //   .navigation {

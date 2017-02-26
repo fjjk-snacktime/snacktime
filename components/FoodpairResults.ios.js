@@ -39,13 +39,11 @@ export default class FoodpairResults extends Component {
   render() {
     return (
       <View style={styles.resultsList}>
-        <View style={styles.navigationResults}>
+        <View style={styles.resultsTitle}> 
           <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
             <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
           </TouchableHighlight>
-          <View style={styles.resultsTitle}> 
-            <Text style={styles.resultsTitleText}> Things that go well with {this.props.food} </Text>
-          </View>
+          <Text style={styles.resultsTitleText}> {this.props.food} pairs well with:</Text>
         </View>
         <ListView
           dataSource={this.state.foodDataSource}
@@ -61,8 +59,14 @@ export default class FoodpairResults extends Component {
               <TouchableHighlight onPress={this.selectFood.bind(this, foodpair._links.ingredient.name)}>
                 <View style={styles.listItem}>
                   <Image source={{uri: foodpair._links.ingredient._links.image.size_240}} style={styles.resultsPicture} />
-                  <Text style={styles.foodPairText}>{foodpair._links.ingredient.name}</Text>
-                  <Text style={styles.foodPairText}>{foodpair._links.ingredient.description}</Text>
+                    <View style={styles.listItemContainer}>
+                      <View style={styles.listItemTitle}>
+                        <Text style={styles.foodPairText}>{foodpair._links.ingredient.name}</Text>
+                      </View>
+                      <View style={styles.listItemText}>
+                        <Text style={styles.foodPairTextDescription}>{foodpair._links.ingredient.description}</Text>
+                      </View>
+                    </View>
                 </View>
               </TouchableHighlight>
             </TouchableHighlight>

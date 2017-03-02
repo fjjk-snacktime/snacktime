@@ -21,12 +21,12 @@ const recipes = {
       headers: {
         "X-Mashape-Key": "OxcC40wXNtmshBb2QuFhuTG8xcUXp1huVw2jsnLmhpBuxYNOI8"
       }
-    }
-    axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/${req.body.data}/analyzedInstructions`, options)
+    };
+    axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/${req.body.data}/information`, options)
       .then( resp => {
         console.log('resp.data', resp.data)
-        console.log('resp.DATATATATA', resp.data[0].steps[0].ingredients);
-        res.json(resp.data[0]);
+        console.log('resp.DATATATATA', resp.data.analyzedInstructions[0].steps);
+        res.json(resp.data);
       })
   }
 }

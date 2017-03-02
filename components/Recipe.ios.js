@@ -8,7 +8,7 @@ export default class Recipe extends Component {
     super(props);
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      steps: ds.cloneWithRows(props.recipe.steps),
+      steps: ds.cloneWithRows(props.recipe.analyzedInstructions[0].steps),
       ingredients: []
     }
   }
@@ -23,11 +23,8 @@ export default class Recipe extends Component {
 
   renderIngredients() {
     let ingredients = [];
-    for (let step of this.props.recipe.steps) {
-      console.log('Recipe steps', this.props.recipe.steps)
-      for (let ingredient of step.ingredients) {
-        ingredients.push(ingredient.name);
-      }
+    for (let ingredient of this.props.recipe.extendedIngredients) {
+      ingredients.push(ingredient.originalString);
     }
     this.setState({
       ingredients: ingredients
@@ -39,6 +36,7 @@ export default class Recipe extends Component {
         <Text style = {styles.ingredientListText} key={i}>∙ {ingredient} </Text>
       )
     });
+    const recipe = this.props.recipe;
     return(
       <View style={styles.recipe}>
           <View style={styles.resultsTitle}> 
@@ -49,6 +47,8 @@ export default class Recipe extends Component {
           </View>
           <View style={styles.ingredientContainer}>
             <View style={styles.ingredientList}>
+              <Text> vegan: {recipe.vegan} gluten free: {recipe.glutenFree} dairy free: {recipe.dairyFree} cheap: {recipe.cheap} sustainable: {recipe.sustainable} servings: {recipe.servings} healthscore: {recipe.healthscore} </Text>
+              <Text> url: {recipe.sourceUrl} </Text>
               <Text style={styles.recipeTitle}>Ingredients:</Text>
               <Text style={styles.ingredientListText}>{ingredients}</Text>
             </View>

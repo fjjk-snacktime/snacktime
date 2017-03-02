@@ -47,6 +47,7 @@ export default class Recipe extends Component {
     recipe.healthscore = recipe.healthscore ? recipe.healthscore : 'Not available';
     // recipe.sourceUrl
   }
+
   render() {
     const ingredients = this.state.ingredients.map((ingredient, i) => {
       return (
@@ -61,6 +62,7 @@ export default class Recipe extends Component {
               <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
             </TouchableHighlight>
             <Text style={styles.resultsTitleText}>Instructions for {this.props.food}:</Text>
+            
           </View>
           <View style={styles.ingredientContainer}>
             <View style={styles.ingredientList}>

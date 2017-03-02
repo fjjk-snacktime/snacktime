@@ -15,6 +15,7 @@ import {bindActionCreators} from 'redux';
 import * as app from '../actions/appActions.ios.js';
 import getApp from '../reducers/appReducers.ios.js';
 import camera from './Camera.ios.js';
+import FacebookLogin from './FacebookLogin.ios.js';
 
 class App extends Component {
   constructor(props) {
@@ -62,6 +63,7 @@ class App extends Component {
             />
           </View>
           <View style={[styles.app, this.border('#079604')]} >
+            <FacebookLogin />
             <Text style={styles.welcome}>
               Welcome to Snack Time!
             </Text>
@@ -86,6 +88,7 @@ class App extends Component {
             />
           </View>
           <View style={[styles.app, this.border('#079604')]} >
+            <FacebookLogin />
             <Text style={styles.welcome}>
               Welcome to Snack Time!
             </Text>

@@ -29,18 +29,59 @@ const axios = require('axios');
   // resp.data[0]._links.image.size_240
   // resp.data[0].description
 
-const options = {
-      headers: {
-        "X-Mashape-Key": "OxcC40wXNtmshBb2QuFhuTG8xcUXp1huVw2jsnLmhpBuxYNOI8"
-      }
-    };
-    axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/535717/information`, options)
-      .then( resp => {
-        console.log('resp.data', resp.data)
-        console.log('resp.DATATATATA', resp.data.analyzedInstructions[0].steps);
-        res.json(resp.data);
-      })
-      
+// const options = {
+//       headers: {
+//         "X-Mashape-Key": "OxcC40wXNtmshBb2QuFhuTG8xcUXp1huVw2jsnLmhpBuxYNOI8"
+//       }
+//     };
+//     axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/535717/information`, options)
+//       .then( resp => {
+//         console.log('resp.data', resp.data)
+//         console.log('resp.DATATATATA', resp.data.analyzedInstructions[0].steps);
+//         res.json(resp.data);
+//       })
+    
+    const idArray = [518980, 12413];
+    const results = [];
+    const options = {
+      headers: { "X-Mashape-Key": "OxcC40wXNtmshBb2QuFhuTG8xcUXp1huVw2jsnLmhpBuxYNOI8" },
+    }
+    for (let id of idArray) {
+      axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/${id}/information`, options)
+        .then( resp => {
+          for (let ingredient of resp.data.extendedIngredients) {
+            // console.log(ingredient.id, ingredient.amount, ingredient.unit)
+            const options = {
+              headers: { "X-Mashape-Key": "OxcC40wXNtmshBb2QuFhuTG8xcUXp1huVw2jsnLmhpBuxYNOI8" },
+              params: { amount: ingredient.amount, unit: ingredient.unit}
+            }
+            axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/ingredients/${ingredient.id}/information
+`, options)
+              .then( resp => {
+                let obj = {};
+                // console.log(resp.data.nutrition.nutrients)
+                // let nutrient = resp.data.nutrition.nutrients[0]
+                for (let nutrient of resp.data.nutrition.nutrients) {
+                  // console.log('hi')
+                  if (!obj[nutrient.title]){
+                    obj[nutrient.title] = [nutrient.amount, nutrient.unit];
+                  } else {
+                    obj[nutrient.title][0] += nutrient.amount;
+                  }
+                }
+                // console.log(obj)
+                results.push(obj);
+                console.log(results);
+              }).catch( err => {
+                // console.log(err)
+              })
+          }
+          // console.log(results);
+        }).catch( err => {
+          console.log(err);
+        })
+    }
+    // console.log(results)  
   
 
 // Response:  { type: 'product',

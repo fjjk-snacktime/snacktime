@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, Image, TextInput, ListView, TouchableHighlight } from 'react-native';
 import helpers from '../helpers/helpers.js';
 import styles from '../styles.ios.js';
+import ShareFacebook from './ShareFacebook.ios.js';
 
 export default class Recipe extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ export default class Recipe extends Component {
 
   componentWillMount() {
     this.renderIngredients();
+    this.renderOptions();
   }
 
   goBack() {
@@ -29,6 +31,21 @@ export default class Recipe extends Component {
     this.setState({
       ingredients: ingredients
     })
+  }
+
+  renderOptions() {
+    const recipe = this.props.recipe;
+    recipe.vegan = recipe.vegan ? '∙ Vegan' : false;
+    recipe.glutenFree = recipe.glutenFree ? '∙ Gluten Free' : false;
+    recipe.dairyFree = recipe.dairyFree ? '∙ Dairy Free' : false;
+    if (!recipe.vegan && !recipe.glutenFree && !recipe.dairyFree) {
+      recipe.dairyFree = 'No Dietary Restrictions';
+    }
+    recipe.cheap = recipe.cheap ? '$' : '$$$';
+    recipe.sustainable = recipe.sustainable ? '∙ Recipe Sustainable' : false;
+    recipe.servings = recipe.servings ? recipe.servings : 'Not available';
+    recipe.healthscore = recipe.healthscore ? recipe.healthscore : 'Not available';
+    // recipe.sourceUrl
   }
   render() {
     const ingredients = this.state.ingredients.map((ingredient, i) => {
@@ -47,12 +64,17 @@ export default class Recipe extends Component {
           </View>
           <View style={styles.ingredientContainer}>
             <View style={styles.ingredientList}>
-              <Text> vegan: {recipe.vegan} gluten free: {recipe.glutenFree} dairy free: {recipe.dairyFree} cheap: {recipe.cheap} sustainable: {recipe.sustainable} servings: {recipe.servings} healthscore: {recipe.healthscore} </Text>
-              <Text> url: {recipe.sourceUrl} </Text>
+              <Text style={styles.recipeTitle}>Dietary Constraints</Text>
+              <Text style={styles.ingredientListText}> {recipe.vegan} {recipe.glutenFree} {recipe.dairyFree}</Text>
+              <Text style={styles.recipeTitle}>Recipe Information:</Text>
+              <Text style={styles.ingredientListText}> {recipe.cheap} {recipe.sustainable} ∙ Servings: {recipe.servings} ∙ Healthscore: {recipe.healthscore}</Text>
               <Text style={styles.recipeTitle}>Ingredients:</Text>
               <Text style={styles.ingredientListText}>{ingredients}</Text>
             </View>
-            <Image source={{uri: this.props.image}} style={styles.recipeImage} />
+            <View>
+              <Image source={{uri: this.props.image}} style={styles.recipeImage} />
+              <ShareFacebook url={this.props.recipe.sourceUrl} />
+            </View>
           </View>
           <View>
             <Text style={styles.recipeTitle}>Directions:</Text>

@@ -40,6 +40,10 @@ const helpers = {
     getRecipe: (id) => {
       const options = { data: id }
       return axios.post('http://localhost:8000/recipeSelector', options)
+    },
+    compareRecipes: arr => {
+      const options = {data: arr}
+      return axios.post('http://localhost:8000/compareRecipes', options)
     }
   }
 }

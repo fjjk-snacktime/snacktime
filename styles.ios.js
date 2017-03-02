@@ -53,7 +53,7 @@ export default styles = StyleSheet.create({
   },
   recipeTitle: {
     flexDirection: 'row',
-    fontSize: 22,
+    fontSize: 16,
     fontWeight: 'bold',
     fontFamily: 'Palatino',
     alignSelf: 'center',

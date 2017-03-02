@@ -58,11 +58,6 @@ export default class FacebookLogin extends Component {
               }
               onLogoutFinished={() => alert("logout.")}/>
           </View>
-          <TouchableOpacity
-            onPress={this.shareLinkWithShareDialog.bind(this)}
-          >
-            <Text>Share on Facebook!</Text>
-          </TouchableOpacity>
         </View>
       );
     }

@@ -30,16 +30,18 @@ const axios = require('axios');
   // resp.data[0].description
 
 const options = {
-      headers: { "X-Mashape-Key": "f9B4tJmyAkmshyA3mr2ywH4ZNTddp1GXKGIjsnQ0yFRerJT98E" },
-      params: { instructionsRequired: false, offset: 0, query: 'chicken ciabatta' }
-    }
-    axios.get('https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search', options)
-      .then(resp => {
-        console.log('Recipe Response', resp);
+      headers: {
+        "X-Mashape-Key": "OxcC40wXNtmshBb2QuFhuTG8xcUXp1huVw2jsnLmhpBuxYNOI8"
+      }
+    };
+    axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/535717/information`, options)
+      .then( resp => {
+        console.log('resp.data', resp.data)
+        console.log('resp.DATATATATA', resp.data.analyzedInstructions[0].steps);
+        res.json(resp.data);
       })
-      .catch(err => {
-        console.log('Error: ', err);
-      })
+      
+  
 
 // Response:  { type: 'product',
 //   products: 

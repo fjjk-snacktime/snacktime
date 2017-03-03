@@ -3,7 +3,8 @@ import { Text, View, Image, TextInput, ListView, TouchableHighlight } from 'reac
 import helpers from '../helpers/helpers.js';
 import Recipe from './Recipe.ios.js';
 import styles from '../styles.ios.js';
-import NutrientComparisons from './NutrientComparisons.ios.js';
+import NutrientComparisons from './NutrientsComparison.ios.js';
+import fakeData from '../helpers/data/chickenData.js';
 
 export default class Recipes extends Component {
   constructor(props) {
@@ -36,6 +37,7 @@ export default class Recipes extends Component {
     this.setState({
       comparing: true
     })
+    this.forceUpdate();
   }
 
   comparing(id, title, image) {
@@ -43,13 +45,18 @@ export default class Recipes extends Component {
     this.state.titles.push(title);
     this.state.images.push(image);
     if (this.state.compareArray.length === 2) {
-      helpers.recipes.compareRecipes(this.state.compareArray)
-        .then( resp => {
-          this.props.navigator.push({
-            component: NutrientComparisons,
-            passProps: {results: resp.data, ids: this.state.compareArray, titles: this.state.titles, images: this.state.images}
-          })
-        })
+    //   helpers.recipes.compareRecipes(this.state.compareArray)
+    //     .then( resp => {
+    //       this.props.navigator.push({
+    //         component: NutrientComparisons,
+    //         passProps: {results: resp.data, ids: this.state.compareArray, titles: this.state.titles, images: this.state.images}
+    //       })
+    //     })
+    // }
+      this.props.navigator.push({
+        component: NutrientComparisons,
+        passProps: {results: fakeData, ids: this.state.compareArray, titles: this.state.titles, images: this.state.images}
+      })
     }
   }
 
@@ -72,8 +79,8 @@ export default class Recipes extends Component {
             <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
               <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
             </TouchableHighlight>
-            <Text style={styles.resultsTitleText}>Recipes:</Text>
-            <TouchableHighlight onPress={this.compareRecipe}> 
+            <Text style={styles.resultsTitleText}>Comparing Recipes:</Text>
+            <TouchableHighlight onPress={this.compareRecipe.bind(this)}> 
               <Text> Compare Recipe </Text>
             </TouchableHighlight>
           </View>
@@ -84,10 +91,11 @@ export default class Recipes extends Component {
               <TouchableHighlight
                 key={i} 
                 style={styles.listItem}
-                underlayColor="grey"
+                underlayColor="blue"
                 style={styles.resultsList}
+                onPress={ this.comparing.bind(this, recipe.id, recipe.title, recipe.image)}
                 >
-                <TouchableHighlight onPress={this.comparing.bind(this, recipe.id, recipe.title, recipe.image)}>
+                <TouchableHighlight onPress={ this.comparing.bind(this, recipe.id, recipe.title, recipe.image)}>
                   <View style={styles.listItem}>
                     <Image style={styles.resultsPicture} source={{uri: recipe.image}} />
                     <View style={styles.listItemContainer}>
@@ -114,7 +122,7 @@ export default class Recipes extends Component {
               <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
             </TouchableHighlight>
             <Text style={styles.resultsTitleText}>Recipes:</Text>
-            <TouchableHighlight onPress={this.compareRecipe}> 
+            <TouchableHighlight onPress={this.compareRecipe.bind(this)}> 
               <Text> Compare Recipe </Text>
             </TouchableHighlight>
           </View>

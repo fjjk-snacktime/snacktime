@@ -54,6 +54,17 @@ export default styles = StyleSheet.create({
     backgroundColor: '#CCCCCC'
   },
   recipeTitle: {
+    color: '#ebe6e0',
+    flexDirection: 'row',
+    fontSize: 22,
+    fontWeight: 'bold',
+    fontFamily: 'AppleSDGothicNeo-Light',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+  },
+  recipeTitle2: {
+    color: 'black',
     flexDirection: 'row',
     fontSize: 22,
     fontWeight: 'bold',
@@ -63,6 +74,7 @@ export default styles = StyleSheet.create({
     marginBottom: 20,
   },
   recipeDescription: {
+    color: '#ebe6e0',
     fontSize: 20,
     textAlign: 'center',
     margin: 2, 
@@ -309,7 +321,7 @@ export default styles = StyleSheet.create({
   recipe: {
     flex: 1,
     borderColor: 'black',
-    backgroundColor: '#BAE397',
+    backgroundColor: '#CCCCCC',
   },
   recipeStep: {
     margin: 5,

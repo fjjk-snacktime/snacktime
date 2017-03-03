@@ -82,6 +82,18 @@ const axios = require('axios');
         })
     }
     // console.log(results)  
+const options = {
+      headers: {
+        "X-Mashape-Key": "OxcC40wXNtmshBb2QuFhuTG8xcUXp1huVw2jsnLmhpBuxYNOI8"
+      }
+    };
+    axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/535717/information`, options)
+      .then( resp => {
+        console.log('resp.data', resp.data)
+        console.log('resp.DATATATATA', resp.data.analyzedInstructions[0].steps);
+        res.json(resp.data);
+      })
+      
   
 
 // Response:  { type: 'product',

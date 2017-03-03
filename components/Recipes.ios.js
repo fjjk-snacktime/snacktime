@@ -37,6 +37,7 @@ export default class Recipes extends Component {
     this.setState({
       comparing: true
     })
+    this.forceUpdate();
   }
 
   comparing(id, title, image) {

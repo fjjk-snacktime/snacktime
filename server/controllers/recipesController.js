@@ -4,7 +4,7 @@ const recipes = {
   getRecipeList: (req, res, next) => {
       console.log(req.body.data);
     const options = {
-      headers: { "X-Mashape-Key": "OxcC40wXNtmshBb2QuFhuTG8xcUXp1huVw2jsnLmhpBuxYNOI8" },
+      headers: { "X-Mashape-Key": "qAjqbB5sPamshJwWJJh01Y3exb3Jp1wBzcOjsnrqegcRf1PCXT" },
       params: { fillIngredients: false, limitLicense: false, ingredients: req.body.data, ranking: 1 }
     }
     axios.get('https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients', options)
@@ -19,7 +19,7 @@ const recipes = {
   getRecipe: (req, res, next) => {
     const options = {
       headers: {
-        "X-Mashape-Key": "OxcC40wXNtmshBb2QuFhuTG8xcUXp1huVw2jsnLmhpBuxYNOI8"
+        "X-Mashape-Key": "qAjqbB5sPamshJwWJJh01Y3exb3Jp1wBzcOjsnrqegcRf1PCXT"
       }
     };
     axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/${req.body.data}/information`, options)

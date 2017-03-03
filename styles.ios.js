@@ -350,6 +350,13 @@ export default styles = StyleSheet.create({
     height: Dimensions.get('window').height/4,
     width: Dimensions.get('window').width/4,
   },
+  addIngredientButton: {
+    borderRadius: 25,
+    backgroundColor: '#F5FCFF',
+    justifyContent: 'center',
+    height: 20,
+    width: 100,
+  }
 // @media all and (max-width: 800px) {
 //   .navigation {
 //     justify-content: space-around;

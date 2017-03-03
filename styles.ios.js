@@ -21,6 +21,7 @@ export default styles = StyleSheet.create({
     borderBottomWidth: 0.5,
   },
   resultsTitleText:{
+    color: '#ebe6e0',
     fontSize: 25,
     textAlign: 'center',
     fontFamily: 'AppleSDGothicNeo-Light',
@@ -39,6 +40,7 @@ export default styles = StyleSheet.create({
     justifyContent: 'center',
   },
   foodPairTextDescription: {
+    color: '#ebe6e0',
     fontSize: 12,
     textAlign: 'center',
     margin: 2, 
@@ -80,7 +82,6 @@ export default styles = StyleSheet.create({
     flexWrap: 'wrap',
     width: Dimensions.get('window').width,
     height: 150,
-    borderBottomColor: '#008080'
   },
   listItemContainer: {
     height: 140,
@@ -121,6 +122,7 @@ export default styles = StyleSheet.create({
     marginLeft: 50,
   },
   foodPairText: {
+    color: '#ebe6e0',
     flexDirection: 'row',
     fontSize: 15,
     fontWeight: 'bold',
@@ -137,7 +139,7 @@ export default styles = StyleSheet.create({
   app: {
     flex: 7,
     width: Dimensions.get('window').width,
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#e2e2e2',
   },
   welcome: {
     fontFamily: 'AppleSDGothicNeo-Light',
@@ -145,7 +147,12 @@ export default styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
   },
-
+  welcomeImage: {
+    // flex: 4,
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height / 3
+    // marginTop: Dimensions.get('window').height / 10,
+  },
   instructions: {
     textAlign: 'center',
     color: '#333333',

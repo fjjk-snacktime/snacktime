@@ -63,10 +63,8 @@ class App extends Component {
             />
           </View>
           <View style={styles.app} >
+            <Image style={styles.welcomeImage} source={require('../snacktimewelcome.jpg')}/>
             <FacebookLogin />
-            <Text style={styles.welcome}>
-              Welcome to Snack Time!
-            </Text>
           </View>
           <View style={[styles.searchBarPictureFrame]} >
             <SearchBar navigator={this.props.navigator} rendering={actions.rendering}/>
@@ -88,10 +86,8 @@ class App extends Component {
             />
           </View>
           <View style={styles.app} >
+            <Image style={styles.welcomeImage} source={require('../snacktimewelcome.jpg')}/>
             <FacebookLogin />
-            <Text style={styles.welcome}>
-              Welcome to Snack Time!
-            </Text>
           </View>
           <TouchableHighlight style={[styles.buttonView]} onPress={this.changeNavigationCamera.bind(this)}>
             <Image style={[styles.takePicture]} source={{uri: 'https://s3.amazonaws.com/features.ifttt.com/newsletter_images/2015_February/camera512x512+(1).png'}}/>

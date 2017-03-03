@@ -54,7 +54,6 @@ export default class FoodpairResults extends Component {
               style={styles.listItem}
               underlayColor="grey"
               value={foodpair}
-              style={styles.resultsList}
               >
               <TouchableHighlight onPress={this.selectFood.bind(this, foodpair._links.ingredient.name)}>
                 <View style={styles.listItem}>

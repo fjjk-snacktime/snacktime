@@ -3,13 +3,13 @@ import { Text, View, Image, TextInput, ListView, TouchableHighlight } from 'reac
 import helpers from '../helpers/helpers.js';
 import Recipe from './Recipe.ios.js';
 import styles from '../styles.ios.js';
+import data from '../helpers/data/chickenData.js';
 
 
 export default class NutrientsComparison extends Component {
   constructor(props) {
     super(props);
   }
-
 
   selectRecipe(id, title, image) {
     helpers.recipes.getRecipe(id)

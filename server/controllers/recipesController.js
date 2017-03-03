@@ -19,7 +19,7 @@ const recipes = {
   getRecipe: (req, res, next) => {
     const options = {
       headers: {
-        "X-Mashape-Key": "OxcC40wXNtmshBb2QuFhuTG8xcUXp1huVw2jsnLmhpBuxYNOI8"
+        "X-Mashape-Key": "jHbWfZqPEUmsh0NElMAPdMXlfPm1p1M9n5NjsnPD1l0Vjhsjng"
       }
     };
     axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/${req.body.data}/information`, options)
@@ -33,7 +33,7 @@ const recipes = {
     const idArray = req.body.data;
     const results = [];
     const options = {
-      headers: { "X-Mashape-Key": "OxcC40wXNtmshBb2QuFhuTG8xcUXp1huVw2jsnLmhpBuxYNOI8" },
+      headers: { "X-Mashape-Key": "jHbWfZqPEUmsh0NElMAPdMXlfPm1p1M9n5NjsnPD1l0Vjhsjng" },
     }
     for (let id of idArray) {
       axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/${id}/information`, options)
@@ -41,7 +41,7 @@ const recipes = {
           for (let ingredient of resp.data.extendedIngredients) {
             // console.log(ingredient.id, ingredient.amount, ingredient.unit)
             const options = {
-              headers: { "X-Mashape-Key": "OxcC40wXNtmshBb2QuFhuTG8xcUXp1huVw2jsnLmhpBuxYNOI8" },
+              headers: { "X-Mashape-Key": "jHbWfZqPEUmsh0NElMAPdMXlfPm1p1M9n5NjsnPD1l0Vjhsjng" },
               params: { amount: ingredient.amount, unit: ingredient.unit}
             }
             axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/ingredients/${ingredient.id}/information`, options)
@@ -60,6 +60,7 @@ const recipes = {
                 // console.log(obj)
                 results.push(obj);
                 if (results.length === 2) {
+                  console.log(results);
                   res.send(results);
                 }
               }).catch( err => {
@@ -71,6 +72,7 @@ const recipes = {
           console.log(err);
         })
     }
+  }
 }
 
 module.exports = recipes;

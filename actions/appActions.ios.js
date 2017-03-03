@@ -11,6 +11,12 @@ export default appAction = {
     return {
       type: 'RENDERING'
     }
-  }
+  },
+
+  laggedOut: () => {
+    return {
+      type: 'LAG_OUT'
+    }
+  },
 
 } 

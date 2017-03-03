@@ -62,7 +62,7 @@ class App extends Component {
               changeNavigationCamera={this.changeNavigationCamera.bind(this)}
             />
           </View>
-          <View style={[styles.app, this.border('#079604')]} >
+          <View style={styles.app} >
             <FacebookLogin />
             <Text style={styles.welcome}>
               Welcome to Snack Time!
@@ -87,7 +87,7 @@ class App extends Component {
               changeNavigationCamera={this.changeNavigationCamera.bind(this)}
             />
           </View>
-          <View style={[styles.app, this.border('#079604')]} >
+          <View style={styles.app} >
             <FacebookLogin />
             <Text style={styles.welcome}>
               Welcome to Snack Time!
@@ -109,7 +109,6 @@ class App extends Component {
   }
 }
 
-console.log('app', app)
 export default connect(state => ({
     state: state.app
   }),

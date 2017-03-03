@@ -33,7 +33,7 @@ export default class Searchbar extends Component {
           style={styles.searchBar}
           onChangeText={(text) => this.setState({text})}
           value={this.state.text}
-          placeholder={'search your ingredients!'}
+          placeholder={'Search your ingredients!'}
         />
       </View>
     )

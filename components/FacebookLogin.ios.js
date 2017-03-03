@@ -50,6 +50,7 @@ export default class FacebookLogin extends Component {
                   } else {
                     AccessToken.getCurrentAccessToken().then(
                       (data) => {
+                        console.log('dataaaa', data.userID);
                         console.log('access token', data.accessToken.toString());
                       }
                     )

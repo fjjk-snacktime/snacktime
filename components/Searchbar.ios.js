@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Image, TextInput } from 'react-native';
+import { Text, View, Image, TextInput, Alert } from 'react-native';
 import styles from '../styles.ios.js';
 import helpers from '../helpers/helpers.js';
 import FoodpairResults from './FoodpairResults.ios.js';
@@ -11,7 +11,13 @@ export default class Searchbar extends Component {
   }
 
   searchFoodPairing() {
-    this.props.rendering();   
+    this.props.rendering();
+    setTimeout(() => {
+      if (this.props.isRendering) {
+        Alert.alert('Not a valid ingredient');
+      }
+      this.props.lagOut();
+    }, 10000)   
     helpers.foodpairing.getFoodpairings(this.state.text)
       .then(resp => {
         this.props.rendering();

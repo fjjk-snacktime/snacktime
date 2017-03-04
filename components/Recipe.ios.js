@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, Image, TextInput, ListView, TouchableHighlight } from 'react-native';
 import helpers from '../helpers/helpers.js';
 import styles from '../styles.ios.js';
+import ShareFacebook from './ShareFacebook.ios.js';
 
 export default class Recipe extends Component {
   constructor(props) {
@@ -15,6 +16,7 @@ export default class Recipe extends Component {
 
   componentWillMount() {
     this.renderIngredients();
+    this.renderOptions();
   }
 
   goBack() {
@@ -32,19 +34,19 @@ export default class Recipe extends Component {
   }
 
   renderOptions() {
-      const recipe = this.props.recipe;
-      recipe.vegan = recipe.vegan ? '∙ Vegan' : false;
-      recipe.glutenFree = recipe.glutenFree ? '∙ Gluten Free' : false;
-      recipe.dairyFree = recipe.dairyFree ? '∙ Dairy Free' : false;
-      if (!recipe.vegan && !recipe.glutenFree && !recipe.dairyFree) {
-        recipe.dairyFree = 'No Dietary Restrictions';
-      }
-      recipe.cheap = recipe.cheap ? '$' : '$$$';
-      recipe.sustainable = recipe.sustainable ? '∙ Recipe Sustainable' : false;
-      recipe.servings = recipe.servings ? recipe.servings : 'Not available';
-      recipe.healthscore = recipe.healthscore ? recipe.healthscore : 'Not available';
-      // recipe.sourceUrl
+    const recipe = this.props.recipe;
+    recipe.vegan = recipe.vegan ? '∙ Vegan' : false;
+    recipe.glutenFree = recipe.glutenFree ? '∙ Gluten Free' : false;
+    recipe.dairyFree = recipe.dairyFree ? '∙ Dairy Free' : false;
+    if (!recipe.vegan && !recipe.glutenFree && !recipe.dairyFree) {
+      recipe.dairyFree = 'No Dietary Restrictions';
     }
+    recipe.cheap = recipe.cheap ? '$' : '$$$';
+    recipe.sustainable = recipe.sustainable ? '∙ Recipe Sustainable' : false;
+    recipe.servings = recipe.servings ? recipe.servings : 'Not available';
+    recipe.healthscore = recipe.healthscore ? recipe.healthscore : 'Not available';
+    // recipe.sourceUrl
+  }
 
   render() {
     const ingredients = this.state.ingredients.map((ingredient, i) => {
@@ -60,6 +62,7 @@ export default class Recipe extends Component {
               <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
             </TouchableHighlight>
             <Text style={styles.resultsTitleText}>Instructions for {this.props.food}:</Text>
+            
           </View>
           <View style={styles.ingredientContainer}>
             <View style={styles.ingredientList}>
@@ -68,7 +71,10 @@ export default class Recipe extends Component {
               <Text style={styles.recipeTitle2}>Ingredients:</Text>
               <Text style={styles.ingredientListText}>{ingredients}</Text>
             </View>
-            <Image source={{uri: this.props.image}} style={styles.recipeImage} />
+            <View>
+              <Image source={{uri: this.props.image}} style={styles.recipeImage} />
+              <ShareFacebook url={this.props.recipe.sourceUrl} />
+            </View>
           </View>
           <View>
             <Text style={styles.recipeTitle2}>Directions:</Text>

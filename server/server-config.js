@@ -12,6 +12,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.post('/foodPairing', foodpairingController.getFoodpairing);
 app.post('/recipeList', recipesController.getRecipeList);
 app.post('/recipeSelector', recipesController.getRecipe);
-app.post('/imageRecognition', cameraController.imageRecognition);
+app.post('/compareRecipes', recipesController.compareRecipes);
 
 module.exports = app;

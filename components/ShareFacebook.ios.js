@@ -10,8 +10,8 @@ export default class ShareFacebook extends Component {
     this.state = {
       shareLinkContent: {
         contentType: 'link',
-        contentUrl: "https://dimeadozenclothing.com",
-        contentDescription: 'Wow, check out this great site!'
+        contentUrl: props.url,
+        contentDescription: 'Wow, check out this great recipe from Snacktime!'
       }
     }
   }
@@ -46,3 +46,4 @@ export default class ShareFacebook extends Component {
         </View>
       );
     }
+  }

@@ -56,7 +56,7 @@ export default styles = StyleSheet.create({
   recipeTitle: {
     color: '#ebe6e0',
     flexDirection: 'row',
-    fontSize: 22,
+    fontSize: 16,
     fontWeight: 'bold',
     fontFamily: 'AppleSDGothicNeo-Light',
     alignSelf: 'center',
@@ -94,6 +94,7 @@ export default styles = StyleSheet.create({
     flexWrap: 'wrap',
     width: Dimensions.get('window').width,
     height: 150,
+    borderBottomColor: '#008080'
   },
   listItemContainer: {
     height: 140,
@@ -124,6 +125,29 @@ export default styles = StyleSheet.create({
   arrow: {
     height: 60,
     width: 60,
+  },
+  compareNutrientsContainer: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  compareRecipe: {
+    flex: 1,
+    flexDirection: 'column',
+    borderWidth: 1,
+    borderColor: 'black',
+  },
+  compareHeader: {
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+  },
+  compareRecipeTitle: {
+    flexDirection: 'row',
+    fontSize: 16,
+    fontWeight: 'bold',
+    fontFamily: 'Palatino',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
   },
   text: {
     flexDirection: 'row',

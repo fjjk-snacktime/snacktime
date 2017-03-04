@@ -67,7 +67,7 @@ class App extends Component {
             <FacebookLogin />
           </View>
           <View style={[styles.searchBarPictureFrame]} >
-            <SearchBar navigator={this.props.navigator} rendering={actions.rendering}/>
+            <SearchBar navigator={this.props.navigator} rendering={actions.rendering} lagOut={actions.laggedOut} isRendering={state.rendering}/>
           </View>
           <View style={{flexDirection: 'row'}}> 
             <Switch 

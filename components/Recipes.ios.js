@@ -20,13 +20,18 @@ export default class Recipes extends Component {
   }
 
   selectRecipe(id, title, image) {
-    helpers.recipes.getRecipe(id)
-      .then( resp => {
-        this.props.navigator.push({
-          component: Recipe,
-          passProps: { recipe: resp.data, food: title, image: image  }
-        })
-      })
+    if (this.state.comparing) {
+      console.log('in comparing');
+      this.comparing(id, title, image);
+    } else {
+      helpers.recipes.getRecipe(id)
+        .then( resp => {
+          this.props.navigator.push({
+            component: Recipe,
+            passProps: { recipe: resp.data, food: title, image: image  }
+          })
+        })   
+    }
   }
 
   goBack() {
@@ -35,7 +40,7 @@ export default class Recipes extends Component {
 
   compareRecipe() {
     this.setState({
-      comparing: true
+      comparing: !this.state.comparing
     })
     this.forceUpdate();
   }

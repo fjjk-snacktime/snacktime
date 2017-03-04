@@ -21,6 +21,10 @@ export default class NutrientsComparison extends Component {
       })
   }
 
+  goBack() {
+    this.props.navigator.pop();
+  }
+
   render() {
     const renderNutrients = (index) => {
       return Object.keys(this.props.results[index]).map((nutrient, i) => {
@@ -43,29 +47,37 @@ export default class NutrientsComparison extends Component {
       }
     })
     return (
-      <View style={styles.compareNutrientsContainer}>
-        <TouchableHighlight style={styles.compareRecipe} onPress={this.selectRecipe.bind(this, this.props.ids[0], this.props.titles[0], this.props.images[0])} >
+      <View style={styles.resultsList}>
+          <View style={styles.resultsTitle}> 
+            <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
+              <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
+            </TouchableHighlight>
+            <Text style={styles.resultsTitleText}>Nutritional Comparison:</Text>
+          </View>
+        <View style={styles.compareNutrientsContainer}>
+          <TouchableHighlight style={styles.compareRecipe} onPress={this.selectRecipe.bind(this, this.props.ids[0], this.props.titles[0], this.props.images[0])} >
+            <View style={styles.compareRecipe} >
+              <View style={styles.compareHeader}>
+                <Text style={styles.compareRecipeTitle} >{this.props.titles[0]} </Text>
+                <Image style={styles.resultsPicture} source={{uri: this.props.images[0]}} />
+              </View>
+              <View style={styles.compareRecipe}>{renderNutrients(0)}</View>
+            </View>
+          </TouchableHighlight>
           <View style={styles.compareRecipe} >
-          <View style={styles.compareRecipe}>
-            <Text style={styles.compareRecipeTitle} >{this.props.titles[0]} </Text>
-            <Image style={styles.resultsPicture} source={{uri: this.props.images[0]}} />
+            <Text style={styles.compareRecipeTitle} > Comparison: </Text>
+            <View style={styles.compareRecipe}>{compareNutrients}</View>
           </View>
-          <View style={styles.compareRecipe}>{renderNutrients(0)}</View>
-          </View>
-        </TouchableHighlight>
-        <View style={styles.compareRecipe} >
-          <Text style={styles.compareRecipeTitle} > Comparison: </Text>
-          <View style={styles.compareRecipe}>{compareNutrients}</View>
+          <TouchableHighlight style={styles.compareRecipe} onPress={this.selectRecipe.bind(this, this.props.ids[0], this.props.titles[0], this.props.images[0])}>
+            <View style={styles.compareRecipe} >
+              <View style={styles.compareHeader}>
+                <Text style={styles.compareRecipeTitle} >{this.props.titles[1]} </Text>
+                <Image style={styles.resultsPicture} source={{uri: this.props.images[1]}} />
+              </View>
+              <View style={styles.compareRecipe}>{renderNutrients(1)}</View>
+            </View>
+          </TouchableHighlight>
         </View>
-        <TouchableHighlight style={styles.compareRecipe} onPress={this.selectRecipe.bind(this, this.props.ids[0], this.props.titles[0], this.props.images[0])}>
-          <View style={styles.compareRecipe} >
-          <View style={styles.compareRecipe}>
-            <Text style={styles.compareRecipeTitle} >{this.props.titles[1]} </Text>
-            <Image style={styles.resultsPicture} source={{uri: this.props.images[1]}} />
-          </View>
-          <View style={styles.compareRecipe}>{renderNutrients(1)}</View>
-          </View>
-        </TouchableHighlight>
       </View>
     )
   }

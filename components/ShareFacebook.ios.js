@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import FBSDK, { LoginManager } from 'react-native-fbsdk';
 const { LoginButton, AccessToken, ShareDialog } = FBSDK;
 
-export default class FacebookLogin extends Component {
+export default class ShareFacebook extends Component {
   constructor(props) {
     super(props);
 

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Text, View, Image, TextInput, ListView, TouchableHighlight } from 'react-native';
+import { Text, View, Image, TextInput, ListView, TouchableHighlight, TouchableOpacity } from 'react-native';
 import helpers from '../helpers/helpers.js';
 import styles from '../styles.ios.js';
 import Recipes from './Recipes.ios.js';
+import AddIngredient from './AddIngredient.ios.js';
 
 
 export default class FoodpairResults extends Component {
@@ -13,6 +14,14 @@ export default class FoodpairResults extends Component {
       foodDataSource: ds.cloneWithRows(props.foodpairs)
     }
   };
+
+  addIngredient() {
+    console.log('add ingredient');
+    this.props.navigator.push({
+      component: AddIngredient,
+      passProps: { placeholder: 'placeholder' }
+    })
+  }
 
   selectFood(data) {
     if (data.includes('(')) {
@@ -40,6 +49,14 @@ export default class FoodpairResults extends Component {
     return (
       <View style={styles.resultsList}>
         <View style={styles.resultsTitle}> 
+          <View>
+            <TouchableOpacity
+              style={styles.addIngredientButton}
+              onPress={this.addIngredient.bind(this)}
+            >
+            <Text>Add Ingredient</Text>
+            </TouchableOpacity>
+          </View>
           <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
             <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
           </TouchableHighlight>
@@ -54,7 +71,6 @@ export default class FoodpairResults extends Component {
               style={styles.listItem}
               underlayColor="grey"
               value={foodpair}
-              style={styles.resultsList}
               >
               <TouchableHighlight onPress={this.selectFood.bind(this, foodpair._links.ingredient.name)}>
                 <View style={styles.listItem}>

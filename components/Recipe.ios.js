@@ -66,11 +66,9 @@ export default class Recipe extends Component {
           </View>
           <View style={styles.ingredientContainer}>
             <View style={styles.ingredientList}>
-              <Text style={styles.recipeTitle}>Dietary Constraints</Text>
-              <Text style={styles.ingredientListText}> {recipe.vegan} {recipe.glutenFree} {recipe.dairyFree}</Text>
-              <Text style={styles.recipeTitle}>Recipe Information:</Text>
-              <Text style={styles.ingredientListText}> {recipe.cheap} {recipe.sustainable} ∙ Servings: {recipe.servings} ∙ Healthscore: {recipe.healthscore}</Text>
-              <Text style={styles.recipeTitle}>Ingredients:</Text>
+              <Text> {recipe.vegan} {recipe.glutenFree} {recipe.dairyFree}</Text>
+              <Text> {recipe.cheap} {recipe.sustainable} Servings: {recipe.servings} Healthscore: {recipe.healthscore}</Text>
+              <Text style={styles.recipeTitle2}>Ingredients:</Text>
               <Text style={styles.ingredientListText}>{ingredients}</Text>
             </View>
             <View>
@@ -79,7 +77,7 @@ export default class Recipe extends Component {
             </View>
           </View>
           <View>
-            <Text style={styles.recipeTitle}>Directions:</Text>
+            <Text style={styles.recipeTitle2}>Directions:</Text>
           </View>
           <ListView
             style={styles.recipe}

@@ -23,7 +23,7 @@ export default class Searchbar extends Component {
         this.props.rendering();
         this.props.navigator.push({
           component: FoodpairResults,
-          passProps: { foodpairs: resp.data, food: this.state.text }
+          passProps: { foodpairs: resp.data, food: this.state.text, store: this.props.store }
         })
       })
       .catch(err => {

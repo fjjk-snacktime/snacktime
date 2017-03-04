@@ -122,6 +122,10 @@ export default styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'black',
   },
+  compareHeader: {
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+  },
   compareRecipeTitle: {
     flexDirection: 'row',
     fontSize: 16,

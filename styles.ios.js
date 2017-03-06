@@ -51,7 +51,14 @@ export default styles = StyleSheet.create({
   },
   resultsList: {
     flex: 1, 
-    backgroundColor: '#CCCCCC'
+    backgroundColor: '#e2e2e2'
+  },
+  box: {
+    width: 20,
+    height: 100,
+    margin: 5,
+    borderWidth: 1,
+    color: '#94edc7',
   },
   recipeTitle: {
     color: '#ebe6e0',
@@ -71,7 +78,7 @@ export default styles = StyleSheet.create({
     fontFamily: 'AppleSDGothicNeo-Light',
     alignSelf: 'center',
     justifyContent: 'center',
-    marginBottom: 20,
+    marginBottom: 10,
   },
   recipeDescription: {
     color: '#ebe6e0',
@@ -105,26 +112,30 @@ export default styles = StyleSheet.create({
   },
   googleListItem: {
     flex: 1,
-    borderColor: 'black',
-    borderWidth: 2,
-    backgroundColor: '#F5FCFF',
+    // borderColor: 'black',
+    // borderWidth: 2,
+    backgroundColor: '#008080',
     alignItems: 'center',
     justifyContent: 'flex-start',
     flexDirection: 'row',
     flexWrap: 'wrap',
     width: Dimensions.get('window').width,
+    marginBottom: 5,
     height: 125,
-    margin: 0, 
-    borderBottomColor: '#008080'
+    borderBottomColor: '#008080',
   },
   listItemTitle: {
   },
   listItemText: {
     marginTop: 15,
   },
+  facebookButton: {
+    alignSelf: 'center'
+  },
   arrow: {
-    height: 60,
-    width: 60,
+    marginLeft: 2,
+    height: 80,
+    width: 105,
   },
   compareNutrientsContainer: {
     flex: 1,
@@ -156,6 +167,7 @@ export default styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
     marginLeft: 50,
+    color: '#ebe6e0',
   },
   foodPairText: {
     color: '#ebe6e0',
@@ -169,7 +181,8 @@ export default styles = StyleSheet.create({
   recipeStepText:{
     width: Dimensions.get('window').width - 150,
     flexDirection: 'row',
-    fontSize: 15,
+    fontSize: 12,
+    color: '#ebe6e0',
     fontFamily: 'AppleSDGothicNeo-Light',
   },
   app: {
@@ -233,12 +246,23 @@ export default styles = StyleSheet.create({
     padding: 1,
     marginLeft: 5,
   },
+  shareButton: {
+    height: 60,
+    width: 120,
+    padding: 5,
+  },
   glyphicon: {
     flexDirection: 'row',
     height: 60,
     width: 60,
     padding: 5,
     marginRight: Dimensions.get('window').width/9,
+  },
+  shareFacebook: {
+    height: 60,
+    width: 60,
+    padding: 5,
+    marginLeft: 30,
   },
   navigationResults: {
     flexDirection: 'row',
@@ -351,8 +375,8 @@ export default styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     width: Dimensions.get('window').width,
-    marginBottom: 10,
-    backgroundColor: '#F5FCFF',
+    marginBottom: 5,
+    backgroundColor: '#008080',
   },
   switch:{
     right: -Dimensions.get('window').width/3,
@@ -364,8 +388,10 @@ export default styles = StyleSheet.create({
     borderWidth: 2,
   },
   recipeImage: {
-    height: 140,
-    width: 140,
+    height: 110,
+    width: 110,
+    margin: 10,
+    alignSelf: 'center',
   },
   loadingGif:{
     marginTop: Dimensions.get('window').height/4,

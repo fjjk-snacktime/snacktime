@@ -37,7 +37,8 @@ class App extends Component {
 
   changeNavigationCamera() {
     this.props.navigator.push({
-      component: camera
+      component: camera,
+      passProps: { store: this.props.store }
     })
   }
 
@@ -46,9 +47,7 @@ class App extends Component {
     this.forceUpdate()
   }
   render() {
-    console.log('props', this.props.actions.default)
     const {state, actions} = this.props;
-    console.log('ACITONS', state)
     if (state.rendering) {
       return (
         <Image source= {{uri: 'https://media.blueapron.com/assets/loader/pot-loader-6047abec2ec57c18d848f623c036f7fe80236dce689bb48279036c4f914d0c9e.gif'}} style = {styles.loadingGif} />
@@ -67,7 +66,7 @@ class App extends Component {
             <FacebookLogin />
           </View>
           <View style={[styles.searchBarPictureFrame]} >
-            <SearchBar navigator={this.props.navigator} rendering={actions.rendering} lagOut={actions.laggedOut} isRendering={state.rendering}/>
+            <SearchBar store={this.props.store} navigator={this.props.navigator} rendering={actions.rendering} lagOut={actions.laggedOut} isRendering={state.rendering}/>
           </View>
           <View style={{flexDirection: 'row'}}> 
             <Switch 

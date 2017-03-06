@@ -21,7 +21,7 @@ export default class camera extends Component {
   changeNavigation(results) {
     this.props.navigator.push({
       component: GoogleResults,
-      passProps: { results: results }
+      passProps: { results: results, store: this.props.store }
     })
   }
 

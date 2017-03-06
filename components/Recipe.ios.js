@@ -83,7 +83,7 @@ export default class Recipe extends Component {
             style={styles.recipe}
             dataSource={this.state.steps}
             renderRow={(step, i) => {
-              let image = step.ingredients[0] ? step.ingredients[0].image : 'https://spoonacular.com/recipeImages/buffalo-chicken-panini-with-blue-cheese-and-celery-sdf2-12413.jpg';
+              let image = step.ingredients[0] ? step.ingredients[0].image : 'https://s3-us-west-1.amazonaws.com/filmedin/food+(1).png';
               return (
               <View
                 key={i} 

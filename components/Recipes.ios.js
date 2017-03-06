@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Image, TextInput, ListView, TouchableHighlight } from 'react-native';
+import { Text, View, Image, TextInput, ListView, TouchableHighlight, TouchableOpacity } from 'react-native';
 import helpers from '../helpers/helpers.js';
 import Recipe from './Recipe.ios.js';
 import styles from '../styles.ios.js';
@@ -70,9 +70,9 @@ export default class Recipes extends Component {
       return (
         <View style={[styles.container]}>
           <View style={styles.resultsTitle}> 
-            <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
+            <TouchableOpacity style={styles.backButton} onPress={this.goBack.bind(this)}>
               <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
-            </TouchableHighlight>
+            </TouchableOpacity>
             <Text style={styles.resultsTitleText}>We are unable to find any pairings for the selected item at this time</Text>
           </View>
         </View>
@@ -81,13 +81,13 @@ export default class Recipes extends Component {
       return (
         <View style={styles.resultsList}>
           <View style={styles.resultsTitle}> 
-            <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
+            <TouchableOpacity style={styles.backButton} onPress={this.goBack.bind(this)}>
               <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
-            </TouchableHighlight>
+            </TouchableOpacity>
             <Text style={styles.resultsTitleText}>Comparing Recipes:</Text>
-            <TouchableHighlight onPress={this.compareRecipe.bind(this)}> 
-              <Text> Compare Recipe </Text>
-            </TouchableHighlight>
+            <TouchableOpacity onPress={this.compareRecipe.bind(this)}> 
+              <Image source = {{uri: 'https://tavaga.com/images/compare-button.png'}} style = {styles.shareButton} />
+            </TouchableOpacity>
           </View>
           <ListView
             dataSource={this.state.foodDataSource}
@@ -123,13 +123,13 @@ export default class Recipes extends Component {
       return (
         <View style={styles.resultsList}>
           <View style={styles.resultsTitle}> 
-            <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
+            <TouchableOpacity style={styles.backButton} onPress={this.goBack.bind(this)}>
               <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
-            </TouchableHighlight>
+            </TouchableOpacity>
             <Text style={styles.resultsTitleText}>Recipes:</Text>
-            <TouchableHighlight onPress={this.compareRecipe.bind(this)}> 
-              <Text> Compare Recipe </Text>
-            </TouchableHighlight>
+            <TouchableOpacity onPress={this.compareRecipe.bind(this)}> 
+              <Image source = {{uri: 'https://tavaga.com/images/compare-button.png'}} style = {styles.shareButton} />
+            </TouchableOpacity>
           </View>
           <ListView
             dataSource={this.state.foodDataSource}

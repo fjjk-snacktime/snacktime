@@ -1,7 +1,8 @@
 import React , { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import FBSDK, { LoginManager } from 'react-native-fbsdk';
 const { LoginButton, AccessToken, ShareDialog } = FBSDK;
+import styles from '../styles.ios.js';
 
 export default class ShareFacebook extends Component {
   constructor(props) {
@@ -41,7 +42,7 @@ export default class ShareFacebook extends Component {
           <TouchableOpacity
             onPress={this.shareLinkWithShareDialog.bind(this)}
           >
-            <Text>Share on Facebook!</Text>
+            <Image source={{uri: 'https://s3-us-west-1.amazonaws.com/filmedin/facebookButton.png'}} style={styles.shareFacebook} /> 
           </TouchableOpacity>
         </View>
       );

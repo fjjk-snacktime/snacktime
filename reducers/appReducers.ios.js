@@ -9,7 +9,7 @@ export default function reducer ( state = {
       // })    
       return {
         ...state,
-        showSearchBar: true,
+        showSearchBar: !state.showSearchBar,
       }
     }
     case 'RENDERING': {

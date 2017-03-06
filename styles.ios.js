@@ -272,7 +272,6 @@ export default styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: '#F5FCFF',
   },
-
   // for welcome page header
   header: {
     color: 'white',
@@ -380,7 +379,30 @@ export default styles = StyleSheet.create({
     justifyContent: 'center',
     height: 20,
     width: 100,
-  }
+  },
+  addIngredientListView: {
+    height: Dimensions.get('window').height / 1.8,
+    backgroundColor: '#F5FCFF',
+  },
+  addIngredientListItem: {
+    flexDirection: 'row',
+    height: 100,
+  },
+  addIngredientListItemText: {
+    fontSize: 35,
+  },
+  addMoreIngredientsContainer: {
+    flexDirection: 'row',
+    backgroundColor: 'red',
+  },
+  addIngredientInput: {
+    height: 50,
+    width: 200,
+    marginTop: 50,
+    borderColor: 'gray',
+    borderWidth: 1,
+    backgroundColor: '#F5FCFF',
+  },
 // @media all and (max-width: 800px) {
 //   .navigation {
 //     justify-content: space-around;

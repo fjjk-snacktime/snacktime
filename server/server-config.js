@@ -8,10 +8,11 @@ const cameraController = require('./controllers/cameraController.js');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
 app.post('/foodPairing', foodpairingController.getFoodpairing);
 app.post('/recipeList', recipesController.getRecipeList);
 app.post('/recipeSelector', recipesController.getRecipe);
 app.post('/compareRecipes', recipesController.compareRecipes);
+app.post('/getFoodID', foodpairingController.getFoodID);
+app.post('/getMultipleFoodpairings', foodpairingController.getMultipleFoodpairings);
 
 module.exports = app;

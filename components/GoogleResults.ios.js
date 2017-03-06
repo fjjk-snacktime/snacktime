@@ -49,14 +49,14 @@ export default class GoogleResults extends Component {
         </View>
         <ListView
           dataSource={this.state.dataSource}
-          style={styles.resultsList}
           renderRow={(rowData, i) => (
             <TouchableHighlight
               onPress={this.onPress.bind(this, rowData)}
               underlayColor="blue"
+              style={styles.resultsList}
               >
               <View style={styles.googleListItem}>
-                <Image style={styles.arrow} source={{uri: 'https://maxcdn.icons8.com/Android_L/PNG/512/User_Interface/circled_chevron_right-512.png'}} />
+                <Image style={styles.arrow} source={{uri: 'https://ksr-ugc.imgix.net/assets/011/733/722/ad4cdb4ed5baf40f53046e1b52233450_original.png?w=1552&h=873&fit=fill&bg=FFFFFF&v=1463687602&auto=format&q=92&s=8fa745242affe751c539aca3c56c1e92'}} />
                 <Text style={styles.text}>{rowData}</Text>
               </View>
             </TouchableHighlight>

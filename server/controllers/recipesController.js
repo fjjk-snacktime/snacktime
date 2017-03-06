@@ -2,7 +2,6 @@ const axios = require('axios');
 
 const recipes = {
   getRecipeList: (req, res, next) => {
-      console.log(req.body.data);
     const options = {
       headers: { "X-Mashape-Key": "qAjqbB5sPamshJwWJJh01Y3exb3Jp1wBzcOjsnrqegcRf1PCXT" },
       params: { fillIngredients: false, limitLicense: false, ingredients: req.body.data, ranking: 1 }

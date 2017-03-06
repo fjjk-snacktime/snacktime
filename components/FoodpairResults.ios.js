@@ -16,10 +16,12 @@ export default class FoodpairResults extends Component {
   };
 
   addIngredient() {
-    console.log('add ingredient');
     this.props.navigator.push({
       component: AddIngredient,
-      passProps: { placeholder: 'placeholder' }
+      passProps: {
+        ingredients: [this.props.food],
+        store: this.props.store
+      }
     })
   }
 
@@ -27,13 +29,20 @@ export default class FoodpairResults extends Component {
     if (data.includes('(')) {
       data = data.slice(0, data.indexOf('('));
     }
+    
+    if (this.props.ingredients) {
+      data = this.props.ingredients.join(', ') + `, ${data}`
+    }
+
     const query = `${this.props.food},${data}`;
     helpers.recipes.getRecipeList(query)
       .then(resp => {
-        console.log(resp)
          this.props.navigator.push({
-           component: Recipes,
-           passProps: { recipes: resp.data }
+          component: Recipes,
+          passProps: {
+            recipes: resp.data,
+            rendering: this.props.rendering
+          }
         })
       })
       .catch(err => {

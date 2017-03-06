@@ -28,3 +28,6 @@
 *.out
 *.app
 *.log
+
+node_modules
+android

@@ -20,10 +20,15 @@ export default class Searchbar extends Component {
     }, 10000)   
     helpers.foodpairing.getFoodpairings(this.state.text)
       .then(resp => {
+        console.log('Foodpair Data initial: ', resp.data);
         this.props.rendering();
         this.props.navigator.push({
           component: FoodpairResults,
-          passProps: { foodpairs: resp.data, food: this.state.text, store: this.props.store }
+          passProps: { 
+            foodpairs: resp.data,
+            food: this.state.text,
+            store: this.props.store
+          } // put resp.data back in for foodpairs
         })
       })
       .catch(err => {

@@ -11,7 +11,7 @@ export default class BaseApp extends Component {
   render() {
     return (
       <Provider store={store}>
-        <App navigator={this.props.navigator}/>
+        <App store={store} navigator={this.props.navigator}/>
       </Provider>
     );
   }

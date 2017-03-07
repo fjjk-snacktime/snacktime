@@ -48,7 +48,8 @@ class FacebookLogin extends Component {
                 }
               }
             }
-            onLogoutFinished={() => Alert.alert("Successfully Logged Out")}/>
+            onLogoutFinished={() => Alert.alert("Successfully Logged Out")}
+          />
         </View>
       );
     }

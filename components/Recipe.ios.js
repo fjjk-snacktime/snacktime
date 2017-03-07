@@ -75,11 +75,10 @@ class Recipe extends Component {
                      {text: 'Not Now'}]
         );
       } else {
-        return Linking.openURL('twitter://camera');
+        return Linking.openURL(`twitter://post?message=I%20just%20made%20${this.props.food.split(' ').join('%20')}%20with%20a%20little%20help%20from%20the%20app%20Snacktime!`);
       }
     }).catch(err => console.error('An error occurred', err));
   }
-
 
   render() {
     const ingredients = this.state.ingredients.map((ingredient, i) => {

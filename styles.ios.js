@@ -20,6 +20,17 @@ export default styles = StyleSheet.create({
     borderBottomColor: 'darkgray',
     borderBottomWidth: 0.5,
   },
+  compareRecipeTitle1: {
+    marginTop: 40,
+    width: Dimensions.get('window').width,
+    backgroundColor: '#008080',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    flexWrap: 'nowrap',
+    borderBottomColor: 'darkgray',
+    borderBottomWidth: 0.5,
+    height: 200,
+  },
   resultsTitleText:{
     color: '#ebe6e0',
     fontSize: 25,
@@ -28,6 +39,15 @@ export default styles = StyleSheet.create({
     fontWeight: 'bold',
     alignSelf: 'center',
     justifyContent: 'center',
+  },
+  compareRecipeText: {
+    fontSize: 25,
+    textAlign: 'center',
+    fontFamily: 'AppleSDGothicNeo-Light',
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    color: '#ebe6e0',
   },
   foodPairResultsTitleText: {
     fontSize: 35,
@@ -52,6 +72,10 @@ export default styles = StyleSheet.create({
   resultsList: {
     flex: 1, 
     backgroundColor: '#e2e2e2'
+  },
+  compareNutrientsHeader: {
+    height: 250,
+    flexDirection: 'row',
   },
   box: {
     width: 20,
@@ -139,17 +163,20 @@ export default styles = StyleSheet.create({
   },
   compareNutrientsContainer: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'column',
   },
   compareRecipe: {
     flex: 1,
-    flexDirection: 'column',
-    borderWidth: 1,
-    borderColor: 'black',
+    height: 400,
   },
   compareHeader: {
-    flexDirection: 'column',
+    flex: 1,
     flexWrap: 'wrap',
+    height: 250,
+  },
+  compareNutrients: {
+    backgroundColor: '#D3D3D3',
+    height: 400,
   },
   compareRecipeTitle: {
     flexDirection: 'row',
@@ -159,6 +186,7 @@ export default styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
     marginBottom: 20,
+    color: '#ebe6e0',
   },
   text: {
     flexDirection: 'row',
@@ -245,6 +273,9 @@ export default styles = StyleSheet.create({
     width: 100,
     padding: 1,
     marginLeft: 5,
+  },
+  compareRecipePadding: {
+    height: 250,
   },
   shareButton: {
     height: 60,
@@ -364,11 +395,16 @@ export default styles = StyleSheet.create({
   ingredientListText: {
     fontSize: 12,
     flexDirection: 'column',
+    color: '#ebe6e0',
+  },
+  ingredientListText2: {
+    fontSize: 12,
+    flexDirection: 'column',
   },
   recipe: {
     flex: 1,
     borderColor: 'black',
-    backgroundColor: '#CCCCCC',
+    backgroundColor: '#D3D3D3',
   },
   recipeStep: {
     margin: 5,

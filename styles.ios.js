@@ -53,7 +53,7 @@ export default styles = StyleSheet.create({
     fontSize: 35,
     fontWeight: 'bold',
     textAlign: 'center',
-    margin: 2, 
+    margin: 2,
     fontFamily: 'AppleSDGothicNeo-Light',
     fontWeight: 'bold',
     alignSelf: 'center',
@@ -63,14 +63,14 @@ export default styles = StyleSheet.create({
     color: '#ebe6e0',
     fontSize: 12,
     textAlign: 'center',
-    margin: 2, 
+    margin: 2,
     fontFamily: 'AppleSDGothicNeo-Light',
     fontWeight: 'bold',
     alignSelf: 'center',
     justifyContent: 'center',
   },
   resultsList: {
-    flex: 1, 
+    flex: 1,
     backgroundColor: '#e2e2e2'
   },
   compareNutrientsHeader: {
@@ -108,7 +108,7 @@ export default styles = StyleSheet.create({
     color: '#ebe6e0',
     fontSize: 20,
     textAlign: 'center',
-    margin: 2, 
+    margin: 2,
     fontFamily: 'AppleSDGothicNeo-Light',
     fontWeight: 'bold',
     alignSelf: 'center',
@@ -294,7 +294,7 @@ export default styles = StyleSheet.create({
   navigationResults: {
     flexDirection: 'row',
     flexWrap: 'nowrap',
-    width: Dimensions.get('window').width,   
+    width: Dimensions.get('window').width,
   },
   backButtonImage: {
     flexDirection: 'row',

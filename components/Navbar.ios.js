@@ -17,7 +17,7 @@ export default class Nav extends Component {
   render() {
     return (
         <View style={[styles.navigation]}>
-          <TouchableHighlight style={styles.glyphicon}>
+          <TouchableHighlight style={styles.glyphicon} onPress={this.props.changeToUserPage}>
             <Image source={{uri: 'https://cdn3.iconfinder.com/data/icons/glypho-free/64/home-128.png'}} style={styles.glyphicon} />
           </TouchableHighlight>
           <TouchableHighlight style={styles.glyphicon} onPress={this.props.changeNavigationCamera}>

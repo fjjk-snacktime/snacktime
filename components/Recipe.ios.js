@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { Linking, Alert, TouchableOpacity, Text, View, Image, TextInput, ListView, TouchableHighlight } from 'react-native';
+import { Text, View, Image, TextInput, ListView, TouchableHighlight } from 'react-native';
 import helpers from '../helpers/helpers.js';
 import styles from '../styles.ios.js';
 import ShareFacebook from './ShareFacebook.ios.js';
 import { connect } from "react-redux";
+import AddRecipe from './AddRecipe.ios.js';
+
 
 class Recipe extends Component {
   constructor(props) {
@@ -72,10 +74,9 @@ class Recipe extends Component {
       )
     });
     const recipe = this.props.recipe;
-
     return (
       <View style={styles.recipe}>
-        <View style={styles.resultsTitle}> 
+        <View style={styles.resultsTitle}>
           <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
             <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
           </TouchableHighlight>
@@ -113,6 +114,26 @@ class Recipe extends Component {
                 <Image source={require('../public/twitter_icon.png')} style={styles.shareIcons} />
               </TouchableOpacity>
             </View>
+              <AddRecipe info={this.props.recipe} ingredients={this.state.ingredients}/>
+            <View>
+              <Text style={styles.recipeTitle2}>Directions:</Text>
+            </View>
+            <ListView
+              style={styles.recipe}
+              dataSource={this.state.steps}
+              renderRow={(step, i) => {
+                let image = step.ingredients[0] ? step.ingredients[0].image : 'https://s3-us-west-1.amazonaws.com/filmedin/food+(1).png';
+                return (
+                <View
+                  key={i}
+                  style={styles.recipeStep}
+                  underlayColor="grey"
+                  >
+                    <Image source={{uri: image}} style={styles.recipeImage} />
+                    <Text style={styles.recipeStepText}>step {step.number}: {step.step}</Text>
+                </View>
+                )}}
+            />
           </View>
         </View>
         <View>
@@ -125,7 +146,7 @@ class Recipe extends Component {
             let image = step.ingredients[0] ? step.ingredients[0].image : 'https://s3-us-west-1.amazonaws.com/filmedin/food+(1).png';
             return (
             <View
-              key={i} 
+              key={i}
               style={styles.recipeStep}
               underlayColor="grey"
             >

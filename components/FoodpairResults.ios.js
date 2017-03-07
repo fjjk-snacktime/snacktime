@@ -40,6 +40,7 @@ export default class FoodpairResults extends Component {
          this.props.navigator.push({
           component: Recipes,
           passProps: {
+            store: this.props.store,
             recipes: resp.data,
             rendering: this.props.rendering
           }

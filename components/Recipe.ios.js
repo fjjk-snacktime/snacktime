@@ -118,14 +118,6 @@ class Recipe extends Component {
           </View>
           <View>
             <Text style={styles.recipeTitle2}>Directions:</Text>
-            {/*<Image source={{uri: this.props.image}} style={styles.recipeImage} />
-            <ShareFacebook url={this.props.recipe.sourceUrl} />
-            <TouchableOpacity onPress={this.shareToInstagram.bind(this)}>
-              <Text>Share on Instagram!</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={this.shareToTwitter.bind(this)}>
-              <Text>Share on Twitter!</Text>
-            </TouchableOpacity>*/}
           </View>
           <ListView
             style={styles.recipe}

@@ -26,6 +26,8 @@ const recipes = {
         console.log('resp.data', resp.data)
         console.log('resp.DATATATATA', resp.data.analyzedInstructions[0].steps);
         res.json(resp.data);
+      }).catch( err => {
+        console.error(err);
       })
   },
   compareRecipes: (req, res, next) => {

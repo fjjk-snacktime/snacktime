@@ -50,57 +50,56 @@ class App extends Component {
     const {state, actions} = this.props;
     if (state.rendering) {
       return (
-        <Image source= {{uri: 'https://media.blueapron.com/assets/loader/pot-loader-6047abec2ec57c18d848f623c036f7fe80236dce689bb48279036c4f914d0c9e.gif'}} style = {styles.loadingGif} />
+        <Image 
+          source= {{uri: 'https://media.blueapron.com/assets/loader/pot-loader-6047abec2ec57c18d848f623c036f7fe80236dce689bb48279036c4f914d0c9e.gif'}}
+          style = {styles.loadingGif}
+        />
       )
     }
-    if (state.showSearchBar) {
-      return (
-        <View style={[styles.container]}>
-          <View style={[styles.navigation]} >
-            <Nav
-              changeNavigationCamera={this.changeNavigationCamera.bind(this)}
-            />
-          </View>
-          <View style={styles.app} >
-            <Image style={styles.welcomeImage} source={require('../snacktimewelcome.jpg')}/>
-            <FacebookLogin />
-          </View>
-          <View style={[styles.searchBarPictureFrame]} >
-            <SearchBar store={this.props.store} navigator={this.props.navigator} rendering={actions.rendering} lagOut={actions.laggedOut} isRendering={state.rendering}/>
-          </View>
-          <View style={{flexDirection: 'row'}}> 
-            <Switch 
-              onValueChange={actions.showSearchBar}
-              style={styles.switch}
-              value={state.showSearchBar} />
-          </View>
+    return (
+      <View style={[styles.container]}>
+        <View style={[styles.navigation]} >
+          <Nav
+            changeNavigationCamera={this.changeNavigationCamera.bind(this)}
+          />
         </View>
-      );
-    } else {
-      return (
-        <View style={[styles.container]}>
-          <View style={[styles.navigation]} >
-            <Nav
-              changeNavigationCamera={this.changeNavigationCamera.bind(this)}
-            />
-          </View>
-          <View style={styles.app} >
-            <Image style={styles.welcomeImage} source={require('../snacktimewelcome.jpg')}/>
-            <FacebookLogin />
-          </View>
-          <TouchableHighlight style={[styles.buttonView]} onPress={this.changeNavigationCamera.bind(this)}>
-            <Image style={[styles.takePicture]} source={{uri: 'https://s3.amazonaws.com/features.ifttt.com/newsletter_images/2015_February/camera512x512+(1).png'}}/>
-          </TouchableHighlight>
-          <View style={{flexDirection: 'row'}}> 
-            <Switch 
-              onValueChange={actions.showSearchBar}
-              style={styles.switch}
-              value={state.showSearchBar}
-              />
-          </View>
+        <View style={styles.app} >
+          <Image style={styles.welcomeImage} source={require('../snacktimewelcome.jpg')}/>
+          <FacebookLogin />
         </View>
-      );
-    }
+        { /* conditional camera / search bar render */
+          state.showSearchBar
+            ? 
+              (
+                <View style={[styles.searchBarPictureFrame]} >
+                  <SearchBar store={this.props.store}
+                             navigator={this.props.navigator}
+                             rendering={actions.rendering}
+                             lagOut={actions.laggedOut} 
+                             isRendering={state.rendering}
+                  />
+                </View>
+              )
+            : 
+              (
+                <TouchableHighlight style={[styles.buttonView]} 
+                                    onPress={this.changeNavigationCamera.bind(this)}>
+                  <Image 
+                    style={[styles.takePicture]}
+                    source={{uri: 'https://s3.amazonaws.com/features.ifttt.com/newsletter_images/2015_February/camera512x512+(1).png'}}
+                  />
+                </TouchableHighlight>
+              )
+        }
+        <View style={{flexDirection: 'row'}}> 
+          <Switch 
+            onValueChange={actions.showSearchBar}
+            style={styles.switch}
+            value={state.showSearchBar}
+          />
+        </View>
+      </View>
+    );
   }
 }
 

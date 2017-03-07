@@ -54,7 +54,7 @@ class Recipe extends Component {
     //deep link into the instagram app if installed
     Linking.canOpenURL('instagram://camera').then(supported => {
       if (!supported) {
-        Alert.alert('You must install the Instagram app in order to use this feature. Please visit: ',
+        Alert.alert('You must install the Instagram app in order to use this feature.',
                     '',
                     [{text: 'Install Instagram', onPress: () => Linking.openURL('https://itunes.apple.com/us/app/instagram/id389801252?mt=8')},
                      {text: 'Not Now'}]
@@ -69,7 +69,7 @@ class Recipe extends Component {
     //deep link into the twitter app if installed
     Linking.canOpenURL('twitter://camera').then(supported => {
       if (!supported) {
-        Alert.alert('You must install the Instagram app in order to use this feature. Please visit: ',
+        Alert.alert('You must install the Twitter app in order to use this feature.',
                     '',
                     [{text: 'Install Twitter', onPress: () => Linking.openURL('https://itunes.apple.com/us/app/twitter/id333903271?mt=8')},
                      {text: 'Not Now'}]
@@ -162,8 +162,16 @@ class Recipe extends Component {
               <Text style={styles.recipeTitle2}>Ingredients:</Text>
               <Text style={styles.ingredientListText2}>{ingredients}</Text>
             </View>
-            <View>
+            <View style={styles.recipeImageAndIcons}>
               <Image source={{uri: this.props.image}} style={styles.recipeImage} />
+              <View style={styles.iconsContainer}>
+                <TouchableOpacity onPress={this.shareToInstagram.bind(this)}>
+                  <Image source={require('../instagram_icon.png')} style={styles.shareIcons} />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={this.shareToTwitter.bind(this)}>
+                  <Image source={require('../twitter_icon.png')} style={styles.shareIcons} />
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
           <View>

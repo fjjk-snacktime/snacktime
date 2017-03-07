@@ -3,8 +3,9 @@ import { Text, View, Image, TextInput, ListView, TouchableHighlight } from 'reac
 import helpers from '../helpers/helpers.js';
 import styles from '../styles.ios.js';
 import ShareFacebook from './ShareFacebook.ios.js';
+import { connect } from "react-redux";
 
-export default class Recipe extends Component {
+class Recipe extends Component {
   constructor(props) {
     super(props);
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -55,47 +56,96 @@ export default class Recipe extends Component {
       )
     });
     const recipe = this.props.recipe;
-    return(
-      <View style={styles.recipe}>
-          <View style={styles.resultsTitle}> 
-            <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
-              <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
-            </TouchableHighlight>
-            <Text style={styles.resultsTitleText}>Instructions for {this.props.food}:</Text>
-            
-          </View>
-          <View style={styles.ingredientContainer}>
-            <View style={styles.ingredientList}>
-              <Text> {recipe.vegan} {recipe.glutenFree} {recipe.dairyFree}</Text>
-              <Text> {recipe.cheap} {recipe.sustainable} Servings: {recipe.servings} Healthscore: {recipe.healthscore}</Text>
-              <Text style={styles.recipeTitle2}>Ingredients:</Text>
-              <Text style={styles.ingredientListText2}>{ingredients}</Text>
+    if (this.props.state.isAuthenticated) {
+      return(
+        <View style={styles.recipe}>
+            <View style={styles.resultsTitle}> 
+              <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
+                <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
+              </TouchableHighlight>
+              <Text style={styles.resultsTitleText}>Instructions for {this.props.food}:</Text>
+              
+            </View>
+            <View style={styles.ingredientContainer}>
+              <View style={styles.ingredientList}>
+                <Text> {recipe.vegan} {recipe.glutenFree} {recipe.dairyFree}</Text>
+                <Text> {recipe.cheap} {recipe.sustainable} Servings: {recipe.servings} Healthscore: {recipe.healthscore}</Text>
+                <Text style={styles.recipeTitle2}>Ingredients:</Text>
+                <Text style={styles.ingredientListText2}>{ingredients}</Text>
+              </View>
+              <View>
+                <Image source={{uri: this.props.image}} style={styles.recipeImage} />
+                <ShareFacebook url={this.props.recipe.sourceUrl} />
+              </View>
             </View>
             <View>
-              <Image source={{uri: this.props.image}} style={styles.recipeImage} />
-              <ShareFacebook url={this.props.recipe.sourceUrl} />
+              <Text style={styles.recipeTitle2}>Directions:</Text>
             </View>
+            <ListView
+              style={styles.recipe}
+              dataSource={this.state.steps}
+              renderRow={(step, i) => {
+                let image = step.ingredients[0] ? step.ingredients[0].image : 'https://s3-us-west-1.amazonaws.com/filmedin/food+(1).png';
+                return (
+                <View
+                  key={i} 
+                  style={styles.recipeStep}
+                  underlayColor="grey"
+                  >
+                    <Image source={{uri: image}} style={styles.recipeImage} />
+                    <Text style={styles.recipeStepText}>step {step.number}: {step.step}</Text>
+                </View>
+                )}}
+            />
           </View>
-          <View>
-            <Text style={styles.recipeTitle2}>Directions:</Text>
-          </View>
-          <ListView
-            style={styles.recipe}
-            dataSource={this.state.steps}
-            renderRow={(step, i) => {
-              let image = step.ingredients[0] ? step.ingredients[0].image : 'https://s3-us-west-1.amazonaws.com/filmedin/food+(1).png';
-              return (
-              <View
-                key={i} 
-                style={styles.recipeStep}
-                underlayColor="grey"
-                >
-                  <Image source={{uri: image}} style={styles.recipeImage} />
-                  <Text style={styles.recipeStepText}>step {step.number}: {step.step}</Text>
+      )
+    } else {
+      return(
+        <View style={styles.recipe}>
+            <View style={styles.resultsTitle}> 
+              <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
+                <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
+              </TouchableHighlight>
+              <Text style={styles.resultsTitleText}>Instructions for {this.props.food}:</Text>
+              
+            </View>
+            <View style={styles.ingredientContainer}>
+              <View style={styles.ingredientList}>
+                <Text> {recipe.vegan} {recipe.glutenFree} {recipe.dairyFree}</Text>
+                <Text> {recipe.cheap} {recipe.sustainable} Servings: {recipe.servings} Healthscore: {recipe.healthscore}</Text>
+                <Text style={styles.recipeTitle2}>Ingredients:</Text>
+                <Text style={styles.ingredientListText2}>{ingredients}</Text>
               </View>
-              )}}
-          />
-        </View>
-    )
+              <View>
+                <Image source={{uri: this.props.image}} style={styles.recipeImage} />
+              </View>
+            </View>
+            <View>
+              <Text style={styles.recipeTitle2}>Directions:</Text>
+            </View>
+            <ListView
+              style={styles.recipe}
+              dataSource={this.state.steps}
+              renderRow={(step, i) => {
+                let image = step.ingredients[0] ? step.ingredients[0].image : 'https://s3-us-west-1.amazonaws.com/filmedin/food+(1).png';
+                return (
+                <View
+                  key={i} 
+                  style={styles.recipeStep}
+                  underlayColor="grey"
+                  >
+                    <Image source={{uri: image}} style={styles.recipeImage} />
+                    <Text style={styles.recipeStepText}>step {step.number}: {step.step}</Text>
+                </View>
+                )}}
+            />
+          </View>
+      )
+    }
   }
 }
+
+export default connect(state => ({
+    state: state.facebook
+  }), null
+)(Recipe);

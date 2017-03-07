@@ -28,7 +28,7 @@ export default class Recipes extends Component {
         .then( resp => {
           this.props.navigator.push({
             component: Recipe,
-            passProps: { recipe: resp.data, food: title, image: image  }
+            passProps: { store: this.props.store, recipe: resp.data, food: title, image: image  }
           })
         })   
     }

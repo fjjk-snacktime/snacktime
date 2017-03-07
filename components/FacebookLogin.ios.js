@@ -13,20 +13,6 @@ class FacebookLogin extends Component {
     super(props);
   }
 
-  componentWillMount() {
-    const {actions} = this.props;
-      AccessToken.getCurrentAccessToken()
-      .then((data) => {
-          if(data) {
-            actions.isAuthenticated();
-          }
-          
-        })
-      .catch((err) => {
-        console.log(err);
-      })
-    }
-
   render() {
       return (
         <View style={styles.facebookButton}>
@@ -39,12 +25,7 @@ class FacebookLogin extends Component {
                 } else if (result.isCancelled) {
                   alert("Login Successfully Cancelled.");
                 } else {
-                  AccessToken.getCurrentAccessToken().then(
-                    (data) => {
-                      console.log('dataaaa', data.userID);
-                      console.log('access token', data.accessToken.toString());
-                    }
-                  )
+                  this.props.actions.facebookAction();
                 }
               }
             }
@@ -53,11 +34,11 @@ class FacebookLogin extends Component {
         </View>
       );
     }
-
 }
 
+
 export default connect(state => ({
-    state: state.facebook
+    state: {}
   }),
   (dispatch) => ({
     actions: bindActionCreators(facebookActions.default, dispatch)

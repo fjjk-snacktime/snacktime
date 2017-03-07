@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Image, TextInput, ListView, TouchableHighlight } from 'react-native';
+import { Linking, Alert, TouchableOpacity, Text, View, Image, TextInput, ListView, TouchableHighlight } from 'react-native';
 import helpers from '../helpers/helpers.js';
 import styles from '../styles.ios.js';
 import ShareFacebook from './ShareFacebook.ios.js';
@@ -49,6 +49,38 @@ class Recipe extends Component {
     // recipe.sourceUrl
   }
 
+
+  shareToInstagram() {
+    //deep link into the instagram app if installed
+    Linking.canOpenURL('instagram://camera').then(supported => {
+      if (!supported) {
+        Alert.alert('You must install the Instagram app in order to use this feature. Please visit: ',
+                    '',
+                    [{text: 'Install Instagram', onPress: () => Linking.openURL('https://itunes.apple.com/us/app/instagram/id389801252?mt=8')},
+                     {text: 'Not Now'}]
+        );
+      } else {
+        return Linking.openURL('instagram://camera');
+      }
+    }).catch(err => console.error('An error occurred', err));
+  }
+
+  shareToTwitter() {
+    //deep link into the twitter app if installed
+    Linking.canOpenURL('twitter://camera').then(supported => {
+      if (!supported) {
+        Alert.alert('You must install the Instagram app in order to use this feature. Please visit: ',
+                    '',
+                    [{text: 'Install Twitter', onPress: () => Linking.openURL('https://itunes.apple.com/us/app/twitter/id333903271?mt=8')},
+                     {text: 'Not Now'}]
+        );
+      } else {
+        return Linking.openURL('twitter://camera');
+      }
+    }).catch(err => console.error('An error occurred', err));
+  }
+
+
   render() {
     const ingredients = this.state.ingredients.map((ingredient, i) => {
       return (
@@ -59,87 +91,102 @@ class Recipe extends Component {
     if (this.props.state.isAuthenticated) {
       return(
         <View style={styles.recipe}>
-            <View style={styles.resultsTitle}> 
-              <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
-                <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
-              </TouchableHighlight>
-              <Text style={styles.resultsTitleText}>Instructions for {this.props.food}:</Text>
-              
-            </View>
-            <View style={styles.ingredientContainer}>
-              <View style={styles.ingredientList}>
-                <Text> {recipe.vegan} {recipe.glutenFree} {recipe.dairyFree}</Text>
-                <Text> {recipe.cheap} {recipe.sustainable} Servings: {recipe.servings} Healthscore: {recipe.healthscore}</Text>
-                <Text style={styles.recipeTitle2}>Ingredients:</Text>
-                <Text style={styles.ingredientListText2}>{ingredients}</Text>
-              </View>
-              <View>
-                <Image source={{uri: this.props.image}} style={styles.recipeImage} />
-                <ShareFacebook url={this.props.recipe.sourceUrl} />
-              </View>
-            </View>
-            <View>
-              <Text style={styles.recipeTitle2}>Directions:</Text>
-            </View>
-            <ListView
-              style={styles.recipe}
-              dataSource={this.state.steps}
-              renderRow={(step, i) => {
-                let image = step.ingredients[0] ? step.ingredients[0].image : 'https://s3-us-west-1.amazonaws.com/filmedin/food+(1).png';
-                return (
-                <View
-                  key={i} 
-                  style={styles.recipeStep}
-                  underlayColor="grey"
-                  >
-                    <Image source={{uri: image}} style={styles.recipeImage} />
-                    <Text style={styles.recipeStepText}>step {step.number}: {step.step}</Text>
-                </View>
-                )}}
-            />
+          <View style={styles.resultsTitle}> 
+            <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
+              <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
+            </TouchableHighlight>
+            <Text style={styles.resultsTitleText}>Instructions for {this.props.food}:</Text>
           </View>
+          <View style={styles.ingredientContainer}>
+            <View style={styles.ingredientList}>
+              <Text> {recipe.vegan} {recipe.glutenFree} {recipe.dairyFree}</Text>
+              <Text> {recipe.cheap} {recipe.sustainable} Servings: {recipe.servings} Healthscore: {recipe.healthscore}</Text>
+              <Text style={styles.recipeTitle2}>Ingredients:</Text>
+              <Text style={styles.ingredientListText2}>{ingredients}</Text>
+            </View>
+            <View style={styles.recipeImageAndIcons}>
+              <Image source={{uri: this.props.image}} style={styles.recipeImage} />
+              <View style={styles.iconsContainer}>
+                <ShareFacebook url={this.props.recipe.sourceUrl} />
+                <TouchableOpacity onPress={this.shareToInstagram.bind(this)}>
+                  <Image source={require('../instagram_icon.png')} style={styles.shareIcons} />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={this.shareToTwitter.bind(this)}>
+                  <Image source={require('../twitter_icon.png')} style={styles.shareIcons} />
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+          <View>
+            <Text style={styles.recipeTitle2}>Directions:</Text>
+            {/*<Image source={{uri: this.props.image}} style={styles.recipeImage} />
+            <ShareFacebook url={this.props.recipe.sourceUrl} />
+            <TouchableOpacity onPress={this.shareToInstagram.bind(this)}>
+              <Text>Share on Instagram!</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={this.shareToTwitter.bind(this)}>
+              <Text>Share on Twitter!</Text>
+            </TouchableOpacity>*/}
+          </View>
+          <ListView
+            style={styles.recipe}
+            dataSource={this.state.steps}
+            renderRow={(step, i) => {
+              let image = step.ingredients[0] ? step.ingredients[0].image : 'https://s3-us-west-1.amazonaws.com/filmedin/food+(1).png';
+              return (
+              <View
+                key={i} 
+                style={styles.recipeStep}
+                underlayColor="grey"
+                >
+                  <Image source={{uri: image}} style={styles.recipeImage} />
+                  <Text style={styles.recipeStepText}>step {step.number}: {step.step}</Text>
+              </View>
+              )}}
+          />
+        </View>
       )
     } else {
       return(
         <View style={styles.recipe}>
-            <View style={styles.resultsTitle}> 
-              <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
-                <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
-              </TouchableHighlight>
-              <Text style={styles.resultsTitleText}>Instructions for {this.props.food}:</Text>
-              
-            </View>
-            <View style={styles.ingredientContainer}>
-              <View style={styles.ingredientList}>
-                <Text> {recipe.vegan} {recipe.glutenFree} {recipe.dairyFree}</Text>
-                <Text> {recipe.cheap} {recipe.sustainable} Servings: {recipe.servings} Healthscore: {recipe.healthscore}</Text>
-                <Text style={styles.recipeTitle2}>Ingredients:</Text>
-                <Text style={styles.ingredientListText2}>{ingredients}</Text>
-              </View>
-              <View>
-                <Image source={{uri: this.props.image}} style={styles.recipeImage} />
-              </View>
+          <View style={styles.resultsTitle}> 
+            <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
+              <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
+            </TouchableHighlight>
+            <Text style={styles.resultsTitleText}>Instructions for {this.props.food}:</Text>
+            
+          </View>
+          <View style={styles.ingredientContainer}>
+            <View style={styles.ingredientList}>
+              <Text> {recipe.vegan} {recipe.glutenFree} {recipe.dairyFree}</Text>
+              <Text> {recipe.cheap} {recipe.sustainable} Servings: {recipe.servings} Healthscore: {recipe.healthscore}</Text>
+              <Text style={styles.recipeTitle2}>Ingredients:</Text>
+              <Text style={styles.ingredientListText2}>{ingredients}</Text>
             </View>
             <View>
-              <Text style={styles.recipeTitle2}>Directions:</Text>
+              <Image source={{uri: this.props.image}} style={styles.recipeImage} />
             </View>
-            <ListView
-              style={styles.recipe}
-              dataSource={this.state.steps}
-              renderRow={(step, i) => {
-                let image = step.ingredients[0] ? step.ingredients[0].image : 'https://s3-us-west-1.amazonaws.com/filmedin/food+(1).png';
-                return (
-                <View
-                  key={i} 
-                  style={styles.recipeStep}
-                  underlayColor="grey"
-                  >
-                    <Image source={{uri: image}} style={styles.recipeImage} />
-                    <Text style={styles.recipeStepText}>step {step.number}: {step.step}</Text>
-                </View>
-                )}}
-            />
           </View>
+          <View>
+            <Text style={styles.recipeTitle2}>Directions:</Text>
+          </View>
+          <ListView
+            style={styles.recipe}
+            dataSource={this.state.steps}
+            renderRow={(step, i) => {
+              let image = step.ingredients[0] ? step.ingredients[0].image : 'https://s3-us-west-1.amazonaws.com/filmedin/food+(1).png';
+              return (
+              <View
+                key={i} 
+                style={styles.recipeStep}
+                underlayColor="grey"
+                >
+                  <Image source={{uri: image}} style={styles.recipeImage} />
+                  <Text style={styles.recipeStepText}>step {step.number}: {step.step}</Text>
+              </View>
+              )}}
+          />
+        </View>
       )
     }
   }

@@ -7,5 +7,5 @@ import facebook from './facebookReducer.js';
 export default combineReducers({
   app,
   addIngredient,
-  facebook,
+  facebook
 })

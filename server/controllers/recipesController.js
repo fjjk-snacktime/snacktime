@@ -1,9 +1,10 @@
+const recipesKey = require('./apiKeys.js').recipesKey;
 const axios = require('axios');
 
 const recipes = {
   getRecipeList: (req, res, next) => {
     const options = {
-      headers: { "X-Mashape-Key": "qAjqbB5sPamshJwWJJh01Y3exb3Jp1wBzcOjsnrqegcRf1PCXT" },
+      headers: { "X-Mashape-Key": recipesKey },
       params: { fillIngredients: false, limitLicense: false, ingredients: req.body.data, ranking: 1 }
     }
     axios.get('https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients', options)
@@ -18,7 +19,7 @@ const recipes = {
   getRecipe: (req, res, next) => {
     const options = {
       headers: {
-        "X-Mashape-Key": "qAjqbB5sPamshJwWJJh01Y3exb3Jp1wBzcOjsnrqegcRf1PCXT"
+        "X-Mashape-Key": recipesKey
       }
     };
     axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/${req.body.data}/information`, options)
@@ -34,7 +35,7 @@ const recipes = {
     const idArray = req.body.data;
     const results = [];
     const options = {
-      headers: { "X-Mashape-Key": "jHbWfZqPEUmsh0NElMAPdMXlfPm1p1M9n5NjsnPD1l0Vjhsjng" },
+      headers: { "X-Mashape-Key": recipesKey },
     }
     for (let id of idArray) {
       axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/${id}/information`, options)
@@ -42,7 +43,7 @@ const recipes = {
           for (let ingredient of resp.data.extendedIngredients) {
             // console.log(ingredient.id, ingredient.amount, ingredient.unit)
             const options = {
-              headers: { "X-Mashape-Key": "jHbWfZqPEUmsh0NElMAPdMXlfPm1p1M9n5NjsnPD1l0Vjhsjng" },
+              headers: { "X-Mashape-Key": recipesKey },
               params: { amount: ingredient.amount, unit: ingredient.unit}
             }
             axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/ingredients/${ingredient.id}/information`, options)

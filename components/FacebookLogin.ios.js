@@ -3,11 +3,28 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import FBSDK, { LoginManager } from 'react-native-fbsdk';
 const { LoginButton, AccessToken, ShareDialog } = FBSDK;
 import styles from '../styles.ios.js';
+import * as facebookActions from '../actions/facebookActions.js';
+import { connect } from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-export default class FacebookLogin extends Component {
+class FacebookLogin extends Component {
   constructor(props) {
     super(props);
   }
+
+  componentWillMount() {
+    const {actions} = this.props;
+      AccessToken.getCurrentAccessToken()
+      .then((data) => {
+          if(data) {
+            actions.isAuthenticated();
+          }
+          
+        })
+      .catch((err) => {
+        console.log(err);
+      })
+    }
 
   render() {
       return (
@@ -36,3 +53,11 @@ export default class FacebookLogin extends Component {
     }
 
 }
+
+export default connect(state => ({
+    state: state.facebook
+  }),
+  (dispatch) => ({
+    actions: bindActionCreators(facebookActions.default, dispatch)
+  })
+)(FacebookLogin);

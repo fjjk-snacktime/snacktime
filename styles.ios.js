@@ -289,12 +289,6 @@ export default styles = StyleSheet.create({
     padding: 5,
     marginRight: Dimensions.get('window').width/9,
   },
-  shareFacebook: {
-    height: 60,
-    width: 60,
-    padding: 5,
-    marginLeft: 30,
-  },
   navigationResults: {
     flexDirection: 'row',
     flexWrap: 'nowrap',
@@ -423,11 +417,22 @@ export default styles = StyleSheet.create({
     borderColor: 'black',
     borderWidth: 2,
   },
+  recipeImageAndIcons: {
+    flexDirection: 'column',
+    flexWrap: 'wrap',
+  },
   recipeImage: {
     height: 110,
     width: 110,
     margin: 10,
-    alignSelf: 'center',
+  },
+  iconsContainer: {
+    flexDirection: 'row'
+  },
+  shareIcons: {
+    height: 40,
+    width: 40,
+    marginLeft: 2
   },
   loadingGif:{
     marginTop: Dimensions.get('window').height/4,

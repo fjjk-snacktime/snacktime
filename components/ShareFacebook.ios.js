@@ -42,7 +42,7 @@ export default class ShareFacebook extends Component {
           <TouchableOpacity
             onPress={this.shareLinkWithShareDialog.bind(this)}
           >
-            <Image source={require('../facebook_icon.png')} style={styles.shareFacebook} /> 
+            <Image source={require('../facebook_icon.png')} style={styles.shareIcons} /> 
           </TouchableOpacity>
         </View>
       );

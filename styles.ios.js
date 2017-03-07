@@ -235,13 +235,15 @@ export default styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
-
   buttonView: {
     flex: 1,
+    backgroundColor: '#008080',
   },
   takePicture: {
+    alignSelf: 'center',
     height: 100,
     width: 100,
+    backgroundColor: '#008080',
   },
   preview: {
     flex: 1,
@@ -311,6 +313,7 @@ export default styles = StyleSheet.create({
 
   searchBarPictureFrame: {
     flex: 1,
+    backgroundColor: '#008080',
   },
 
   searchBar: {
@@ -408,10 +411,6 @@ export default styles = StyleSheet.create({
     marginBottom: 5,
     backgroundColor: '#008080',
   },
-  switch:{
-    right: -Dimensions.get('window').width/3,
-    marginBottom: 50,
-  },
   ingredientContainer: {
     flexDirection: 'row',
     borderColor: 'black',
@@ -442,35 +441,84 @@ export default styles = StyleSheet.create({
     width: Dimensions.get('window').width/4,
   },
   addIngredientButton: {
-    borderRadius: 25,
-    backgroundColor: '#F5FCFF',
-    justifyContent: 'center',
+    borderRadius: 5,
+    backgroundColor: 'skyblue',
+    alignSelf: 'center',
     height: 20,
     width: 100,
   },
   addIngredientListView: {
-    height: Dimensions.get('window').height / 1.8,
+    height: Dimensions.get('window').height / 5,
     backgroundColor: '#F5FCFF',
   },
   addIngredientListItem: {
     flexDirection: 'row',
+    flex:4,
     height: 100,
   },
   addIngredientListItemText: {
+    flexDirection: 'row',
     fontSize: 35,
   },
-  addMoreIngredientsContainer: {
+  removeListItem: {
     flexDirection: 'row',
-    backgroundColor: 'red',
+    flex: 1,
+    justifyContent: 'flex-start',
+  },
+  removeIcon: {
+    flexDirection: 'row',
+    height: 30,
+    width: 30,
+  },
+  addMoreIngredientsContainer: {
+    backgroundColor: '#008080',
   },
   addIngredientInput: {
     height: 50,
     width: 200,
-    marginTop: 50,
+    marginBottom: 50,
     borderColor: 'gray',
     borderWidth: 1,
+    alignSelf: 'center',
+    flexDirection: 'row',
     backgroundColor: '#F5FCFF',
   },
+  searchIconContainer: {
+    height: 50,
+    backgroundColor: '#008080',
+  },
+  searchIcon: {
+    height: 45,
+    width: 45,
+    alignSelf: 'flex-end',
+  },
+  switchContainer: {
+    justifyContent: 'flex-end',
+    backgroundColor: '#008080',
+  },
+  addIngredientCamera: {
+    flexDirection: 'row',
+    alignSelf: 'center',
+  },
+  switch:{
+    right: -Dimensions.get('window').width/3,
+    marginBottom: 50,
+    backgroundColor: '#008080',
+    flexDirection: 'row',
+    alignSelf: 'flex-start',
+  },
+  addIngredientSwitch: {
+    right: -Dimensions.get('window').width/1.2,
+    marginBottom: 65,
+    backgroundColor: '#008080',
+    flexDirection: 'row',
+    alignSelf: 'flex-start',
+  },
+  addIngredientsContainer: {
+    flex: 1,
+    backgroundColor: '#008080',
+  }
+
 // @media all and (max-width: 800px) {
 //   .navigation {
 //     justify-content: space-around;

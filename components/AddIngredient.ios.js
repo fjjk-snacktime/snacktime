@@ -92,7 +92,7 @@ class AddIngredient extends Component {
 
     if (state.showSearch) {
       return (
-        <View style={styles.resultsList}>
+        <View style={styles.addIngredientsContainer}>
           <View style={styles.resultsTitle}> 
             <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
               <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
@@ -105,41 +105,34 @@ class AddIngredient extends Component {
             renderRow={(ingredient, i) => (
               <View style={styles.addIngredientListItem}>
                 <Text style={styles.addIngredientListItemText}>{ingredient}</Text>
-                <View>
-                  <TouchableOpacity
-                    onPress={this.removeIngredient.bind(this, ingredient)}
-                  >
-                    <Text>(-)</Text>
-                  </TouchableOpacity>
-                </View>
+                <TouchableOpacity
+                  style={styles.removeListItem}
+                  onPress={this.removeIngredient.bind(this, ingredient)}
+                >
+                  <Image style={styles.removeIcon} source={require('../removeicon.png')} />
+                </TouchableOpacity>
               </View>
             )}
           />
-          <View style={styles.addMoreIngredientsButton}>
             <TouchableOpacity
-              onPress={this.addIngredient.bind(this)}
-            >
-            </TouchableOpacity>
-            <TouchableOpacity
+              style={styles.searchIconContainer}
               onPress={this.searchMultipleFoodpairs.bind(this)}
             >
-              <View>
-                <Text>Search Ingredients</Text>
-              </View>
-              
+              <Image style={styles.searchIcon} source={require('../searchicon.png')} />
             </TouchableOpacity>
-            <TextInput
-              onSubmitEditing={this.addIngredient.bind(this)}
-              style={styles.addIngredientInput}
-              onChangeText={(ingredientToAdd) => this.setState({ingredientToAdd})}
-              value={this.state.ingredientToAdd}
-              placeholder={'Add ingredient'}
-            />
-          </View>
-            <View style={{flexDirection: 'row'}}> 
+            <View style={styles.addMoreIngredientsContainer}>
+              <View style={styles.searchBarPictureFrame}>
+                <TextInput
+                  onSubmitEditing={this.addIngredient.bind(this)}
+                  style={styles.addIngredientInput}
+                  onChangeText={(ingredientToAdd) => this.setState({ingredientToAdd})}
+                  value={this.state.ingredientToAdd}
+                  placeholder={'Add ingredient'}
+                />
+              </View>
               <Switch 
                 onValueChange={actions.showSearch}
-                style={styles.switch}
+                style={styles.addIngredientSwitch}
                 value={state.showSearch}
                 />
             </View>
@@ -147,7 +140,7 @@ class AddIngredient extends Component {
       )
     } else {
       return (
-        <View style={styles.resultsList}>
+        <View style={styles.addIngredientsContainer}>
           <View style={styles.resultsTitle}> 
             <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
               <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
@@ -160,39 +153,31 @@ class AddIngredient extends Component {
             renderRow={(ingredient, i) => (
               <View style={styles.addIngredientListItem}>
                 <Text style={styles.addIngredientListItemText}>{ingredient}</Text>
-                <View>
-                  <TouchableOpacity
-                    onPress={this.removeIngredient.bind(this, ingredient)}
-                  >
-                    <Text>(-)</Text>
-                  </TouchableOpacity>
-                </View>
+                <TouchableOpacity
+                  style={styles.removeListItem}
+                  onPress={this.removeIngredient.bind(this, ingredient)}
+                >
+                  <Image style={styles.removeIcon} source={require('../removeicon.png')} />
+                </TouchableOpacity>
               </View>
             )}
           />
           <View style={styles.addMoreIngredientsContainer}>
             <TouchableOpacity
-              onPress={this.addIngredient.bind(this)}
-            >
-            </TouchableOpacity>
-            <TouchableOpacity
+              style={styles.searchIconContainer}
               onPress={this.searchMultipleFoodpairs.bind(this)}
             >
-              <View>
-                <Text>Search Ingredients</Text>
-              </View>
+              <Image style={styles.searchIcon} source={require('../searchicon.png')} />
             </TouchableOpacity>
-            <TouchableHighlight style={[styles.buttonView]} onPress={this.navigateAddIngredientCamera.bind(this)}>
+            <TouchableOpacity style={styles.buttonView} onPress={this.navigateAddIngredientCamera.bind(this)}>
               <Image style={[styles.takePicture]} source={{uri: 'https://s3.amazonaws.com/features.ifttt.com/newsletter_images/2015_February/camera512x512+(1).png'}}/>
-            </TouchableHighlight>
+            </TouchableOpacity>
+            <Switch 
+              onValueChange={actions.showSearch}
+              style={styles.addIngredientSwitch}
+              value={state.showSearch}
+              />
           </View>
-            <View style={{flexDirection: 'row'}}> 
-              <Switch 
-                onValueChange={actions.showSearch}
-                style={styles.switch}
-                value={state.showSearch}
-                />
-            </View>
         </View>
       )
     }

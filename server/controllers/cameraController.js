@@ -1,6 +1,8 @@
+const visionKey = require('./apiKeys.js').visionKey;
+
 module.exports = {
   imageRecognition: (req, res, next) => {
-    const URL = 'https://vision.googleapis.com/v1/images:annotate?key=AIzaSyAA14j-7sIJLDTRZd3bYpZrmCEoFA9IN40';
+    const URL = 'https://vision.googleapis.com/v1/images:annotate?key=' + visionKey;
       let data = JSON.parse(req.body.data);
       console.log(data);
       const request = {

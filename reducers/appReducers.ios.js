@@ -6,7 +6,7 @@ export default function reducer ( state = {
     case 'SHOW_SEARCH_BAR': {
       // return Object.assign({}, state, {
       //   showSearchBar: !state.showSearchBar,
-      // })    
+      // })
       return {
         ...state,
         showSearchBar: !state.showSearchBar,

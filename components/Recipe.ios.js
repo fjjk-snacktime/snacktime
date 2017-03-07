@@ -51,7 +51,7 @@ export default class Recipe extends Component {
   render() {
     const ingredients = this.state.ingredients.map((ingredient, i) => {
       return (
-        <Text style = {styles.ingredientListText} key={i}>∙ {ingredient} </Text>
+        <Text style = {styles.ingredientListText2} key={i}>∙ {ingredient} </Text>
       )
     });
     const recipe = this.props.recipe;
@@ -69,7 +69,7 @@ export default class Recipe extends Component {
               <Text> {recipe.vegan} {recipe.glutenFree} {recipe.dairyFree}</Text>
               <Text> {recipe.cheap} {recipe.sustainable} Servings: {recipe.servings} Healthscore: {recipe.healthscore}</Text>
               <Text style={styles.recipeTitle2}>Ingredients:</Text>
-              <Text style={styles.ingredientListText}>{ingredients}</Text>
+              <Text style={styles.ingredientListText2}>{ingredients}</Text>
             </View>
             <View>
               <Image source={{uri: this.props.image}} style={styles.recipeImage} />

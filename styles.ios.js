@@ -427,7 +427,8 @@ export default styles = StyleSheet.create({
     margin: 10,
   },
   iconsContainer: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    justifyContent: 'center'
   },
   shareIcons: {
     height: 40,

@@ -124,9 +124,9 @@ class Recipe extends Component {
               key={i} 
               style={styles.recipeStep}
               underlayColor="grey"
-              >
-                <Image source={{uri: image}} style={styles.recipeImage} />
-                <Text style={styles.recipeStepText}>step {step.number}: {step.step}</Text>
+            >
+              <Image source={{uri: image}} style={styles.recipeImage} />
+              <Text style={styles.recipeStepText}>step {step.number}: {step.step}</Text>
             </View>
             )}}
         />

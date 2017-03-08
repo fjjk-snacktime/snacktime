@@ -9,7 +9,7 @@ import reducer from "./reducers"
 const middleware = applyMiddleware(promise(), thunk, logger())
 
 export default createStore(
-  reducer, 
+  reducer,
   compose(
     middleware,
     window.devToolsExtension ? window.devToolsExtension() : f => f

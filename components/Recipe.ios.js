@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { Text, View, Image, TextInput, ListView, TouchableHighlight } from 'react-native';
+import { Linking, Alert, TouchableOpacity, Text, View, Image, TextInput, ListView, TouchableHighlight } from 'react-native';
 import helpers from '../helpers/helpers.js';
 import styles from '../styles.ios.js';
+import AddRecipe from './AddRecipe.ios.js';
 import ShareFacebook from './ShareFacebook.ios.js';
 import { connect } from "react-redux";
-import AddRecipe from './AddRecipe.ios.js';
-
 
 class Recipe extends Component {
   constructor(props) {
@@ -65,9 +64,39 @@ class Recipe extends Component {
         return Linking.openURL(deepLink);
       }
     }).catch(err => /*Alert.alert('Error; ', err), */console.error('Error: ', err));
+
+  shareToInstagram() {
+    //deep link into the instagram app if installed
+    Linking.canOpenURL('instagram://camera').then(supported => {
+      if (!supported) {
+        Alert.alert('You must install the Instagram app in order to use this feature.',
+                    '',
+                    [{text: 'Install Instagram', onPress: () => Linking.openURL('https://itunes.apple.com/us/app/instagram/id389801252?mt=8')},
+                     {text: 'Not Now'}]
+        );
+      } else {
+        return Linking.openURL('instagram://camera');
+      }
+    }).catch(err => console.error('An error occurred', err));
+  }
+
+  shareToTwitter() {
+    //deep link into the twitter app if installed
+    Linking.canOpenURL('twitter://camera').then(supported => {
+      if (!supported) {
+        Alert.alert('You must install the Twitter app in order to use this feature.',
+                    '',
+                    [{text: 'Install Twitter', onPress: () => Linking.openURL('https://itunes.apple.com/us/app/twitter/id333903271?mt=8')},
+                     {text: 'Not Now'}]
+        );
+      } else {
+        return Linking.openURL(`twitter://post?message=I%20just%20made%20${this.props.food.split(' ').join('%20')}%20with%20a%20little%20help%20from%20the%20app%20Snacktime!`);
+      }
+    }).catch(err => console.error('An error occurred', err));
   }
 
   render() {
+    console.log('this is the state for user', this.props.state.payload)
     const ingredients = this.state.ingredients.map((ingredient, i) => {
       return (
         <Text style = {styles.ingredientListText2} key={i}>∙ {ingredient} </Text>
@@ -113,27 +142,9 @@ class Recipe extends Component {
               }>
                 <Image source={require('../public/twitter_icon.png')} style={styles.shareIcons} />
               </TouchableOpacity>
-            </View>
-              <AddRecipe info={this.props.recipe} ingredients={this.state.ingredients}/>
-            <View>
               <Text style={styles.recipeTitle2}>Directions:</Text>
+              <AddRecipe info={this.props.recipe} ingredients={this.state.ingredients} userid={this.props.state.payload}/>
             </View>
-            <ListView
-              style={styles.recipe}
-              dataSource={this.state.steps}
-              renderRow={(step, i) => {
-                let image = step.ingredients[0] ? step.ingredients[0].image : 'https://s3-us-west-1.amazonaws.com/filmedin/food+(1).png';
-                return (
-                <View
-                  key={i}
-                  style={styles.recipeStep}
-                  underlayColor="grey"
-                  >
-                    <Image source={{uri: image}} style={styles.recipeImage} />
-                    <Text style={styles.recipeStepText}>step {step.number}: {step.step}</Text>
-                </View>
-                )}}
-            />
           </View>
         </View>
         <View>

@@ -1,9 +1,10 @@
 import axios from 'axios';
+const visionKey = require('../server/controllers/apiKeys.js').visionKey;
 
 const helpers = {
   camera: {
     imageRecognition: data => {
-      const URL = 'https://vision.googleapis.com/v1/images:annotate?key=AIzaSyAA14j-7sIJLDTRZd3bYpZrmCEoFA9IN40';
+      const URL = 'https://vision.googleapis.com/v1/images:annotate?key=' + visionKey;
 
       const request = {
         "requests": 

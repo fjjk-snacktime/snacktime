@@ -64,7 +64,7 @@ class App extends Component {
           />
         </View>
         <View style={styles.app} >
-          <Image style={styles.welcomeImage} source={require('../snacktimewelcome.jpg')}/>
+          <Image style={styles.welcomeImage} source={require('../public/snacktimewelcome.jpg')}/>
           <FacebookLogin />
         </View>
         { /* conditional camera / search bar render */

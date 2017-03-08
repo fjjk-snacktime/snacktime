@@ -102,9 +102,13 @@ class Recipe extends Component {
                 <Image source={require('../public/instagram_icon.png')} style={styles.shareIcons} />
               </TouchableOpacity>
               <TouchableOpacity onPress={
-                () => this.shareToSocialMedia(`twitter://post?message=I%20just%20made%20${this.props.food.split(' ').join('%20')}%20with%20a%20little%20help%20from%20the%20app%20Snacktime!`,
-                                        'Twitter',
-                                        'https://itunes.apple.com/us/app/twitter/id333903271?mt=8')
+                () => this.shareToSocialMedia(
+                  `twitter://post?message=I%20just%20made%20${this.props.food.split(' ').join('%20')}%20(${this.props.food})%20with%20a%20little%20help%20from%20the%20app%20Snacktime!
+
+                  ${this.props.recipe.sourceUrl}`,
+                  'Twitter',
+                  'https://itunes.apple.com/us/app/twitter/id333903271?mt=8'
+                )
               }>
                 <Image source={require('../public/twitter_icon.png')} style={styles.shareIcons} />
               </TouchableOpacity>

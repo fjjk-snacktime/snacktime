@@ -7,12 +7,14 @@ export default class AddRecipe extends Component {
     super(props);
 
     this.state = {
+
     }
   }
 
   saveRecipe() {
     var local = 'http://localhost:8000/'
     var reqBody = {
+      "facebookuserid": this.props.userid.userID,
       "name": this.props.info.title,
       "id": this.props.info.id,
       "image": this.props.info.image,

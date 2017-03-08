@@ -55,7 +55,7 @@ export default class Welcome extends Component {
           <Video
             repeat
             resizeMode='cover'
-            source={require('../food.mp4')}
+            source={require('../public/food.mp4')}
             style={styles.backgroundVideo} />
           <Animatable.Text
             style={styles.header}

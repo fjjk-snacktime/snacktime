@@ -1,62 +1,82 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { View, Text, Navigator, Button, Icon, Alert} from 'react-native';
+import {
+        View,
+        Text,
+        Image,
+        Navigator,
+        Button,
+        ListView,
+        Icon,
+        TouchableHighlight,
+        Alert
+      } from 'react-native';
+import styles from '../styles.ios.js';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 class UserPage extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      data: false,
-      newuser: false
-    }
+      dataSource: []
+    };
   }
 
-  componentDidMount() {
+  goBack() {
+    this.props.navigator.pop();
+  }
+
+  componentWillMount() {
+    this.gettt();
+  }
+
+  // create NewUser if not find in DB
+  createNewUserIfNotAccount(useridforfb) {
     var local = 'http://localhost:8000/'
-    var FacebookUserID = ''
-    var testingID = '189372'
-    // hopeing to be '10210392928233310'
-    // axio will query with FacebookUserID
-    // find user from DB
+    var userid = useridforfb
+    var reqBody = {
+      "id": userid
+    }
+    axios.post(`${local}database`, reqBody)
+    .then((reponese) => {
+      console.log('new user created', reponese.data)
+    }).catch((error) => {
+      console.log('no user created')
+    });
+  }
+
+  gettt() {
+    var local = 'http://localhost:8000/'
+    var FacebookUserID = this.props.state.payload.userID
     axios.get(`${local}database`, {
       params: {
-        ID: testingID
-      },
-    }).then((response) => {
-      console.log('this is the payload', this.props.state)
-      console.log('i got the data', response.data)
-      this.setState({
-        data: response.data[0].FavoriteRecipe
-      });
-    }).catch((error) => {
-      console.log('no data')
-      Alert.alert("do you want to make a account")
-    });
-    }
-
-    // create NewUser if not find in DB
-    createNewUserIfNotAccount(useridforfb) {
-      var local = 'http://localhost:8000/'
-      var userid = useridforfb
-      var reqBody = {
-        "id": userid
+        ID: FacebookUserID
       }
-      axios.post(`${local}database`, reqBody)
-      .then((reponese) => {
-        console.log('new user created', reponese.data)
-      }).catch((error) => {
-        console.log('no user created')
-      });
-    }
+    })
+    .then((response) => {
+      console.log('this is coming back from db', response.data[0].FavoriteRecipe)
+      var userrecipedata = response.data[0].FavoriteRecipe
+        this.setState({
+          dataSource: userrecipedata
+        })
+    })
+    .catch((error) => {
+      console.log('no data')
+    });
+  }
 
   render() {
+    console.log(this.state.dataSource)
     return (
       <View>
         <Text style={{marginTop: 100}}>UserHomePage</Text>
-        <Text style={{marginTop: 200}}>'FavoriteRecipe', {this.state.data}</Text>
+        <TouchableHighlight style={styles.backButtonCamera} onPress={this.goBack.bind(this)}>
+          <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
+        </TouchableHighlight>
+        {this.state.dataSource.map((data, index) => (
+          <Text key={index} style={{marginTop: 100}}>{data.name}</Text>
+        ))}
       </View>
     )
   }

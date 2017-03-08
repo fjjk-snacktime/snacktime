@@ -108,10 +108,10 @@ class Recipe extends Component {
               <View style={styles.iconsContainer}>
                 <ShareFacebook url={this.props.recipe.sourceUrl} />
                 <TouchableOpacity onPress={this.shareToInstagram.bind(this)}>
-                  <Image source={require('../instagram_icon.png')} style={styles.shareIcons} />
+                  <Image source={require('../public/instagram_icon.png')} style={styles.shareIcons} />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={this.shareToTwitter.bind(this)}>
-                  <Image source={require('../twitter_icon.png')} style={styles.shareIcons} />
+                  <Image source={require('../public/twitter_icon.png')} style={styles.shareIcons} />
                 </TouchableOpacity>
               </View>
             </View>
@@ -158,10 +158,10 @@ class Recipe extends Component {
               <Image source={{uri: this.props.image}} style={styles.recipeImage} />
               <View style={styles.iconsContainer}>
                 <TouchableOpacity onPress={this.shareToInstagram.bind(this)}>
-                  <Image source={require('../instagram_icon.png')} style={styles.shareIcons} />
+                  <Image source={require('../public/instagram_icon.png')} style={styles.shareIcons} />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={this.shareToTwitter.bind(this)}>
-                  <Image source={require('../twitter_icon.png')} style={styles.shareIcons} />
+                  <Image source={require('../public/twitter_icon.png')} style={styles.shareIcons} />
                 </TouchableOpacity>
               </View>
             </View>

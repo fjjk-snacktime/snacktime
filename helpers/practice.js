@@ -1,9 +1,12 @@
 const axios = require('axios');
+const pairingID = require('../server/controllers/apiKeys.js').pairingID;
+const pairingKey = require('../server/controllers/apiKeys.js').pairingKey;
+const backUpRecipesKey = require('../server/controllers/apiKeys.js').backUpRecipesKey;
 
 // const options = {
 //   headers: {
-//     'X-Application-ID': 'b5378ca6',
-//     'X-Application-Key': '690be2968f8f08b26fcc1f2c9c8f5b90'
+//     'X-Application-ID': pairingID,
+//     'X-Application-Key': pairingKey
 //   }
 // }
 
@@ -31,7 +34,7 @@ const axios = require('axios');
 
 // const options = {
 //       headers: {
-//         "X-Mashape-Key": "OxcC40wXNtmshBb2QuFhuTG8xcUXp1huVw2jsnLmhpBuxYNOI8"
+//         "X-Mashape-Key": backUpRecipesKey
 //       }
 //     };
 //     axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/535717/information`, options)
@@ -44,7 +47,7 @@ const axios = require('axios');
     const idArray = [518980, 12413];
     const results = [];
     const options = {
-      headers: { "X-Mashape-Key": "OxcC40wXNtmshBb2QuFhuTG8xcUXp1huVw2jsnLmhpBuxYNOI8" },
+      headers: { "X-Mashape-Key": backUpRecipesKey },
     }
     for (let id of idArray) {
       axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/${id}/information`, options)
@@ -52,7 +55,7 @@ const axios = require('axios');
           for (let ingredient of resp.data.extendedIngredients) {
             // console.log(ingredient.id, ingredient.amount, ingredient.unit)
             const options = {
-              headers: { "X-Mashape-Key": "OxcC40wXNtmshBb2QuFhuTG8xcUXp1huVw2jsnLmhpBuxYNOI8" },
+              headers: { "X-Mashape-Key": backUpRecipesKey },
               params: { amount: ingredient.amount, unit: ingredient.unit}
             }
             axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/ingredients/${ingredient.id}/information
@@ -84,7 +87,7 @@ const axios = require('axios');
     // console.log(results)  
 const options = {
       headers: {
-        "X-Mashape-Key": "OxcC40wXNtmshBb2QuFhuTG8xcUXp1huVw2jsnLmhpBuxYNOI8"
+        "X-Mashape-Key": backUpRecipesKey
       }
     };
     axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/535717/information`, options)

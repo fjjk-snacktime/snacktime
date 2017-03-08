@@ -5,10 +5,9 @@ const RecipeModel = require('../../db/models/recipe');
 mongoose.connect('mongodb://localhost/snacktimetest');
 
 // var testingUser = {
-//   'name': 'Jackiechan',
-//   'FacebookUserID': '189372',
-//   'InstagramToken': ['testing'],
-//   'FavoriteRecipe': ['chicken', 'soup', 'foodtruck'],
+//   'name': 'KevinWong',
+//   'FacebookUserID': '10210392928233310',
+//   'FavoriteRecipe': [],
 // }
 
 // var testingUser = {
@@ -31,7 +30,7 @@ const findAllUser = (user) => {
 }
 
 // Create user function
-const insertNewUser= (user, callback) => {
+const insertNewUser = (user, callback) => {
   UserModel.create(user, callback);
 }
 
@@ -46,18 +45,25 @@ const createRecipe = (recipeinfo, callback) => {
 }
 
 // Add UserFavorRecipe
-const AddUserFavorRecipe = (userid, recipe) => {
-  UserModel.findOneAndUpdate({
-
-  })
+const AddUserFavorRecipe = (userid, recipe, callback) => {
+  UserModel.update(userid, recipe, callback);
 }
+
+// Meetings.update({ "_id": MeetingId },
+//     {$push: { "messages": message }},
+//     function(err, numAffected) {
+//       if(err) {//handle error}
+//       else {
+//         //do something depending on the number of documents affected
+//       }});
 
 exports.insertNewUser = insertNewUser;
 exports.findAllUser = findAllUser;
 exports.findUserId = findUserId;
 exports.createRecipe = createRecipe;
+exports.AddUserFavorRecipe = AddUserFavorRecipe;
 
 // insertNewUser(testingUser)
 // findAllUser();
 // AddUserFavorRecipe('12948398298293', 'duck with dumpling')
-// findUserId('12948398298293')
+// findUserId('10210392928233310')

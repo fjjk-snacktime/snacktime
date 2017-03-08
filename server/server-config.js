@@ -30,8 +30,7 @@ app.get('/database', function(req, res){
   dbController.findUserId(req.query.ID, function(err, data) {
     if(err) {
   		console.log(err);
-  	}
-  console.log('server sending back data', data)
+  }
   res.send(data);
   })
 });
@@ -55,23 +54,35 @@ app.post('/database', function(req, res){
 
 // create a recipe schema
 
+// send userid from store
+// then use userModel findoneandUpdate to save recipe
+
 app.post('/AddRecipe', function(req, res){
-  // var saveRecipe = {
-  //   "name": req.body.name,
-  //   "id": req.body.id,
-  //   "image": req.body.image,
-  //   "analyzedInstructions": req.body.analyzedInstructions
-  // }
-  // dbController.createRecipe(saveRecipe, function(err, newRecipe){
-  //   if(err) {
-  //     console.log(err);
-  //   }
-  //   console.log('server create recipe', newRecipe)
-  //   res.send(newRecipe)
-  // })
-  res.send('hi')
+  var facebookuserid = req.body.facebookuserid
+  var saveRecipe = {
+    "name": req.body.name,
+    "id": req.body.id,
+    "image": req.body.image,
+    "analyzedInstructions": req.body.analyzedInstructions
+  }
+  dbController.createRecipe(saveRecipe, function(err, newRecipe){
+    if(err) {
+      console.log(err);
+    }
+    var newR = newRecipe;
+    dbController.findUserId(facebookuserid, function(err, user) {
+      if(err) {
+    		console.log(err);
+    	}
+      user[0].FavoriteRecipe.push(newR)
+      user[0].save(function(err, user, num){
+        if(err) {
+          console.log(err)
+        }
+        console.log('user', user)
+      });
+    })
+  })
 })
-
-
 
 module.exports = app;

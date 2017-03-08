@@ -83,7 +83,8 @@ class App extends Component {
             : 
               (
                 <TouchableHighlight style={[styles.buttonView]} 
-                                    onPress={this.changeNavigationCamera.bind(this)}>
+                                    onPress={this.changeNavigationCamera.bind(this)}
+                >
                   <Image 
                     style={[styles.takePicture]}
                     source={{uri: 'https://s3.amazonaws.com/features.ifttt.com/newsletter_images/2015_February/camera512x512+(1).png'}}

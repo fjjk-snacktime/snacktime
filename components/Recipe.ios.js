@@ -49,35 +49,20 @@ class Recipe extends Component {
     // recipe.sourceUrl
   }
 
-
-  shareToInstagram() {
-    //deep link into the instagram app if installed
-    Linking.canOpenURL('instagram://camera').then(supported => {
+  //DRY click handler for social media deep linking
+  shareToSocialMedia(deepLink, appName, storeURL) {
+    //deep link into the provided app if installed, else direct user to the proper app store link
+    Linking.canOpenURL(appName.toLowerCase() + '://').then(supported => {
       if (!supported) {
-        Alert.alert('You must install the Instagram app in order to use this feature.',
+        Alert.alert(`You must install the ${appName} app in order to use this feature.`,
                     '',
-                    [{text: 'Install Instagram', onPress: () => Linking.openURL('https://itunes.apple.com/us/app/instagram/id389801252?mt=8')},
+                    [{text: `Install ${appName}`, onPress: () => Linking.openURL(storeURL)},
                      {text: 'Not Now'}]
         );
       } else {
-        return Linking.openURL('instagram://camera');
+        return Linking.openURL(deepLink);
       }
-    }).catch(err => console.error('An error occurred', err));
-  }
-
-  shareToTwitter() {
-    //deep link into the twitter app if installed
-    Linking.canOpenURL('twitter://camera').then(supported => {
-      if (!supported) {
-        Alert.alert('You must install the Twitter app in order to use this feature.',
-                    '',
-                    [{text: 'Install Twitter', onPress: () => Linking.openURL('https://itunes.apple.com/us/app/twitter/id333903271?mt=8')},
-                     {text: 'Not Now'}]
-        );
-      } else {
-        return Linking.openURL(`twitter://post?message=I%20just%20made%20${this.props.food.split(' ').join('%20')}%20with%20a%20little%20help%20from%20the%20app%20Snacktime!`);
-      }
-    }).catch(err => console.error('An error occurred', err));
+    }).catch(err => /*Alert.alert('Error; ', err), */console.error('Error: ', err));
   }
 
   render() {
@@ -87,107 +72,66 @@ class Recipe extends Component {
       )
     });
     const recipe = this.props.recipe;
-    if (this.props.state.isAuthenticated) {
-      return(
-        <View style={styles.recipe}>
-          <View style={styles.resultsTitle}> 
-            <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
-              <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
-            </TouchableHighlight>
-            <Text style={styles.resultsTitleText}>Instructions for {this.props.food}:</Text>
-          </View>
-          <View style={styles.ingredientContainer}>
-            <View style={styles.ingredientList}>
-              <Text> {recipe.vegan} {recipe.glutenFree} {recipe.dairyFree}</Text>
-              <Text> {recipe.cheap} {recipe.sustainable} Servings: {recipe.servings} Healthscore: {recipe.healthscore}</Text>
-              <Text style={styles.recipeTitle2}>Ingredients:</Text>
-              <Text style={styles.ingredientListText2}>{ingredients}</Text>
-            </View>
-            <View style={styles.recipeImageAndIcons}>
-              <Image source={{uri: this.props.image}} style={styles.recipeImage} />
-              <View style={styles.iconsContainer}>
-                <ShareFacebook url={this.props.recipe.sourceUrl} />
-                <TouchableOpacity onPress={this.shareToInstagram.bind(this)}>
-                  <Image source={require('../public/instagram_icon.png')} style={styles.shareIcons} />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={this.shareToTwitter.bind(this)}>
-                  <Image source={require('../public/twitter_icon.png')} style={styles.shareIcons} />
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View>
-          <View>
-            <Text style={styles.recipeTitle2}>Directions:</Text>
-          </View>
-          <ListView
-            style={styles.recipe}
-            dataSource={this.state.steps}
-            renderRow={(step, i) => {
-              let image = step.ingredients[0] ? step.ingredients[0].image : 'https://s3-us-west-1.amazonaws.com/filmedin/food+(1).png';
-              return (
-              <View
-                key={i} 
-                style={styles.recipeStep}
-                underlayColor="grey"
-                >
-                  <Image source={{uri: image}} style={styles.recipeImage} />
-                  <Text style={styles.recipeStepText}>step {step.number}: {step.step}</Text>
-              </View>
-              )}}
-          />
+
+    return (
+      <View style={styles.recipe}>
+        <View style={styles.resultsTitle}> 
+          <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
+            <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
+          </TouchableHighlight>
+          <Text style={styles.resultsTitleText}>Instructions for {this.props.food}:</Text>
         </View>
-      )
-    } else {
-      return(
-        <View style={styles.recipe}>
-          <View style={styles.resultsTitle}> 
-            <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
-              <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
-            </TouchableHighlight>
-            <Text style={styles.resultsTitleText}>Instructions for {this.props.food}:</Text>
-            
+        <View style={styles.ingredientContainer}>
+          <View style={styles.ingredientList}>
+            <Text> {recipe.vegan} {recipe.glutenFree} {recipe.dairyFree}</Text>
+            <Text> {recipe.cheap} {recipe.sustainable} Servings: {recipe.servings} Healthscore: {recipe.healthscore}</Text>
+            <Text style={styles.recipeTitle2}>Ingredients:</Text>
+            <Text style={styles.ingredientListText2}>{ingredients}</Text>
           </View>
-          <View style={styles.ingredientContainer}>
-            <View style={styles.ingredientList}>
-              <Text> {recipe.vegan} {recipe.glutenFree} {recipe.dairyFree}</Text>
-              <Text> {recipe.cheap} {recipe.sustainable} Servings: {recipe.servings} Healthscore: {recipe.healthscore}</Text>
-              <Text style={styles.recipeTitle2}>Ingredients:</Text>
-              <Text style={styles.ingredientListText2}>{ingredients}</Text>
+          <View style={styles.recipeImageAndIcons}>
+            <Image source={{uri: this.props.image}} style={styles.recipeImage} />
+            <View style={styles.iconsContainer}>
+              {
+                this.props.state.isAuthenticated
+                  ? (<ShareFacebook url={this.props.recipe.sourceUrl} />)
+                  : (<Text></Text>)
+              }
+              <TouchableOpacity onPress={
+                () => this.shareToSocialMedia('instagram://camera', 'Instagram', 'https://itunes.apple.com/us/app/instagram/id389801252?mt=8')
+              }>
+                <Image source={require('../public/instagram_icon.png')} style={styles.shareIcons} />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={
+                () => this.shareToSocialMedia(`twitter://post?message=I%20just%20made%20${this.props.food.split(' ').join('%20')}%20with%20a%20little%20help%20from%20the%20app%20Snacktime!`,
+                                        'Twitter',
+                                        'https://itunes.apple.com/us/app/twitter/id333903271?mt=8')
+              }>
+                <Image source={require('../public/twitter_icon.png')} style={styles.shareIcons} />
+              </TouchableOpacity>
             </View>
-            <View style={styles.recipeImageAndIcons}>
-              <Image source={{uri: this.props.image}} style={styles.recipeImage} />
-              <View style={styles.iconsContainer}>
-                <TouchableOpacity onPress={this.shareToInstagram.bind(this)}>
-                  <Image source={require('../public/instagram_icon.png')} style={styles.shareIcons} />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={this.shareToTwitter.bind(this)}>
-                  <Image source={require('../public/twitter_icon.png')} style={styles.shareIcons} />
-                </TouchableOpacity>
-              </View>
-            </View>
           </View>
-          <View>
-            <Text style={styles.recipeTitle2}>Directions:</Text>
-          </View>
-          <ListView
-            style={styles.recipe}
-            dataSource={this.state.steps}
-            renderRow={(step, i) => {
-              let image = step.ingredients[0] ? step.ingredients[0].image : 'https://s3-us-west-1.amazonaws.com/filmedin/food+(1).png';
-              return (
-              <View
-                key={i} 
-                style={styles.recipeStep}
-                underlayColor="grey"
-                >
-                  <Image source={{uri: image}} style={styles.recipeImage} />
-                  <Text style={styles.recipeStepText}>step {step.number}: {step.step}</Text>
-              </View>
-              )}}
-          />
         </View>
-      )
-    }
+        <View>
+          <Text style={styles.recipeTitle2}>Directions:</Text>
+        </View>
+        <ListView
+          style={styles.recipe}
+          dataSource={this.state.steps}
+          renderRow={(step, i) => {
+            let image = step.ingredients[0] ? step.ingredients[0].image : 'https://s3-us-west-1.amazonaws.com/filmedin/food+(1).png';
+            return (
+            <View
+              key={i} 
+              style={styles.recipeStep}
+              underlayColor="grey"
+              >
+                <Image source={{uri: image}} style={styles.recipeImage} />
+                <Text style={styles.recipeStepText}>step {step.number}: {step.step}</Text>
+            </View>
+            )}}
+        />
+      </View>
+    )
   }
 }
 

@@ -23,15 +23,14 @@ import { Button } from 'native-base';
 export default class Home extends Component {
   constructor(props) {
     super(props);
-
     this.spinValue = new Animated.Value(0);
   }
   
   render() {
     return (
     	<Animated.View>
-            <Text>My Sliding Box</Text>
-        </Animated.View>
+        <Text>My Sliding Box</Text>
+      </Animated.View>
     );
   }
 }

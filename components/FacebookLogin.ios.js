@@ -1,5 +1,5 @@
 import React , { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { Alert, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import FBSDK, { LoginManager } from 'react-native-fbsdk';
 const { LoginButton, AccessToken, ShareDialog } = FBSDK;
 import styles from '../styles.ios.js';
@@ -35,9 +35,9 @@ class FacebookLogin extends Component {
             onLoginFinished={
               (error, result) => {
                 if (error) {
-                  alert("login has error: " + result.error);
+                  alert("Login has error: " + result.error);
                 } else if (result.isCancelled) {
-                  alert("login is cancelled.");
+                  alert("Login Successfully Cancelled.");
                 } else {
                   AccessToken.getCurrentAccessToken().then(
                     (data) => {
@@ -48,7 +48,8 @@ class FacebookLogin extends Component {
                 }
               }
             }
-            onLogoutFinished={() => alert("logout.")}/>
+            onLogoutFinished={() => Alert.alert("Successfully Logged Out")}
+          />
         </View>
       );
     }

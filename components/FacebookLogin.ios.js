@@ -11,7 +11,6 @@ import {bindActionCreators} from 'redux';
 class FacebookLogin extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props.state);
   }
 
   render() {
@@ -30,8 +29,12 @@ class FacebookLogin extends Component {
                 }
               }
             }
-            onLogoutFinished={() => Alert.alert("Successfully Logged Out")}
-          />
+            onLogoutFinished={
+              () => {
+                this.props.actions.facebookLoginOut();
+                alert("logout.")}
+              }
+            />
         </View>
       );
     }

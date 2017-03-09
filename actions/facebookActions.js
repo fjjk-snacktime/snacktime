@@ -3,7 +3,6 @@ const { LoginButton, AccessToken, ShareDialog } = FBSDK;
 
 export default facebookActions = {
 
-
     facebookAction: () => {
       return function(dispatch) {
         AccessToken.getCurrentAccessToken()
@@ -14,6 +13,14 @@ export default facebookActions = {
           .catch((err) => {
             console.log('Error: ', err);
           })
+      }
+    },
+
+    facebookLoginOut: () => {
+      return function(dispatch) {
+        dispatch({
+          type: "LOGIN_OUT"
+        })
       }
     }
 }

@@ -64,35 +64,6 @@ class Recipe extends Component {
         return Linking.openURL(deepLink);
       }
     }).catch(err => /*Alert.alert('Error; ', err), */console.error('Error: ', err));
-
-  shareToInstagram() {
-    //deep link into the instagram app if installed
-    Linking.canOpenURL('instagram://camera').then(supported => {
-      if (!supported) {
-        Alert.alert('You must install the Instagram app in order to use this feature.',
-                    '',
-                    [{text: 'Install Instagram', onPress: () => Linking.openURL('https://itunes.apple.com/us/app/instagram/id389801252?mt=8')},
-                     {text: 'Not Now'}]
-        );
-      } else {
-        return Linking.openURL('instagram://camera');
-      }
-    }).catch(err => console.error('An error occurred', err));
-  }
-
-  shareToTwitter() {
-    //deep link into the twitter app if installed
-    Linking.canOpenURL('twitter://camera').then(supported => {
-      if (!supported) {
-        Alert.alert('You must install the Twitter app in order to use this feature.',
-                    '',
-                    [{text: 'Install Twitter', onPress: () => Linking.openURL('https://itunes.apple.com/us/app/twitter/id333903271?mt=8')},
-                     {text: 'Not Now'}]
-        );
-      } else {
-        return Linking.openURL(`twitter://post?message=I%20just%20made%20${this.props.food.split(' ').join('%20')}%20with%20a%20little%20help%20from%20the%20app%20Snacktime!`);
-      }
-    }).catch(err => console.error('An error occurred', err));
   }
 
   render() {
@@ -102,6 +73,7 @@ class Recipe extends Component {
       )
     });
     const recipe = this.props.recipe;
+
     return (
       <View style={styles.recipe}>
         <View style={styles.resultsTitle}>
@@ -133,7 +105,6 @@ class Recipe extends Component {
               <TouchableOpacity onPress={
                 () => this.shareToSocialMedia(
                   `twitter://post?message=I%20just%20made%20${this.props.food.split(' ').join('%20')}%20(${this.props.food})%20with%20a%20little%20help%20from%20the%20app%20Snacktime!
-
                   ${this.props.recipe.sourceUrl}`,
                   'Twitter',
                   'https://itunes.apple.com/us/app/twitter/id333903271?mt=8'
@@ -141,9 +112,8 @@ class Recipe extends Component {
               }>
                 <Image source={require('../public/twitter_icon.png')} style={styles.shareIcons} />
               </TouchableOpacity>
-              <Text style={styles.recipeTitle2}>Directions:</Text>
-              <AddRecipe info={this.props.recipe} ingredients={this.state.ingredients} userid={this.props.state.payload}/>
             </View>
+            <AddRecipe info={this.props.recipe} ingredients={this.state.ingredients} userid={this.props.state.payload}/>
           </View>
         </View>
         <View>

@@ -10,25 +10,6 @@ mongoose.connect('mongodb://localhost/snacktimetest');
 //   'FavoriteRecipe': [],
 // }
 
-// var testingUser = {
-//   'name': 'joey',
-//   'FacebookUserID': '123982792837927497',
-//   'InstagramToken': ['testing'],
-//   'FavoriteRecipe': ['chicken', 'soup', 'fish', 'duck'],
-// }
-
-// Find alluser
-
-const findAllUser = (user) => {
-  UserModel.find(function(err, user){
-    if(err) {
-      return err
-    } else {
-      console.log(user)
-    }
-  })
-}
-
 // Create user function
 const insertNewUser = (user, callback) => {
   UserModel.create(user, callback);
@@ -49,19 +30,19 @@ const AddUserFavorRecipe = (userid, recipe, callback) => {
   UserModel.update(userid, recipe, callback);
 }
 
-// Meetings.update({ "_id": MeetingId },
-//     {$push: { "messages": message }},
-//     function(err, numAffected) {
-//       if(err) {//handle error}
-//       else {
-//         //do something depending on the number of documents affected
-//       }});
+// Delete Recipe
+const deleteRecipe = (recipeid, callback) => {
+  RecipeModel.find({ id: recipeid }).remove( callback );
+}
+
 
 exports.insertNewUser = insertNewUser;
-exports.findAllUser = findAllUser;
 exports.findUserId = findUserId;
 exports.createRecipe = createRecipe;
 exports.AddUserFavorRecipe = AddUserFavorRecipe;
+exports.deleteRecipe = deleteRecipe;
+
+// for node use
 
 // insertNewUser(testingUser)
 // findAllUser();

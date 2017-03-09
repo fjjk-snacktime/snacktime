@@ -9,8 +9,3 @@ export default combineReducers({
   addIngredient,
   facebook
 })
-
-
-// import AddRecipe from './AddRecipe.ios.js';
-
-//<AddRecipe info={this.props.recipe} ingredients={this.state.ingredients}/>

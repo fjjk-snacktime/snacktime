@@ -1,5 +1,5 @@
 import axios from 'axios';
-const visionKey = require('../server/controllers/apiKeys.js').visionKey;
+const visionKey = require('../server/utils/apiKeys.js').visionKey;
 
 const helpers = {
   camera: {
@@ -7,16 +7,16 @@ const helpers = {
       const URL = 'https://vision.googleapis.com/v1/images:annotate?key=' + visionKey;
 
       const request = {
-        "requests": 
+        "requests":
         [
           {
-            "features": 
+            "features":
             [
               {
                 "type": "LABEL_DETECTION"
               }
             ],
-            "image": 
+            "image":
             {
               "content": data
             }
@@ -53,6 +53,26 @@ const helpers = {
     compareRecipes: arr => {
       const options = {data: arr}
       return axios.post('http://localhost:8000/compareRecipes', options)
+    }
+  },
+  user: {
+    deleteRecipe: (recipeId, userId) => {
+      const options = {data: {
+        userId: userId,
+        recipeId: recipeId
+      }};
+      return axios.post('http://localhost:8000/deleteRecipe', options)
+    },
+    saveRecipe: (facebookId, title, id, imageUrl, ingredients) => {
+      var local = 'http://localhost:8000/'
+      var reqBody = {
+        "facebookuserid": facebookId,
+        "name": title,
+        "id": id,
+        "image": imageUrl,
+        "analyzedInstructions": ingredients
+      }
+      return axios.post(`http://localhost:8000/AddRecipe`, reqBody)
     }
   }
 }

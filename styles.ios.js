@@ -31,6 +31,9 @@ export default styles = StyleSheet.create({
     borderBottomWidth: 0.5,
     height: 200,
   },
+  buttonContain: {
+    alignItems: 'center',
+  },
   resultsTitleText:{
     color: '#ebe6e0',
     fontSize: 25,

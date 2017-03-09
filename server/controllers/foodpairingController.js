@@ -1,5 +1,5 @@
-const pairingID = require('./apiKeys.js').pairingID;
-const pairingKey = require('./apiKeys.js').pairingKey;
+const pairingID = require('../utils/apiKeys.js').pairingID;
+const pairingKey = require('../utils/apiKeys.js').pairingKey;
 const axios = require('axios')
 
 const foodpairing = {
@@ -31,7 +31,7 @@ const foodpairing = {
         })
         .then( id => {
           ingredientIds.push(id);
-          
+
         })
         .then( () => {
           if (ingredients.length === ingredientIds.length) {

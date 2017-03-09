@@ -59,18 +59,20 @@ export default class FoodpairResults extends Component {
     return (
       <View style={styles.resultsList}>
         <View style={styles.resultsTitle}> 
-          <View>
-            <TouchableOpacity
-              style={styles.addIngredientButton}
-              onPress={this.addIngredient.bind(this)}
-            >
-            <Text>Add Ingredient</Text>
-            </TouchableOpacity>
-          </View>
           <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
             <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
           </TouchableHighlight>
           <Text style={styles.resultsTitleText}> {this.props.food} pairs well with:</Text>
+          <View style={styles.addIngredientContainer}>
+            <TouchableOpacity
+              style={styles.addIngredientButton}
+              onPress={this.addIngredient.bind(this)}
+            >
+            <Text style={styles.addIngredientText1}>Add</Text>
+            <Image style={styles.addIngredientButton} source={require('../public/addicon.png')} />
+            <Text style={styles.addIngredientText2}>Ingredient</Text>
+            </TouchableOpacity>
+          </View>
         </View>
         <ListView
           dataSource={this.state.foodDataSource}

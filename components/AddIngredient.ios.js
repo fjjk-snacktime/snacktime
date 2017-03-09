@@ -109,7 +109,7 @@ class AddIngredient extends Component {
                   style={styles.removeListItem}
                   onPress={this.removeIngredient.bind(this, ingredient)}
                 >
-                  <Image style={styles.removeIcon} source={require('../removeicon.png')} />
+                  <Image style={styles.removeIcon} source={require('../public/removeicon.png')} />
                 </TouchableOpacity>
               </View>
             )}
@@ -118,7 +118,7 @@ class AddIngredient extends Component {
               style={styles.searchIconContainer}
               onPress={this.searchMultipleFoodpairs.bind(this)}
             >
-              <Image style={styles.searchIcon} source={require('../searchicon.png')} />
+              <Image style={styles.searchIcon} source={require('../public/searchicon.png')} />
             </TouchableOpacity>
             <View style={styles.addMoreIngredientsContainer}>
               <View style={styles.searchBarPictureFrame}>
@@ -157,7 +157,7 @@ class AddIngredient extends Component {
                   style={styles.removeListItem}
                   onPress={this.removeIngredient.bind(this, ingredient)}
                 >
-                  <Image style={styles.removeIcon} source={require('../removeicon.png')} />
+                  <Image style={styles.removeIcon} source={require('../public/removeicon.png')} />
                 </TouchableOpacity>
               </View>
             )}
@@ -167,7 +167,7 @@ class AddIngredient extends Component {
               style={styles.searchIconContainer}
               onPress={this.searchMultipleFoodpairs.bind(this)}
             >
-              <Image style={styles.searchIcon} source={require('../searchicon.png')} />
+              <Image style={styles.searchIcon} source={require('../public/searchicon.png')} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.buttonView} onPress={this.navigateAddIngredientCamera.bind(this)}>
               <Image style={[styles.takePicture]} source={{uri: 'https://s3.amazonaws.com/features.ifttt.com/newsletter_images/2015_February/camera512x512+(1).png'}}/>

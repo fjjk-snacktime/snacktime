@@ -4,7 +4,6 @@ import helpers from '../helpers/helpers.js';
 import Recipe from './Recipe.ios.js';
 import styles from '../styles.ios.js';
 import NutrientComparisons from './NutrientsComparison.ios.js';
-import fakeData from '../helpers/data/chickenData.js';
 
 export default class Recipes extends Component {
   constructor(props) {
@@ -30,7 +29,7 @@ export default class Recipes extends Component {
             component: Recipe,
             passProps: { store: this.props.store, recipe: resp.data, food: title, image: image  }
           })
-        })   
+        })
     }
   }
 
@@ -50,26 +49,26 @@ export default class Recipes extends Component {
     this.state.titles.push(title);
     this.state.images.push(image);
     if (this.state.compareArray.length === 2) {
-    //   helpers.recipes.compareRecipes(this.state.compareArray)
-    //     .then( resp => {
-    //       this.props.navigator.push({
-    //         component: NutrientComparisons,
-    //         passProps: {results: resp.data, ids: this.state.compareArray, titles: this.state.titles, images: this.state.images}
-    //       })
-    //     })
-    // }
-      this.props.navigator.push({
-        component: NutrientComparisons,
-        passProps: {results: fakeData, ids: this.state.compareArray, titles: this.state.titles, images: this.state.images}
-      })
+      helpers.recipes.compareRecipes(this.state.compareArray)
+        .then( resp => {
+          this.props.navigator.push({
+            component: NutrientComparisons,
+            passProps: {results: resp.data, ids: this.state.compareArray, titles: this.state.titles, images: this.state.images, store: this.props.store}
+          })
+        })
     }
+      // this.props.navigator.push({
+      //   component: NutrientComparisons,
+      //   passProps: {results: fakeData, ids: this.state.compareArray, titles: this.state.titles, images: this.state.images}
+      // })
+    // }
   }
 
   render() {
     if (this.props.recipes.length === 0) {
       return (
         <View style={[styles.container]}>
-          <View style={styles.resultsTitle}> 
+          <View style={styles.resultsTitle}>
             <TouchableOpacity style={styles.backButton} onPress={this.goBack.bind(this)}>
               <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
             </TouchableOpacity>
@@ -80,12 +79,12 @@ export default class Recipes extends Component {
     } else if (this.state.comparing) {
       return (
         <View style={styles.resultsList}>
-          <View style={styles.resultsTitle}> 
+          <View style={styles.resultsTitle}>
             <TouchableOpacity style={styles.backButton} onPress={this.goBack.bind(this)}>
               <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
             </TouchableOpacity>
             <Text style={styles.resultsTitleText}>Comparing Recipes:</Text>
-            <TouchableOpacity onPress={this.compareRecipe.bind(this)}> 
+            <TouchableOpacity onPress={this.compareRecipe.bind(this)}>
               <Image source = {{uri: 'https://tavaga.com/images/compare-button.png'}} style = {styles.shareButton} />
             </TouchableOpacity>
           </View>
@@ -94,7 +93,7 @@ export default class Recipes extends Component {
             renderRow={(recipe, i) => (
 
               <TouchableHighlight
-                key={i} 
+                key={i}
                 style={styles.listItem}
                 underlayColor="blue"
                 style={styles.resultsList}
@@ -122,12 +121,12 @@ export default class Recipes extends Component {
     } else {
       return (
         <View style={styles.resultsList}>
-          <View style={styles.resultsTitle}> 
+          <View style={styles.resultsTitle}>
             <TouchableOpacity style={styles.backButton} onPress={this.goBack.bind(this)}>
               <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
             </TouchableOpacity>
             <Text style={styles.resultsTitleText}>Recipes:</Text>
-            <TouchableOpacity onPress={this.compareRecipe.bind(this)}> 
+            <TouchableOpacity onPress={this.compareRecipe.bind(this)}>
               <Image source = {{uri: 'https://tavaga.com/images/compare-button.png'}} style = {styles.shareButton} />
             </TouchableOpacity>
           </View>
@@ -136,7 +135,7 @@ export default class Recipes extends Component {
             renderRow={(recipe, i) => (
 
               <TouchableHighlight
-                key={i} 
+                key={i}
                 style={styles.listItem}
                 underlayColor="grey"
                 style={styles.resultsList}

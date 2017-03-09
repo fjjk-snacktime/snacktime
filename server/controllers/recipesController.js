@@ -1,4 +1,4 @@
-const recipesKey = require('./apiKeys.js').recipesKey;
+const recipesKey = require('../utils/apiKeys.js').recipesKey;
 const axios = require('axios');
 
 const recipes = {

@@ -1,15 +1,19 @@
 export default function facebookReducer (
   state = {
     isAuthenticated: false,
-    payload: null
+    id: null
   }, action) {
   switch (action.type) {
     case 'IS_AUTHENTICATED': {
-      console.log('this is the action payload call', action.payload)
       return {
         ...state,
         isAuthenticated: true,
-        payload: action.payload
+      }
+    }
+    case 'GET_ACCESS_TOKEN': {
+      return {
+        ...state,
+        id: action.payload
       }
     }
     case 'LOGIN_OUT': {
@@ -17,7 +21,7 @@ export default function facebookReducer (
       return {
       ...state,
       isAuthenticated: false,
-      payload: null
+      id: null
       }
     }
   }

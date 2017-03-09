@@ -3,7 +3,6 @@ import { Text, View, Image, TextInput, ListView, TouchableHighlight, ScrollView 
 import helpers from '../helpers/helpers.js';
 import Recipe from './Recipe.ios.js';
 import styles from '../styles.ios.js';
-import data from '../helpers/data/chickenData.js';
 
 
 export default class NutrientsComparison extends Component {
@@ -36,19 +35,20 @@ export default class NutrientsComparison extends Component {
     };
 
     const compareNutrients = Object.keys(this.props.results[0]).map((nutrient, i) => {
+      this.props.results[1][nutrient] = this.props.results[1][nutrient] ? this.props.results[1][nutrient] : [0, this.props.results[0][nutrient][1]]
       if (this.props.results[0][nutrient][0] > this.props.results[1][nutrient][0]) {
         return (
-          <Text style = {[styles.ingredientListText, {color: '#458B00'}]} key={i}>⇦  {nutrient}: {Math.floor(Math.abs(this.props.results[0][nutrient][0] - this.props.results[1][nutrient][0]))} {this.props.results[1][nutrient][1]}</Text>
+          <Text style = {[styles.ingredientListText, {color: '#458B00'}]} key={i}>⇦  {nutrient}: {Math.abs(this.props.results[0][nutrient][0] - this.props.results[1][nutrient][0])} {this.props.results[1][nutrient][1]}</Text>
         )
       } else {
         return (
-          <Text style = {[styles.ingredientListText, {color: '#B22222'}]} key={i}>{nutrient}: {Math.floor(Math.abs(this.props.results[0][nutrient][0] - this.props.results[1][nutrient][0]))} {this.props.results[1][nutrient][1]}  ⇨</Text>
+          <Text style = {[styles.ingredientListText, {color: '#B22222'}]} key={i}>{nutrient}: {Math.abs(this.props.results[0][nutrient][0] - this.props.results[1][nutrient][0])} {this.props.results[1][nutrient][1]}  ⇨</Text>
         )
       }
     })
     return (
       <View style={styles.resultsList}>
-        <View style={styles.resultsTitle}> 
+        <View style={styles.resultsTitle}>
           <TouchableHighlight style={styles.backButton} onPress={this.goBack.bind(this)}>
             <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
           </TouchableHighlight>

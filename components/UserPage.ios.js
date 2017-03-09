@@ -4,17 +4,15 @@ import {
         View,
         Text,
         Image,
-        Navigator,
-        Button,
         ScrollView,
         ListView,
-        Icon,
-        TouchableHighlight,
-        Alert
+        TouchableHighlight
       } from 'react-native';
 import styles from '../styles.ios.js';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
+import helpers from '../helpers/helpers.js';
+
 
 class UserPage extends Component {
   constructor(props) {
@@ -22,7 +20,7 @@ class UserPage extends Component {
     this.state = {
       dataSource: [],
       ingredients: []
-    };
+    }
   }
 
   goBack() {
@@ -30,8 +28,8 @@ class UserPage extends Component {
   }
 
   componentWillMount() {
-    if(!this.props.state.payload) {
-      console.log('nothing')
+    if(!this.props.state.id) {
+      console.log('THERE IS NO STATE ID')
     } else {
       this.getData();
     }
@@ -44,40 +42,33 @@ class UserPage extends Component {
     var reqBody = {
       "id": userid
     }
-    axios.post(`${local}database`, reqBody)
+    axios.post(`${local}createUser`, reqBody)
     .then((reponese) => {
-      console.log('new user created', reponese.data)
     }).catch((error) => {
-      console.log('no user created')
     });
   }
 
-  // renderIngredients() {
-  //   let ingredients = [];
-  //   for (let ingredient of this.props.recipe.extendedIngredients) {
-  //     ingredients.push(ingredient.originalString);
-  //   }
-  //   this.setState({
-  //     ingredients: ingredients
-  //   })
-  // }
+  deleteRecipe(recipeId) {
+    helpers.user.deleteRecipe(recipeId, this.props.state.id);
+    this.getData();
+  }
 
   getData() {
     var local = 'http://localhost:8000/'
-    var FacebookUserID = this.props.state.payload.userID
-    axios.get(`${local}database`, {
+    var FacebookUserID = this.props.state.id.userID
+    axios.get(`${local}findUser`, {
       params: {
         ID: FacebookUserID
       }
     })
     .then((response) => {
-      console.log('this is coming back from db', response.data[0].FavoriteRecipe)
       var userrecipedata = response.data[0].FavoriteRecipe
         this.setState({
           dataSource: userrecipedata
         })
       })
       .catch((error) => {
+        console.log('creating a new user');
       this.createNewUserIfNotAccount(FacebookUserID)
     })
   }
@@ -99,7 +90,7 @@ class UserPage extends Component {
                 <View style={styles.recipeImageAndIcons}>
                   <Image source={{uri: data.image}} style={styles.recipeImage} />
                 </View>
-                <TouchableHighlight style={styles.backButtonCamera} onPress={this.goBack.bind(this)}>
+                <TouchableHighlight style={styles.backButtonCamera} onPress={this.deleteRecipe.bind(this, data.id)}>
                   <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
                 </TouchableHighlight>
             </View>

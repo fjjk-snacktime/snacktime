@@ -1,4 +1,4 @@
-const visionKey = require('./apiKeys.js').visionKey;
+const visionKey = require('../utils/apiKeys.js').visionKey;
 
 module.exports = {
   imageRecognition: (req, res, next) => {
@@ -6,16 +6,16 @@ module.exports = {
       let data = JSON.parse(req.body.data);
       console.log(data);
       const request = {
-        "requests": 
+        "requests":
         [
           {
-            "features": 
+            "features":
             [
               {
                 "type": "LABEL_DETECTION"
               }
             ],
-            "image": 
+            "image":
             {
               "content": data
             }

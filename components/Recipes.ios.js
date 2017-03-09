@@ -83,10 +83,19 @@ export default class Recipes extends Component {
             <TouchableOpacity style={styles.backButton} onPress={this.goBack.bind(this)}>
               <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
             </TouchableOpacity>
+<<<<<<< HEAD
             <Text style={styles.resultsTitleText}>Comparing Recipes:</Text>
             <TouchableOpacity onPress={this.compareRecipe.bind(this)}>
               <Image source = {{uri: 'https://tavaga.com/images/compare-button.png'}} style = {styles.shareButton} />
             </TouchableOpacity>
+=======
+            <View style = {styles.buttonContain} >
+              <Text style={styles.resultsTitleText}>Comparing Recipes:</Text>
+              <TouchableOpacity onPress={this.compareRecipe.bind(this)} > 
+                <Image source = {{uri: 'https://tavaga.com/images/compare-button.png'}} style = {styles.shareButton} />
+              </TouchableOpacity>
+            </View>
+>>>>>>> made button more centered
           </View>
           <ListView
             dataSource={this.state.foodDataSource}
@@ -125,10 +134,12 @@ export default class Recipes extends Component {
             <TouchableOpacity style={styles.backButton} onPress={this.goBack.bind(this)}>
               <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
             </TouchableOpacity>
-            <Text style={styles.resultsTitleText}>Recipes:</Text>
-            <TouchableOpacity onPress={this.compareRecipe.bind(this)}>
-              <Image source = {{uri: 'https://tavaga.com/images/compare-button.png'}} style = {styles.shareButton} />
-            </TouchableOpacity>
+            <View style = {styles.buttonContain} >
+              <Text style={styles.resultsTitleText}>Recipes:</Text>
+              <TouchableOpacity onPress={this.compareRecipe.bind(this)}> 
+                <Image source = {{uri: 'https://tavaga.com/images/compare-button.png'}} style = {styles.shareButton} />
+              </TouchableOpacity>
+            </View>
           </View>
           <ListView
             dataSource={this.state.foodDataSource}

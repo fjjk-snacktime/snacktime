@@ -443,35 +443,50 @@ export default styles = StyleSheet.create({
     height: Dimensions.get('window').height/4,
     width: Dimensions.get('window').width/4,
   },
+  addIngredientButtonContainer: {
+    justifyContent: 'center'
+  },
   addIngredientButton: {
-    borderRadius: 5,
-    backgroundColor: 'skyblue',
+    flexDirection: 'row',
     alignSelf: 'center',
-    height: 20,
-    width: 100,
+    height: 35,
+    width: 35,
+  },
+  addIngredientText1: {
+    flexDirection: 'row',
+  },
+  addIngredientText2: {
+    flexDirection: 'row',
+    width: 125,
   },
   addIngredientListView: {
     height: Dimensions.get('window').height / 5,
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#CCCCCC',
   },
   addIngredientListItem: {
-    flexDirection: 'row',
     flex:4,
     height: 100,
+    flexDirection: 'row',
+    backgroundColor: '#F5FCFF',
+    borderColor: '#008080',
+    borderWidth: 1,
+    marginTop: 5,
   },
   addIngredientListItemText: {
     flexDirection: 'row',
     fontSize: 35,
+    marginTop: 20,
   },
   removeListItem: {
     flexDirection: 'row',
+    marginTop: 20,
     flex: 1,
-    justifyContent: 'flex-start',
+    justifyContent: 'flex-end',
   },
   removeIcon: {
-    flexDirection: 'row',
     height: 30,
     width: 30,
+    alignSelf: 'flex-start',
   },
   addMoreIngredientsContainer: {
     backgroundColor: '#008080',
@@ -493,7 +508,7 @@ export default styles = StyleSheet.create({
   searchIcon: {
     height: 45,
     width: 45,
-    alignSelf: 'flex-end',
+    alignSelf: 'center',
   },
   switchContainer: {
     justifyContent: 'flex-end',

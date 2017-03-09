@@ -13,6 +13,39 @@ class FacebookLogin extends Component {
     super(props);
   }
 
+  componentWillMount() {
+    this.checkAuthencitiy();
+  }
+
+  componentDidMount() {
+    this.getAccessToken();
+  }
+
+  successfulFacebookLogin() {
+    this.checkAuthencitiy();
+    this.getAccessToken();
+  }
+  checkAuthencitiy() {
+    AccessToken.getCurrentAccessToken()
+      .then((data) => {
+        this.props.actions.checkAuthencitiy();
+      })
+      .catch((err) => {
+        console.log('Error: ', err);
+      })
+  }
+
+  getAccessToken () {
+    AccessToken.getCurrentAccessToken()
+      .then((data) => {
+        this.props.actions.getAccessToken(data);
+      })
+      .catch((err) => {
+        console.log('ERROROROR');
+        console.log('Error: ', err);
+      })
+    }
+
   render() {
       return (
         <View style={styles.facebookButton}>
@@ -25,7 +58,7 @@ class FacebookLogin extends Component {
                 } else if (result.isCancelled) {
                   alert("Login Successfully Cancelled.");
                 } else {
-                  this.props.actions.facebookAction();
+                  this.successfulFacebookLogin();
                 }
               }
             }

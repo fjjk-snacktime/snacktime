@@ -12,7 +12,6 @@ class FacebookLogin extends Component {
   constructor(props) {
     super(props);
   }
-
   componentWillMount() {
     this.checkAuthencitiy();
   }
@@ -45,7 +44,6 @@ class FacebookLogin extends Component {
         console.log('Error: ', err);
       })
     }
-
   render() {
       return (
         <View style={styles.facebookButton}>

@@ -6,12 +6,13 @@ import {
         Image,
         ScrollView,
         ListView,
-        TouchableHighlight,
+        TouchableHighlight
       } from 'react-native';
 import styles from '../styles.ios.js';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 import helpers from '../helpers/helpers.js';
+
 
 class UserPage extends Component {
   constructor(props) {

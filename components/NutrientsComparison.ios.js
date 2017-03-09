@@ -15,7 +15,7 @@ export default class NutrientsComparison extends Component {
       .then( resp => {
         this.props.navigator.push({
           component: Recipe,
-          passProps: { recipe: resp.data, food: title, image: image  }
+          passProps: { recipe: resp.data, food: title, image: image, store: this.props.store }
         })
       })
   }

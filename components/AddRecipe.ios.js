@@ -5,10 +5,6 @@ import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
 export default class AddRecipe extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-
-    }
   }
 
   saveRecipe() {
@@ -20,7 +16,6 @@ export default class AddRecipe extends Component {
       "image": this.props.info.image,
       "analyzedInstructions": this.props.ingredients
     }
-    console.log('the info', reqBody)
     axios.post(`${local}AddRecipe`, reqBody)
     .then((reponese) => {
       console.log('recipe created', reponese.data)

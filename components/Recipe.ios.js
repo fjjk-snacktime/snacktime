@@ -96,7 +96,6 @@ class Recipe extends Component {
   }
 
   render() {
-    console.log('this is the state for user', this.props.state.payload)
     const ingredients = this.state.ingredients.map((ingredient, i) => {
       return (
         <Text style = {styles.ingredientListText2} key={i}>∙ {ingredient} </Text>

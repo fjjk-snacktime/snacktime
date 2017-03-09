@@ -49,6 +49,7 @@ export default class Recipes extends Component {
     this.state.titles.push(title);
     this.state.images.push(image);
     if (this.state.compareArray.length === 2) {
+<<<<<<< HEAD
       helpers.recipes.compareRecipes(this.state.compareArray)
         .then( resp => {
           this.props.navigator.push({
@@ -56,6 +57,20 @@ export default class Recipes extends Component {
             passProps: {results: resp.data, ids: this.state.compareArray, titles: this.state.titles, images: this.state.images, store: this.props.store}
           })
         })
+=======
+    //   helpers.recipes.compareRecipes(this.state.compareArray)
+    //     .then( resp => {
+    //       this.props.navigator.push({
+    //         component: NutrientComparisons,
+    //         passProps: {results: resp.data, ids: this.state.compareArray, titles: this.state.titles, images: this.state.images}
+    //       })
+    //     })
+    // }
+      this.props.navigator.push({
+        component: NutrientComparisons,
+        passProps: {results: fakeData, ids: this.state.compareArray, titles: this.state.titles, images: this.state.images, store: this.props.store}
+      })
+>>>>>>> passed down sotre into nutrients comparison
     }
       // this.props.navigator.push({
       //   component: NutrientComparisons,
@@ -84,6 +99,7 @@ export default class Recipes extends Component {
               <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
             </TouchableOpacity>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <Text style={styles.resultsTitleText}>Comparing Recipes:</Text>
             <TouchableOpacity onPress={this.compareRecipe.bind(this)}>
               <Image source = {{uri: 'https://tavaga.com/images/compare-button.png'}} style = {styles.shareButton} />
@@ -96,6 +112,14 @@ export default class Recipes extends Component {
               </TouchableOpacity>
             </View>
 >>>>>>> made button more centered
+=======
+            <View style={styles.compareButton} >
+              <Text style={styles.resultsTitleText}>Comparing Recipes:</Text>
+              <TouchableOpacity onPress={this.compareRecipe.bind(this)}> 
+                <Image source = {{uri: 'https://tavaga.com/images/compare-button.png'}} style = {styles.shareButton} />
+              </TouchableOpacity>
+            </View>
+>>>>>>> passed down sotre into nutrients comparison
           </View>
           <ListView
             dataSource={this.state.foodDataSource}
@@ -134,7 +158,7 @@ export default class Recipes extends Component {
             <TouchableOpacity style={styles.backButton} onPress={this.goBack.bind(this)}>
               <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
             </TouchableOpacity>
-            <View style = {styles.buttonContain} >
+            <View style={styles.compareButton} >
               <Text style={styles.resultsTitleText}>Recipes:</Text>
               <TouchableOpacity onPress={this.compareRecipe.bind(this)}> 
                 <Image source = {{uri: 'https://tavaga.com/images/compare-button.png'}} style = {styles.shareButton} />

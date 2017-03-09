@@ -9,11 +9,11 @@ A native iOS app that allows you to take pictures of, or search for, food and in
 
 ### Find recipes from chosen ingredients
 
-![alt tag](./public/recipes.png)
+![alt tag](./public/Recipes.png)
 
 ### In depth description of recipes
 
-![alt tag](./public/recipe.png)
+![alt tag](./public/Recipe.png)
 
 ### Getting Started
 To get started, simply clone or fork and clone the repo and follow the brief instructions here to setup the necessary Xcode compiler: https://developers.facebook.com/docs/ios/getting-started

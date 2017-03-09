@@ -17,10 +17,8 @@ export default facebookActions = {
     },
 
     facebookLoginOut: () => {
-      return function(dispatch) {
-        dispatch({
+      return {
           type: "LOGIN_OUT"
-        })
       }
     }
 }

@@ -520,7 +520,10 @@ export default styles = StyleSheet.create({
   addIngredientsContainer: {
     flex: 1,
     backgroundColor: '#008080',
-  }
+  },
+  compareButton: {
+    alignItems: 'center',
+  },
 
 // @media all and (max-width: 800px) {
 //   .navigation {

@@ -341,12 +341,14 @@ export default styles = StyleSheet.create({
   },
 
   buttonContainer: {
-    width: 200,
-    height: 50,
-    marginVertical: 5,
-    marginLeft: 110,
-    justifyContent: 'center',
-    alignItems: 'center'
+    width: 100,
+    marginLeft: 15,
+    marginTop: 5,
+    marginBottom: 8
+  },
+
+  buttontext: {
+    fontSize: 15
   },
 
   content:{
@@ -541,8 +543,63 @@ export default styles = StyleSheet.create({
     alignItems: 'center',
   },
 
+  // userpage css/styles
+  usertitle: {
+    textAlign:'center',
+    marginBottom: 40,
+    fontSize: 30,
+    marginTop: 25
+  },
+
   userPage: {
-    
+    flex: 1,
+    backgroundColor: '#e6e6fa',
+  },
+
+  ingredientsColor: {
+    flex: 1,
+    backgroundColor: '#e6e6fa',
+  },
+
+  recipeName: {
+    textAlign:'center',
+    fontSize: 25
+  },
+
+  favorImageContainer: {
+    flex: 1,
+    alignItems: 'center'
+  },
+
+  favorImage: {
+    justifyContent: 'center',
+    height: 110,
+    width: 200,
+    margin: 10
+  },
+
+  favorInstructionTitle: {
+    fontSize: 15
+  },
+
+  favorInstruction: {
+    width: 300,
+    textAlign: "center",
+    backgroundColor: "#e6e6fa"
+  },
+
+
+  listforuserRecipe: {
+    flexDirection: 'row',
+    marginTop: 20,
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+
+  listforuserRecipes: {
+    flexDirection: 'column',
+    margin: 10
   }
+
 
 });

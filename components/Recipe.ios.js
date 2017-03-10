@@ -114,7 +114,13 @@ class Recipe extends Component {
                 <Image source={require('../public/twitter_icon.png')} style={styles.shareIcons} />
               </TouchableOpacity>
             </View>
-            <AddRecipe info={this.props.recipe} ingredients={this.state.ingredients} userid={this.props.state.id} navigator={this.props.navigator} store={this.props.store}/>
+            <AddRecipe
+              info={this.props.recipe}
+              ingredients={this.state.ingredients}
+              userid={this.props.state.id}
+              navigator={this.props.navigator}
+              store={this.props.store}
+            />
           </View>
         </View>
         <View>

@@ -14,7 +14,8 @@ export default class AddRecipe extends Component {
       .then((reponese) => {
         console.log('recipe created', reponese.data)
         this.props.navigator.push({
-          component: UserPage
+          component: UserPage,
+          passProps: { store: this.props.store}
         })
       }).catch((error) => {
         console.log('no recipe created')

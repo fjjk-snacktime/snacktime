@@ -31,5 +31,5 @@
 
 node_modules
 android
-server/controllers/apiKeys.js
+server/utils/apiKeys.js
 .elasticbeanstalk/

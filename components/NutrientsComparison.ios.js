@@ -38,11 +38,11 @@ export default class NutrientsComparison extends Component {
       this.props.results[1][nutrient] = this.props.results[1][nutrient] ? this.props.results[1][nutrient] : [0, this.props.results[0][nutrient][1]]
       if (this.props.results[0][nutrient][0] > this.props.results[1][nutrient][0]) {
         return (
-          <Text style = {[styles.ingredientListText, {color: '#458B00'}]} key={i}>⇦  {nutrient}: {Math.abs(this.props.results[0][nutrient][0] - this.props.results[1][nutrient][0])} {this.props.results[1][nutrient][1]}</Text>
+          <Text style = {[styles.ingredientListText, {color: '#458B00'}]} key={i}>⇦  {nutrient}: {Math.floor(Math.abs(this.props.results[0][nutrient][0] - this.props.results[1][nutrient][0]))} {this.props.results[1][nutrient][1]}</Text>
         )
       } else {
         return (
-          <Text style = {[styles.ingredientListText, {color: '#B22222'}]} key={i}>{nutrient}: {Math.abs(this.props.results[0][nutrient][0] - this.props.results[1][nutrient][0])} {this.props.results[1][nutrient][1]}  ⇨</Text>
+          <Text style = {[styles.ingredientListText, {color: '#B22222'}]} key={i}>{nutrient}: {Math.floor(Math.abs(this.props.results[0][nutrient][0] - this.props.results[1][nutrient][0]))} {this.props.results[1][nutrient][1]}  ⇨</Text>
         )
       }
     })

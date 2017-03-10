@@ -536,33 +536,13 @@ export default styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#008080',
   },
+
   compareButton: {
     alignItems: 'center',
   },
 
-// @media all and (max-width: 800px) {
-//   .navigation {
-//     justify-content: space-around;
-//   }
-// }
-
-// @media all and (max-width: 600px) {
-//   .navigation {
-//     -webkit-flex-flow: column wrap;
-//     flex-flow: column wrap;
-//     padding: 0;
-//   }
-
-//   .navigation a {
-//     text-align: center;
-//     padding: 10px;
-//     border-top: 1px solid rgba(255,255,255,0.3);
-//     border-bottom: 1px solid rgba(0,0,0,0.1);
-//   }
-
-
-//   .navigation li:last-of-type a {
-//     border-bottom: none;
-//   }
+  userPage: {
+    
+  }
 
 });

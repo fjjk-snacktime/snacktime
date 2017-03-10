@@ -9,9 +9,10 @@ import { connect } from "react-redux";
 class Recipe extends Component {
   constructor(props) {
     super(props);
+    let steps = props.recipe.analyzedInstructions[0] ? props.recipe.analyzedInstructions[0].steps : [];
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      steps: ds.cloneWithRows(props.recipe.analyzedInstructions[0].steps),
+      steps: ds.cloneWithRows(steps),
       ingredients: []
     }
   }
@@ -113,7 +114,7 @@ class Recipe extends Component {
                 <Image source={require('../public/twitter_icon.png')} style={styles.shareIcons} />
               </TouchableOpacity>
             </View>
-            <AddRecipe info={this.props.recipe} ingredients={this.state.ingredients} userid={this.props.state.id} navigator={this.props.navigator}/>
+            <AddRecipe info={this.props.recipe} ingredients={this.state.ingredients} userid={this.props.state.id} navigator={this.props.navigator} store={this.props.store}/>
           </View>
         </View>
         <View>

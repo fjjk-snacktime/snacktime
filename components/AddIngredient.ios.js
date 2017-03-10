@@ -65,7 +65,7 @@ class AddIngredient extends Component {
             const ingredients = this.state.currentIngredients._dataBlob.s1;
             this.props.navigator.push({
               component: FoodpairResults,
-              passProps: { foodpairs: response.data, ingredients: ingredients }
+              passProps: { foodpairs: response.data, ingredients: ingredients, store: this.props.store }
             })
           })
           .catch( error => {

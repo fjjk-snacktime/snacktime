@@ -16,7 +16,7 @@ export default class AddRecipe extends Component {
         console.log('recipe created', response.data)
         this.props.navigator.push({
           component: UserPage,
-          passProps: { store: this.props.store}
+          passProps: { store: this.props.store, recipe: this.props.recipe }
         })
       }).catch((error) => {
         console.log('no recipe created')
@@ -27,7 +27,7 @@ export default class AddRecipe extends Component {
       return (
         <View>
           <Button
-              type="info"
+              type="positive"
               onPress={this.saveRecipe.bind(this)}
               containerStyle={styles.buttonContainer}
               >

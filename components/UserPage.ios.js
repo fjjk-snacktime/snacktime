@@ -7,12 +7,13 @@ import {
         ScrollView,
         ListView,
         TouchableHighlight,
+        TouchableOpacity
       } from 'react-native';
 import styles from '../styles.ios.js';
 import { connect } from 'react-redux';
 import Hr from 'react-native-hr';
 import {bindActionCreators} from 'redux';
-
+import Recipe from './Recipe.ios.js';
 import * as Animatable from 'react-native-animatable';
 import helpers from '../helpers/helpers.js';
 
@@ -23,6 +24,7 @@ class UserPage extends Component {
       dataSource: [],
       ingredients: []
     }
+
   }
 
   goBack() {
@@ -35,6 +37,16 @@ class UserPage extends Component {
     } else {
       this.getData();
     }
+  }
+
+  selectRecipe(id, title, image) {
+    helpers.recipes.getRecipe(id)
+      .then( resp => {
+        this.props.navigator.push({
+          component: Recipe,
+          passProps: { store: this.props.store, recipe: resp.data, food: title, image: image }
+        })
+      })
   }
 
   // create NewUser if not find in DB
@@ -100,9 +112,9 @@ class UserPage extends Component {
                     </TouchableHighlight>
                   </View>
                 <Text style={styles.recipeName}>{data.name}</Text>
-                  <View style={styles.favorImageContainer}>
+                  <TouchableOpacity style={styles.favorImageContainer} onPress={this.selectRecipe.bind(this, data.id, data.title, data.image)}>
                     <Image source={{uri: data.image}} style={styles.favorImage} />
-                  </View>
+                  </TouchableOpacity>
                   <View style={styles.favorImageContainer}>
                     <Text style={styles.favorInstructionTitle}>Instructions:</Text>
                     <Text style={styles.favorInstruction}>{data.analyzedInstructions}</Text>

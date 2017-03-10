@@ -24,8 +24,6 @@ const recipes = {
     };
     axios.get(`https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/${req.body.data}/information`, options)
       .then( resp => {
-        console.log('resp.data', resp.data)
-        console.log('resp.DATATATATA', resp.data.analyzedInstructions[0].steps);
         res.json(resp.data);
       }).catch( err => {
         console.error(err);

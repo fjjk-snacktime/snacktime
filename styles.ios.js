@@ -546,9 +546,10 @@ export default styles = StyleSheet.create({
   // userpage css/styles
   usertitle: {
     textAlign:'center',
-    marginBottom: 40,
+    marginBottom: 10,
     fontSize: 30,
-    marginTop: 25
+    marginTop: 5,
+    fontFamily: 'AppleSDGothicNeo-Light',
   },
 
   userPage: {

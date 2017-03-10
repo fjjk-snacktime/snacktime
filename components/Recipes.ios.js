@@ -56,7 +56,6 @@ export default class Recipes extends Component {
       //   component: NutrientComparisons,
       //   passProps: {results: fakeData, ids: this.state.compareArray, titles: this.state.titles, images: this.state.images}
       // })
-    }
   }
   render() {
     if (this.props.recipes.length === 0) {

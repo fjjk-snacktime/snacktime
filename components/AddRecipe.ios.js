@@ -1,6 +1,7 @@
 import React , { Component } from 'react';
 import axios from 'axios';
 import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
+import Button from 'react-native-flat-button'
 import helpers from '../helpers/helpers.js';
 import UserPage from './UserPage.ios.js';
 
@@ -25,11 +26,13 @@ export default class AddRecipe extends Component {
   render() {
       return (
         <View>
-          <TouchableOpacity
-            onPress={this.saveRecipe.bind(this)}
-          >
-            <Text>Save Recipe</Text>
-          </TouchableOpacity>
+          <Button
+              type="info"
+              onPress={this.saveRecipe.bind(this)}
+              containerStyle={styles.buttonContainer}
+              >
+              <Text style={styles.buttontext}>Save Recipe</Text>
+          </Button>
         </View>
       );
     }

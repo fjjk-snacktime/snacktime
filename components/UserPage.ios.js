@@ -89,7 +89,9 @@ class UserPage extends Component {
           <Text>Your FavoriteRecipe</Text>
         </View>
         <ScrollView style={styles.userPage}>
-          {this.state.dataSource.map((data, index) => (
+          {this.state.dataSource.map((data, index) => {
+            console.log(data)
+            return(
             <View key={index} style={styles.ingredientsColor}>
               <View style={styles.listforuserRecipes}>
                   <View style={styles.removeListItem}>
@@ -108,7 +110,7 @@ class UserPage extends Component {
                 </View>
                 <Hr lineColor='#b3b3b3' textColor='steelblue' />
               </View>
-            ))}
+            )})}
         </ScrollView>
       </View>
     )

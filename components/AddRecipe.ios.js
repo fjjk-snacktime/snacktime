@@ -12,8 +12,8 @@ export default class AddRecipe extends Component {
 
   saveRecipe() {
     helpers.user.saveRecipe(this.props.userid.userID, this.props.info.title, this.props.info.id, this.props.info.image, this.props.ingredients)
-      .then((reponese) => {
-        console.log('recipe created', reponese.data)
+      .then((response) => {
+        console.log('recipe created', response.data)
         this.props.navigator.push({
           component: UserPage,
           passProps: { store: this.props.store}

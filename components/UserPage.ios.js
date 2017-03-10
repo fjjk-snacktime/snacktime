@@ -6,13 +6,15 @@ import {
         Image,
         ScrollView,
         ListView,
-        TouchableHighlight
+        TouchableHighlight,
       } from 'react-native';
 import styles from '../styles.ios.js';
 import { connect } from 'react-redux';
+import Hr from 'react-native-hr';
 import {bindActionCreators} from 'redux';
-import helpers from '../helpers/helpers.js';
 
+import * as Animatable from 'react-native-animatable';
+import helpers from '../helpers/helpers.js';
 
 class UserPage extends Component {
   constructor(props) {
@@ -73,29 +75,40 @@ class UserPage extends Component {
     })
   }
 
+
   render() {
+    console.log("this is data", this.state.dataSource)
     if (this.props.state.isAuthenticated) {
     return (
-      <View>
-        <Text style={{marginTop: 25}}>UserHomePage</Text>
-        <TouchableHighlight style={styles.backButtonCamera} onPress={this.goBack.bind(this)}>
-          <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
-        </TouchableHighlight>
-        <Text>Your FavoriteRecipe</Text>
-        <ScrollView style={{marginBottom: 110}}>
-        {this.state.dataSource.map((data, index) => (
-          <View key={index} style={styles.ingredientContainer}>
-            <View style={styles.ingredientList}>
-              <Text>Recipe Name: {data.name}</Text>
-                <View style={styles.recipeImageAndIcons}>
-                  <Image source={{uri: data.image}} style={styles.recipeImage} />
+      <View style={styles.resultsList}>
+        <View style={styles.resultsTitle}>
+          <TouchableHighlight style={styles.backButtonCamera} onPress={this.goBack.bind(this)}>
+            <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
+          </TouchableHighlight>
+          <Text style={styles.usertitle}>UserHomePage</Text>
+          <Text>Your FavoriteRecipe</Text>
+        </View>
+        <ScrollView style={styles.userPage}>
+          {this.state.dataSource.map((data, index) => (
+            <View key={index} style={styles.ingredientsColor}>
+              <View style={styles.listforuserRecipes}>
+                  <View style={styles.removeListItem}>
+                    <TouchableHighlight onPress={this.deleteRecipe.bind(this, data.id)}>
+                      <Image style={styles.removeIcon} source={require('../public/delete.png')}/>
+                    </TouchableHighlight>
+                  </View>
+                <Text style={styles.recipeName}>{data.name}</Text>
+                  <View style={styles.favorImageContainer}>
+                    <Image source={{uri: data.image}} style={styles.favorImage} />
+                  </View>
+                  <View style={styles.favorImageContainer}>
+                    <Text style={styles.favorInstructionTitle}>Instructions:</Text>
+                    <Text style={styles.favorInstruction}>{data.analyzedInstructions}</Text>
+                  </View>
                 </View>
-                <TouchableHighlight style={styles.backButtonCamera} onPress={this.deleteRecipe.bind(this, data.id)}>
-                  <Image style={styles.backButtonImage} source={{uri: 'https://cdn0.iconfinder.com/data/icons/vector-basic-tab-bar-icons/48/back_button-128.png'}} />
-                </TouchableHighlight>
-            </View>
-          </View>
-        ))}
+                <Hr lineColor='#b3b3b3' textColor='steelblue' />
+              </View>
+            ))}
         </ScrollView>
       </View>
     )
